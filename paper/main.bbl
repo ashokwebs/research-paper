@@ -118,6 +118,11 @@ Rolf Landauer.
 \newblock Irreversibility and heat generation in the computing process.
 \newblock {\em IBM Journal of Research and Development}, 5(3):183--191, 1961.
 
+\bibitem{tishby2000information}
+Naftali Tishby, Fernando~C. Pereira, and William Bialek.
+\newblock The information bottleneck method.
+\newblock {\em arXiv preprint physics/0004057}, 2000.
+
 \bibitem{beggs2003neuronal}
 John~M. Beggs and Dietmar Plenz.
 \newblock Neuronal avalanches in neocortical circuits.

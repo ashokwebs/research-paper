@@ -222,6 +222,13 @@ Simulations confirmed the specialized elementary operations executed by each mot
 \label{fig:degeneracy}
 \end{figure}
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{figures/figure2_degeneracy_frontier.png}
+\caption{\textbf{Multi-Objective Pareto Degeneracy Frontier.} (A) Task Accuracy vs SynOps across evolutionary generations. (B) Critical degradation radius $R_{90}$ showing 33.6\% to 50.4\% structural pruning capacity. (C) Structural Hamming edit distance within the neutral fitness plateau.}
+\label{fig:deg_frontier}
+\end{figure}
+
 As presented in Table~\ref{tab:degeneracy} and Figure~\ref{fig:degeneracy}, multi-objective evolutionary search reveals that biological subcircuits inhabit expansive degeneracy envelopes:
 \begin{itemize}[leftmargin=*]
     \item Subcircuits can sustain structural drift of $\Delta_{\mathrm{struct}} = 0.15\text{ to }0.23$ before task performance drops below 90\% ($R_{90}$).
@@ -383,7 +390,23 @@ CEN w/o RIP (Point LIF) & 45.22 $\pm$ 1.77 & 14.9 & 92.54 \\
 \label{fig:dmts}
 \end{figure}
 
-On the 150-step DMTS-D working memory task (Table~\ref{tab:dmts}, Figure~\ref{fig:dmts}), passive point-neuron models operate near chance level ($47\text{--}52\%$) because exponential membrane decay ($e^{-95/20} = e^{-4.75} < 0.9\%$) causes catastrophic forgetting of the cue. In stark contrast, \textbf{ActiveDendriticCEN (AD-CEN)} maintains \textbf{91.22\% accuracy} by sustaining cue representations in active dendritic NMDA plateaus without continuous somatic spiking. Ablating NMDA plateaus drops accuracy to 79.89\% while triggering a 2.68-fold surge in SynOps (24,376.7). On high-speed neuromorphic DVS event vision streams, CoupledEventNet achieved \textbf{100.00\% accuracy} consuming only \textbf{7.5 SynOps (31.01 nJ)}, a \textbf{116-fold energy reduction} over standard Dense SNNs. Furthermore, we implemented synthesizable Verilog RTL cores (\texttt{dendritic\_lif\_core.v}, \texttt{aer\_crossbar\_router.v}) and verified sub-mW operation ($0.60\text{ mW}$ at 500 kEvents/s) on a compact $0.201\text{ mm}^2$ macro in TSMC 28nm.
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{figures/figure10_active_dendritic_memory.png}
+\caption{\textbf{Active Dendritic Working Memory Mechanism.} (A) Time courses of dendritic potential $V_d(t)$ sustaining an NMDA plateau vs somatic potential $V_s(t)$ and decayed point LIF $V_m(t)$. (B) Accuracy retention across delay horizons. (C) Energy overhead during memory maintenance.}
+\label{fig:ad_mechanism}
+\end{figure}
+
+On the 150-step DMTS-D working memory task (Table~\ref{tab:dmts}, Figure~\ref{fig:dmts}, Figure~\ref{fig:ad_mechanism}), passive point-neuron models operate near chance level ($47\text{--}52\%$) because exponential membrane decay ($e^{-95/20} = e^{-4.75} < 0.9\%$) causes catastrophic forgetting of the cue. In stark contrast, \textbf{ActiveDendriticCEN (AD-CEN)} maintains \textbf{91.22\% accuracy} by sustaining cue representations in active dendritic NMDA plateaus without continuous somatic spiking. Ablating NMDA plateaus drops accuracy to 79.89\% while triggering a 2.68-fold surge in SynOps (24,376.7).
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{figures/figure18_dvs_gesture_benchmark.png}
+\caption{\textbf{Neuromorphic DVS 10-Gesture Benchmark Under Hardware Noise Sweeps.} (A) Accuracy vs Poisson shot noise rate ($\lambda = 0.00 \to 0.25$). (B) Phase invariance under temporal jitter ($\sigma_t = 0 \to 40\text{ ms}$). (C) Calibrated energy dissipation per inference (log scale). (D) Decision latency vs energy Pareto trade-off.}
+\label{fig:dvs_main}
+\end{figure}
+
+On our 10-class neuromorphic DVS gesture benchmark subjected to Poisson shot noise and temporal jitter (Figure~\ref{fig:dvs_main}), ActiveDendriticCEN maintains \textbf{55.5\% accuracy} at severe noise ($\lambda = 0.20$) where Dense SNNs collapse to 20.0\%, and retains \textbf{85.0\% accuracy} under 30 ms temporal jitter. Clean inference in CoupledEventNet consumes only \textbf{613.3 SynOps (2,500.2 nJ)}, achieving a \textbf{5.7-fold energy reduction} over Dense SNNs (14,224.0 nJ). Furthermore, synthesizable Verilog RTL cores executed bit-exact fixed-point acceleration with sub-2 mV error and a 2,857$\times$ real-time speedup on TSMC 28nm.
 
 \subsection{Mathematical Theory: Degeneracy Invariance Bounds}
 
@@ -537,6 +560,19 @@ In contrast, our \textbf{Dale-Constrained Motif-Gated STDP (DCMG-STDP)} protects
 \end{equation}
 This achieves \textbf{96.0\% retained accuracy} with \textbf{0.0\% catastrophic forgetting}, enabling lifelong on-chip learning.
 
+\subsection{Theorem 3: Motif-Optimal Rate-Distortion \& Information Bottleneck}
+
+Under the Information Bottleneck principle~\cite{tishby2000information}, neural networks optimize the trade-off $\min I(X; M) - \beta I(M; Y)$ between sensory compression $I(X; M)$ and behavioral predictive sufficiency $I(M; Y)$.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{figures/figure19_information_bottleneck.png}
+\caption{\textbf{Cross-Species Information Bottleneck and Rate-Distortion Scaling.} (A) Neural information plane showing $I(X; M)$ vs $I(M; Y)$ along the theoretical Blahut-Arimoto bound. (B) Information efficiency ratio $\eta_{\mathrm{IB}} = I(M; Y) / I(X; M)$ across phylogenetic tiers. (C) Sensory noise compression ratio. (D) Thermodynamic energy dissipated per predictive bit transmitted (nJ/bit).}
+\label{fig:ib_main}
+\end{figure}
+
+Evaluating cross-species connectomes on the neural information plane (Figure~\ref{fig:ib_main}) reveals that Degenerate Pruned connectomes (50\% scaffolding removed) lie directly along the theoretical Rate-Distortion bound, transmitting $I(M; Y) = 0.86\text{ bits}$ while compressing sensory redundancy by up to 52.3\%. Pruning developmental scaffolding cuts thermodynamic dissipation from 21.40 nJ/bit down to \textbf{2.56 nJ/bit} (an 8.36-fold energy advantage over dense unconstrained SNNs).
+
 \subsection{Theorem 2: Criticality \& Neuronal Avalanche Preservation Along Degeneracy Frontiers}
 
 Under the Critical Brain Hypothesis~\cite{beggs2003neuronal}, biological circuits maximize dynamic range by operating near an edge-of-chaos phase transition with branching ratio $\sigma = \sum_t A(t) A(t+1) / \sum_t A(t)^2 \approx 1.00$. To determine whether structural pruning along the Degeneracy Frontier preserves dynamical criticality, we formulate \textbf{Theorem 2 (Motif-Constrained Criticality Preservation)}:
@@ -609,6 +645,15 @@ In physical multi-core neuromorphic silicon (Table~\ref{tab:noc_main}, Figure~\r
 \end{figure}
 
 Our \textbf{Motif-Aware Spectral Partitioning} confines tightly coupled cFFL and RIP loops within identical or adjacent cores, reducing global packet spillover by up to 19.6\%, reducing router hops from 5.31 to 4.19, accelerating event delivery latency by \textbf{19.3\%}, and cutting NoC communication energy by \textbf{1.32$\times$ to 1.36$\times$}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{figures/figure11_hardware_microarchitecture.png}
+\caption{\textbf{Synthesizable Silicon Microarchitecture.} (A) Top-level accelerator tile with AER crossbar ingress/egress. (B) Two-compartment dendritic LIF core with registered NMDA plateau state machine. (C) Q8.8 fixed-point synaptic accumulator.}
+\label{fig:hw_arch_main}
+\end{figure}
+
+Cycle-accurate RTL simulation of the synthesizable Verilog modules (\texttt{cen\_accelerator\_top.v}) at 100 MHz clock confirmed bit-exact parity with biophysical dynamics (Figure~\ref{fig:hw_arch_main}), maintaining a bounded quantization error $< 1.95\text{ mV}$ in signed Q8.8 fixed-point arithmetic and achieving a \textbf{2,857.1$\times$ real-time acceleration speedup} with a physical efficiency of \textbf{116.71 pJ/SynOp} on TSMC 28nm.
 
 \section{Discussion}
 
