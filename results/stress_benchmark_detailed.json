@@ -1,0 +1,603 @@
+{
+  "jitter_sweep": [
+    {
+      "model": "CoupledEventNet (Full)",
+      "jitter_sigma_ms": 0.0,
+      "accuracy": 100.0,
+      "synops_per_sample": 0.032,
+      "energy_nj": 0.165
+    },
+    {
+      "model": "Dense SNN",
+      "jitter_sigma_ms": 0.0,
+      "accuracy": 100.0,
+      "synops_per_sample": 597.744,
+      "energy_nj": 3000.5800000000004
+    },
+    {
+      "model": "Connectome Reservoir",
+      "jitter_sigma_ms": 0.0,
+      "accuracy": 100.0,
+      "synops_per_sample": 101.92,
+      "energy_nj": 515.485
+    },
+    {
+      "model": "CEN w/o cFFL",
+      "jitter_sigma_ms": 0.0,
+      "accuracy": 100.0,
+      "synops_per_sample": 2.18,
+      "energy_nj": 11.25
+    },
+    {
+      "model": "CEN w/o RIP",
+      "jitter_sigma_ms": 0.0,
+      "accuracy": 100.0,
+      "synops_per_sample": 0.26,
+      "energy_nj": 1.35
+    },
+    {
+      "model": "CoupledEventNet (Full)",
+      "jitter_sigma_ms": 2.0,
+      "accuracy": 100.0,
+      "synops_per_sample": 0.0,
+      "energy_nj": 0.0
+    },
+    {
+      "model": "Dense SNN",
+      "jitter_sigma_ms": 2.0,
+      "accuracy": 100.0,
+      "synops_per_sample": 602.028,
+      "energy_nj": 3022.085
+    },
+    {
+      "model": "Connectome Reservoir",
+      "jitter_sigma_ms": 2.0,
+      "accuracy": 100.0,
+      "synops_per_sample": 98.744,
+      "energy_nj": 499.40500000000003
+    },
+    {
+      "model": "CEN w/o cFFL",
+      "jitter_sigma_ms": 2.0,
+      "accuracy": 100.0,
+      "synops_per_sample": 1.84,
+      "energy_nj": 9.49
+    },
+    {
+      "model": "CEN w/o RIP",
+      "jitter_sigma_ms": 2.0,
+      "accuracy": 100.0,
+      "synops_per_sample": 0.192,
+      "energy_nj": 0.995
+    },
+    {
+      "model": "CoupledEventNet (Full)",
+      "jitter_sigma_ms": 4.0,
+      "accuracy": 100.0,
+      "synops_per_sample": 0.0,
+      "energy_nj": 0.0
+    },
+    {
+      "model": "Dense SNN",
+      "jitter_sigma_ms": 4.0,
+      "accuracy": 100.0,
+      "synops_per_sample": 601.272,
+      "energy_nj": 3018.29
+    },
+    {
+      "model": "Connectome Reservoir",
+      "jitter_sigma_ms": 4.0,
+      "accuracy": 100.0,
+      "synops_per_sample": 99.292,
+      "energy_nj": 502.19500000000005
+    },
+    {
+      "model": "CEN w/o cFFL",
+      "jitter_sigma_ms": 4.0,
+      "accuracy": 100.0,
+      "synops_per_sample": 1.82,
+      "energy_nj": 9.395
+    },
+    {
+      "model": "CEN w/o RIP",
+      "jitter_sigma_ms": 4.0,
+      "accuracy": 100.0,
+      "synops_per_sample": 0.208,
+      "energy_nj": 1.08
+    },
+    {
+      "model": "CoupledEventNet (Full)",
+      "jitter_sigma_ms": 8.0,
+      "accuracy": 99.59999918937683,
+      "synops_per_sample": 0.0,
+      "energy_nj": 0.0
+    },
+    {
+      "model": "Dense SNN",
+      "jitter_sigma_ms": 8.0,
+      "accuracy": 99.59999918937683,
+      "synops_per_sample": 607.068,
+      "energy_nj": 3047.385
+    },
+    {
+      "model": "Connectome Reservoir",
+      "jitter_sigma_ms": 8.0,
+      "accuracy": 99.59999918937683,
+      "synops_per_sample": 102.492,
+      "energy_nj": 518.385
+    },
+    {
+      "model": "CEN w/o cFFL",
+      "jitter_sigma_ms": 8.0,
+      "accuracy": 99.59999918937683,
+      "synops_per_sample": 1.76,
+      "energy_nj": 9.100000000000001
+    },
+    {
+      "model": "CEN w/o RIP",
+      "jitter_sigma_ms": 8.0,
+      "accuracy": 99.59999918937683,
+      "synops_per_sample": 0.28,
+      "energy_nj": 1.4500000000000002
+    },
+    {
+      "model": "CoupledEventNet (Full)",
+      "jitter_sigma_ms": 12.0,
+      "accuracy": 98.7999975681305,
+      "synops_per_sample": 0.064,
+      "energy_nj": 0.33
+    },
+    {
+      "model": "Dense SNN",
+      "jitter_sigma_ms": 12.0,
+      "accuracy": 99.19999837875366,
+      "synops_per_sample": 604.8,
+      "energy_nj": 3036.0
+    },
+    {
+      "model": "Connectome Reservoir",
+      "jitter_sigma_ms": 12.0,
+      "accuracy": 99.19999837875366,
+      "synops_per_sample": 102.528,
+      "energy_nj": 518.5749999999999
+    },
+    {
+      "model": "CEN w/o cFFL",
+      "jitter_sigma_ms": 12.0,
+      "accuracy": 98.7999975681305,
+      "synops_per_sample": 1.8,
+      "energy_nj": 9.31
+    },
+    {
+      "model": "CEN w/o RIP",
+      "jitter_sigma_ms": 12.0,
+      "accuracy": 99.19999837875366,
+      "synops_per_sample": 0.228,
+      "energy_nj": 1.1800000000000002
+    },
+    {
+      "model": "CoupledEventNet (Full)",
+      "jitter_sigma_ms": 16.0,
+      "accuracy": 96.79999947547913,
+      "synops_per_sample": 0.076,
+      "energy_nj": 0.395
+    },
+    {
+      "model": "Dense SNN",
+      "jitter_sigma_ms": 16.0,
+      "accuracy": 98.4000027179718,
+      "synops_per_sample": 606.312,
+      "energy_nj": 3043.59
+    },
+    {
+      "model": "Connectome Reservoir",
+      "jitter_sigma_ms": 16.0,
+      "accuracy": 96.79999947547913,
+      "synops_per_sample": 101.864,
+      "energy_nj": 515.24
+    },
+    {
+      "model": "CEN w/o cFFL",
+      "jitter_sigma_ms": 16.0,
+      "accuracy": 97.2000002861023,
+      "synops_per_sample": 1.852,
+      "energy_nj": 9.575
+    },
+    {
+      "model": "CEN w/o RIP",
+      "jitter_sigma_ms": 16.0,
+      "accuracy": 98.00000190734863,
+      "synops_per_sample": 0.192,
+      "energy_nj": 0.995
+    }
+  ],
+  "noise_sweep": [
+    {
+      "model": "CoupledEventNet (Full)",
+      "noise_prob": 0.01,
+      "accuracy": 99.59999918937683,
+      "synops_per_sample": 0.0,
+      "energy_nj": 0.0
+    },
+    {
+      "model": "Dense SNN",
+      "noise_prob": 0.01,
+      "accuracy": 100.0,
+      "synops_per_sample": 607.068,
+      "energy_nj": 3047.385
+    },
+    {
+      "model": "Connectome Reservoir",
+      "noise_prob": 0.01,
+      "accuracy": 100.0,
+      "synops_per_sample": 74.192,
+      "energy_nj": 375.075
+    },
+    {
+      "model": "CEN w/o cFFL",
+      "noise_prob": 0.01,
+      "accuracy": 100.0,
+      "synops_per_sample": 1.448,
+      "energy_nj": 7.465
+    },
+    {
+      "model": "CEN w/o RIP",
+      "noise_prob": 0.01,
+      "accuracy": 100.0,
+      "synops_per_sample": 0.08,
+      "energy_nj": 0.42500000000000004
+    },
+    {
+      "model": "CoupledEventNet (Full)",
+      "noise_prob": 0.05,
+      "accuracy": 95.99999785423279,
+      "synops_per_sample": 0.064,
+      "energy_nj": 0.33
+    },
+    {
+      "model": "Dense SNN",
+      "noise_prob": 0.05,
+      "accuracy": 99.59999918937683,
+      "synops_per_sample": 621.18,
+      "energy_nj": 3118.225
+    },
+    {
+      "model": "Connectome Reservoir",
+      "noise_prob": 0.05,
+      "accuracy": 96.39999866485596,
+      "synops_per_sample": 132.78,
+      "energy_nj": 671.93
+    },
+    {
+      "model": "CEN w/o cFFL",
+      "noise_prob": 0.05,
+      "accuracy": 97.60000109672546,
+      "synops_per_sample": 2.388,
+      "energy_nj": 12.33
+    },
+    {
+      "model": "CEN w/o RIP",
+      "noise_prob": 0.05,
+      "accuracy": 97.2000002861023,
+      "synops_per_sample": 0.232,
+      "energy_nj": 1.19
+    },
+    {
+      "model": "CoupledEventNet (Full)",
+      "noise_prob": 0.1,
+      "accuracy": 84.79999899864197,
+      "synops_per_sample": 2.948,
+      "energy_nj": 15.19
+    },
+    {
+      "model": "Dense SNN",
+      "noise_prob": 0.1,
+      "accuracy": 92.40000247955322,
+      "synops_per_sample": 681.408,
+      "energy_nj": 3420.56
+    },
+    {
+      "model": "Connectome Reservoir",
+      "noise_prob": 0.1,
+      "accuracy": 91.20000004768372,
+      "synops_per_sample": 436.336,
+      "energy_nj": 2209.875
+    },
+    {
+      "model": "CEN w/o cFFL",
+      "noise_prob": 0.1,
+      "accuracy": 85.19999980926514,
+      "synops_per_sample": 4.948,
+      "energy_nj": 25.57
+    },
+    {
+      "model": "CEN w/o RIP",
+      "noise_prob": 0.1,
+      "accuracy": 90.39999842643738,
+      "synops_per_sample": 3.924,
+      "energy_nj": 20.045
+    },
+    {
+      "model": "CoupledEventNet (Full)",
+      "noise_prob": 0.15,
+      "accuracy": 67.59999990463257,
+      "synops_per_sample": 14.684,
+      "energy_nj": 75.825
+    },
+    {
+      "model": "Dense SNN",
+      "noise_prob": 0.15,
+      "accuracy": 81.5999984741211,
+      "synops_per_sample": 769.608,
+      "energy_nj": 3863.31
+    },
+    {
+      "model": "Connectome Reservoir",
+      "noise_prob": 0.15,
+      "accuracy": 77.60000228881836,
+      "synops_per_sample": 1050.152,
+      "energy_nj": 5321.1900000000005
+    },
+    {
+      "model": "CEN w/o cFFL",
+      "noise_prob": 0.15,
+      "accuracy": 64.3999993801117,
+      "synops_per_sample": 12.396,
+      "energy_nj": 63.93000000000001
+    },
+    {
+      "model": "CEN w/o RIP",
+      "noise_prob": 0.15,
+      "accuracy": 76.39999985694885,
+      "synops_per_sample": 17.72,
+      "energy_nj": 90.80000000000001
+    },
+    {
+      "model": "CoupledEventNet (Full)",
+      "noise_prob": 0.2,
+      "accuracy": 51.99999809265137,
+      "synops_per_sample": 37.264,
+      "energy_nj": 192.885
+    },
+    {
+      "model": "Dense SNN",
+      "noise_prob": 0.2,
+      "accuracy": 72.00000286102295,
+      "synops_per_sample": 903.672,
+      "energy_nj": 4536.29
+    },
+    {
+      "model": "Connectome Reservoir",
+      "noise_prob": 0.2,
+      "accuracy": 66.39999747276306,
+      "synops_per_sample": 1835.996,
+      "energy_nj": 9305.185
+    },
+    {
+      "model": "CEN w/o cFFL",
+      "noise_prob": 0.2,
+      "accuracy": 46.39999866485596,
+      "synops_per_sample": 28.4,
+      "energy_nj": 146.4
+    },
+    {
+      "model": "CEN w/o RIP",
+      "noise_prob": 0.2,
+      "accuracy": 60.79999804496765,
+      "synops_per_sample": 35.712,
+      "energy_nj": 183.77
+    }
+  ],
+  "dropout_sweep": [
+    {
+      "model": "CoupledEventNet (Full)",
+      "dropout_prob": 0.0,
+      "accuracy": 100.0,
+      "synops_per_sample": 0.0,
+      "energy_nj": 0.0
+    },
+    {
+      "model": "Dense SNN",
+      "dropout_prob": 0.0,
+      "accuracy": 100.0,
+      "synops_per_sample": 593.46,
+      "energy_nj": 2979.0750000000003
+    },
+    {
+      "model": "Connectome Reservoir",
+      "dropout_prob": 0.0,
+      "accuracy": 100.0,
+      "synops_per_sample": 83.368,
+      "energy_nj": 421.675
+    },
+    {
+      "model": "CEN w/o cFFL",
+      "dropout_prob": 0.0,
+      "accuracy": 100.0,
+      "synops_per_sample": 1.576,
+      "energy_nj": 8.14
+    },
+    {
+      "model": "CEN w/o RIP",
+      "dropout_prob": 0.0,
+      "accuracy": 100.0,
+      "synops_per_sample": 0.072,
+      "energy_nj": 0.37
+    },
+    {
+      "model": "CoupledEventNet (Full)",
+      "dropout_prob": 0.1,
+      "accuracy": 98.7999975681305,
+      "synops_per_sample": 0.0,
+      "energy_nj": 0.0
+    },
+    {
+      "model": "Dense SNN",
+      "dropout_prob": 0.1,
+      "accuracy": 100.0,
+      "synops_per_sample": 575.064,
+      "energy_nj": 2886.73
+    },
+    {
+      "model": "Connectome Reservoir",
+      "dropout_prob": 0.1,
+      "accuracy": 98.7999975681305,
+      "synops_per_sample": 46.816,
+      "energy_nj": 236.655
+    },
+    {
+      "model": "CEN w/o cFFL",
+      "dropout_prob": 0.1,
+      "accuracy": 100.0,
+      "synops_per_sample": 0.508,
+      "energy_nj": 2.65
+    },
+    {
+      "model": "CEN w/o RIP",
+      "dropout_prob": 0.1,
+      "accuracy": 100.0,
+      "synops_per_sample": 0.0,
+      "energy_nj": 0.0
+    },
+    {
+      "model": "CoupledEventNet (Full)",
+      "dropout_prob": 0.2,
+      "accuracy": 99.59999918937683,
+      "synops_per_sample": 0.0,
+      "energy_nj": 0.0
+    },
+    {
+      "model": "Dense SNN",
+      "dropout_prob": 0.2,
+      "accuracy": 99.19999837875366,
+      "synops_per_sample": 562.464,
+      "energy_nj": 2823.48
+    },
+    {
+      "model": "Connectome Reservoir",
+      "dropout_prob": 0.2,
+      "accuracy": 99.19999837875366,
+      "synops_per_sample": 27.12,
+      "energy_nj": 136.98
+    },
+    {
+      "model": "CEN w/o cFFL",
+      "dropout_prob": 0.2,
+      "accuracy": 98.7999975681305,
+      "synops_per_sample": 0.132,
+      "energy_nj": 0.685
+    },
+    {
+      "model": "CEN w/o RIP",
+      "dropout_prob": 0.2,
+      "accuracy": 98.7999975681305,
+      "synops_per_sample": 0.0,
+      "energy_nj": 0.0
+    },
+    {
+      "model": "CoupledEventNet (Full)",
+      "dropout_prob": 0.3,
+      "accuracy": 98.00000190734863,
+      "synops_per_sample": 0.0,
+      "energy_nj": 0.0
+    },
+    {
+      "model": "Dense SNN",
+      "dropout_prob": 0.3,
+      "accuracy": 97.2000002861023,
+      "synops_per_sample": 555.912,
+      "energy_nj": 2790.59
+    },
+    {
+      "model": "Connectome Reservoir",
+      "dropout_prob": 0.3,
+      "accuracy": 99.19999837875366,
+      "synops_per_sample": 10.024,
+      "energy_nj": 50.615
+    },
+    {
+      "model": "CEN w/o cFFL",
+      "dropout_prob": 0.3,
+      "accuracy": 98.4000027179718,
+      "synops_per_sample": 0.02,
+      "energy_nj": 0.10500000000000001
+    },
+    {
+      "model": "CEN w/o RIP",
+      "dropout_prob": 0.3,
+      "accuracy": 98.4000027179718,
+      "synops_per_sample": 0.0,
+      "energy_nj": 0.0
+    },
+    {
+      "model": "CoupledEventNet (Full)",
+      "dropout_prob": 0.4,
+      "accuracy": 96.79999947547913,
+      "synops_per_sample": 0.0,
+      "energy_nj": 0.0
+    },
+    {
+      "model": "Dense SNN",
+      "dropout_prob": 0.4,
+      "accuracy": 96.39999866485596,
+      "synops_per_sample": 552.636,
+      "energy_nj": 2774.145
+    },
+    {
+      "model": "Connectome Reservoir",
+      "dropout_prob": 0.4,
+      "accuracy": 95.59999704360962,
+      "synops_per_sample": 2.888,
+      "energy_nj": 14.584999999999999
+    },
+    {
+      "model": "CEN w/o cFFL",
+      "dropout_prob": 0.4,
+      "accuracy": 98.4000027179718,
+      "synops_per_sample": 0.0,
+      "energy_nj": 0.0
+    },
+    {
+      "model": "CEN w/o RIP",
+      "dropout_prob": 0.4,
+      "accuracy": 95.59999704360962,
+      "synops_per_sample": 0.0,
+      "energy_nj": 0.0
+    },
+    {
+      "model": "CoupledEventNet (Full)",
+      "dropout_prob": 0.5,
+      "accuracy": 92.40000247955322,
+      "synops_per_sample": 0.0,
+      "energy_nj": 0.0
+    },
+    {
+      "model": "Dense SNN",
+      "dropout_prob": 0.5,
+      "accuracy": 92.79999732971191,
+      "synops_per_sample": 553.14,
+      "energy_nj": 2776.675
+    },
+    {
+      "model": "Connectome Reservoir",
+      "dropout_prob": 0.5,
+      "accuracy": 92.79999732971191,
+      "synops_per_sample": 0.94,
+      "energy_nj": 4.735
+    },
+    {
+      "model": "CEN w/o cFFL",
+      "dropout_prob": 0.5,
+      "accuracy": 94.80000138282776,
+      "synops_per_sample": 0.0,
+      "energy_nj": 0.0
+    },
+    {
+      "model": "CEN w/o RIP",
+      "dropout_prob": 0.5,
+      "accuracy": 95.59999704360962,
+      "synops_per_sample": 0.0,
+      "energy_nj": 0.0
+    }
+  ]
+}

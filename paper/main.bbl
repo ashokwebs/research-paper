@@ -90,14 +90,22 @@ Eve Marder and Adam~L. Taylor.
   networks.
 \newblock {\em Nature Neuroscience}, 14(2):133--138, 2011.
 
-\bibitem{davies2018loihi}
-Mike Davies, Narayan Srinivasa, Tsung-Han Lin, Gautham Chinya, Yongqiang Cao,
-  Sri~Harsha Choday, Georgios Dimou, Prasad Joshi, Nabil Imam, Shweta Jain,
-  Yiyi Liao, Chit-Kwan Lin, Andrew Lines, Ruokun Liu, Deepak Mathaikutty,
-  Steven McCoy, Arnab Paul, Jonathan Tse, Guruguntla Venkataramanan, Yi-Hsin
-  Weng, Andreas Wild, Yoonseok Yang, and Hong Wang.
-\newblock Loihi: A neuromorphic manycore processor with on-chip learning.
-\newblock {\em IEEE Micro}, 38(1):82--99, 2018.
+\bibitem{edelman2001degeneracy}
+Gerald~M. Edelman and Joseph~A. Gally.
+\newblock Degeneracy and complexity in biological systems.
+\newblock {\em Proceedings of the National Academy of Sciences},
+  98(24):13763--13768, 2001.
+
+\bibitem{larkum1999new}
+Matthew~E. Larkum, J.~Julius Zhu, and Bert Sakmann.
+\newblock A new cellular mechanism for coupling inputs arriving at different
+  cortical layers.
+\newblock {\em Nature}, 398(6725):338--341, 1999.
+
+\bibitem{poirazi2003pyramidal}
+Panayiota Poirazi, Terrence Brannon, and Bartlett~W. Mel.
+\newblock Pyramidal neuron as two-layer neural network.
+\newblock {\em Neuron}, 37(6):989--999, 2003.
 
 \bibitem{suarez2024connectome}
 Laura~E. Su{\'a}rez, Agoston Mihalik, Filip Milisav, Mingze Li, Kenji Marshall,

@@ -1,0 +1,383 @@
+{
+  "lesion_summary": [
+    {
+      "organism": "C. elegans",
+      "num_neurons": 100,
+      "num_synapses": 1732,
+      "synaptic_density": 0.17494949494949494,
+      "edges_tested": 60,
+      "invariants_count": 0,
+      "invariants_pct": 0.0,
+      "regulatory_count": 0,
+      "regulatory_pct": 0.0,
+      "scaffolding_count": 60,
+      "scaffolding_pct": 100.0,
+      "mean_relative_drop": 0.0,
+      "max_relative_drop": 0.0
+    },
+    {
+      "organism": "Drosophila CX",
+      "num_neurons": 100,
+      "num_synapses": 1006,
+      "synaptic_density": 0.10161616161616162,
+      "edges_tested": 60,
+      "invariants_count": 0,
+      "invariants_pct": 0.0,
+      "regulatory_count": 0,
+      "regulatory_pct": 0.0,
+      "scaffolding_count": 60,
+      "scaffolding_pct": 100.0,
+      "mean_relative_drop": 0.0,
+      "max_relative_drop": 0.0
+    },
+    {
+      "organism": "Mouse V1 L2/3",
+      "num_neurons": 100,
+      "num_synapses": 745,
+      "synaptic_density": 0.07525252525252525,
+      "edges_tested": 60,
+      "invariants_count": 0,
+      "invariants_pct": 0.0,
+      "regulatory_count": 0,
+      "regulatory_pct": 0.0,
+      "scaffolding_count": 60,
+      "scaffolding_pct": 100.0,
+      "mean_relative_drop": 0.0,
+      "max_relative_drop": 0.0
+    }
+  ],
+  "degeneracy_summary": [
+    {
+      "organism": "C. elegans",
+      "baseline_score": 1.0,
+      "baseline_synops": 25093,
+      "critical_radius_r90": 0.23120818417153183,
+      "critical_radius_r80": 0.23120818417153183,
+      "synops_reduction_pct": 33.58705615111784,
+      "pareto_front_size": 4,
+      "optimization_time_sec": 2.454087734222412
+    },
+    {
+      "organism": "Drosophila CX",
+      "baseline_score": 0.025,
+      "baseline_synops": 1120,
+      "critical_radius_r90": 0.19191055735784715,
+      "critical_radius_r80": 0.19191055735784715,
+      "synops_reduction_pct": 43.660714285714285,
+      "pareto_front_size": 21,
+      "optimization_time_sec": 2.205132484436035
+    },
+    {
+      "organism": "Mouse V1 L2/3",
+      "baseline_score": 1.0,
+      "baseline_synops": 3547,
+      "critical_radius_r90": 0.14666605352412482,
+      "critical_radius_r80": 0.16434777079699386,
+      "synops_reduction_pct": 50.35241048773611,
+      "pareto_front_size": 17,
+      "optimization_time_sec": 1.632659912109375
+    }
+  ],
+  "pareto_fronts": {
+    "C. elegans": [
+      {
+        "structural_distance": 0.21798964484941108,
+        "task_performance": 1.0,
+        "total_synops": 16665,
+        "generation": 12,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.22350975797273817,
+        "task_performance": 1.0,
+        "total_synops": 16775,
+        "generation": 12,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.23120818417153183,
+        "task_performance": 1.0,
+        "total_synops": 16906,
+        "generation": 12,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.21982395611204866,
+        "task_performance": 1.0,
+        "total_synops": 16703,
+        "generation": 12,
+        "dales_valid": true
+      }
+    ],
+    "Drosophila CX": [
+      {
+        "structural_distance": 0.02156845432214357,
+        "task_performance": 0.075,
+        "total_synops": 821,
+        "generation": 0,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.04252232077316239,
+        "task_performance": 0.0375,
+        "total_synops": 631,
+        "generation": 1,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.038894312369750224,
+        "task_performance": 0.1375,
+        "total_synops": 920,
+        "generation": 1,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.05609931914380509,
+        "task_performance": 0.075,
+        "total_synops": 935,
+        "generation": 2,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.05970469373591298,
+        "task_performance": 0.25,
+        "total_synops": 1036,
+        "generation": 2,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.05428494239437903,
+        "task_performance": 0.275,
+        "total_synops": 957,
+        "generation": 2,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.07612328045278585,
+        "task_performance": 0.2375,
+        "total_synops": 1009,
+        "generation": 3,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.07424178994163164,
+        "task_performance": 0.325,
+        "total_synops": 1095,
+        "generation": 3,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.09279198595938808,
+        "task_performance": 0.3375,
+        "total_synops": 1380,
+        "generation": 4,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.0607137443565008,
+        "task_performance": 0.4,
+        "total_synops": 1345,
+        "generation": 5,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.05465869432043436,
+        "task_performance": 0.4125,
+        "total_synops": 1304,
+        "generation": 5,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.09348050945370107,
+        "task_performance": 0.475,
+        "total_synops": 1413,
+        "generation": 6,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.12402861749172214,
+        "task_performance": 0.3375,
+        "total_synops": 1637,
+        "generation": 7,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.1359595793087013,
+        "task_performance": 0.55,
+        "total_synops": 1714,
+        "generation": 8,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.13169851171163324,
+        "task_performance": 0.15,
+        "total_synops": 1200,
+        "generation": 9,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.17721015970292328,
+        "task_performance": 0.8375,
+        "total_synops": 2370,
+        "generation": 11,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.1377232474865225,
+        "task_performance": 0.875,
+        "total_synops": 3036,
+        "generation": 11,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.19191055735784715,
+        "task_performance": 0.8125,
+        "total_synops": 2575,
+        "generation": 12,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.13702944483004026,
+        "task_performance": 0.9375,
+        "total_synops": 2989,
+        "generation": 12,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.15440631311533345,
+        "task_performance": 0.5125,
+        "total_synops": 1730,
+        "generation": 12,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.14266243778187118,
+        "task_performance": 0.6,
+        "total_synops": 2215,
+        "generation": 12,
+        "dales_valid": true
+      }
+    ],
+    "Mouse V1 L2/3": [
+      {
+        "structural_distance": 0.13157900759825,
+        "task_performance": 0.8625,
+        "total_synops": 1707,
+        "generation": 7,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.14534380602036684,
+        "task_performance": 0.9,
+        "total_synops": 1761,
+        "generation": 7,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.16265183187153434,
+        "task_performance": 0.75,
+        "total_synops": 1651,
+        "generation": 8,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.14356249356466566,
+        "task_performance": 0.7375,
+        "total_synops": 1405,
+        "generation": 8,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.14465009025737185,
+        "task_performance": 0.575,
+        "total_synops": 1046,
+        "generation": 8,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.14666605352412482,
+        "task_performance": 0.9625,
+        "total_synops": 1805,
+        "generation": 9,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.14037615597635275,
+        "task_performance": 0.8,
+        "total_synops": 1699,
+        "generation": 10,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.15514318915150702,
+        "task_performance": 0.7375,
+        "total_synops": 1537,
+        "generation": 10,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.1396834272635581,
+        "task_performance": 0.9375,
+        "total_synops": 1801,
+        "generation": 10,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.14097455303819442,
+        "task_performance": 0.975,
+        "total_synops": 1862,
+        "generation": 10,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.14313610706765323,
+        "task_performance": 0.75,
+        "total_synops": 1475,
+        "generation": 10,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.16434777079699386,
+        "task_performance": 0.8125,
+        "total_synops": 1815,
+        "generation": 10,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.140717488041318,
+        "task_performance": 0.9875,
+        "total_synops": 1901,
+        "generation": 10,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.1498651170884312,
+        "task_performance": 0.8875,
+        "total_synops": 1727,
+        "generation": 12,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.14509347529349825,
+        "task_performance": 1.0,
+        "total_synops": 2178,
+        "generation": 12,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.13733136993674133,
+        "task_performance": 0.8,
+        "total_synops": 1568,
+        "generation": 12,
+        "dales_valid": true
+      },
+      {
+        "structural_distance": 0.13993153264979524,
+        "task_performance": 1.0,
+        "total_synops": 2015,
+        "generation": 12,
+        "dales_valid": true
+      }
+    ]
+  }
+}

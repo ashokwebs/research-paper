@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2026.7.26)  17 SEP 2026 12:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2026.7.26)  17 SEP 2026 12:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -516,95 +516,176 @@ Package microtype Info: Loading generic protrusion settings for font family
 ]
 
 
-Overfull \hbox (23.69638pt too wide) detected at line 99
-[][][][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ) = [] \OML/cmm/m/it
-/10 k[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 j\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ;  
-[] \OT1/cmr/m/n/10 = [] [](\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 )
+Underfull \hbox (badness 1902) in paragraph at lines 75--75
+[]\OT1/cmr/bx/n/12 (+20) Unified Con-nec-tome Schema and
  []
 
 
-Overfull \hbox (58.19447pt too wide) detected at line 102
-[][][][] \OT1/cmr/m/n/10 = [] \OMS/cmsy/m/n/10 ^^B \OT1/cmr/m/n/10 0\OML/cmm/m/
-it/10 :\OT1/cmr/m/n/10 020[] + [] \OMS/cmsy/m/n/10 ^^B \OT1/cmr/m/n/10 0\OML/cm
-m/m/it/10 :\OT1/cmr/m/n/10 005[]
+Underfull \hbox (badness 1565) in paragraph at lines 93--94
+ []\OT1/cmr/bx/n/10 (+20) Point Leaky Integrate-and-Fire (LIF):[] \OT1/cmr/m/n/
+10 (+20) Single-
  []
 
 
 
 [2]
-Overfull \hbox (97.11592pt too wide) in paragraph at lines 130--161
+Overfull \hbox (37.57387pt too wide) detected at line 104
+[]
+ []
+
+
+Overfull \hbox (32.23228pt too wide) detected at line 112
+[]
+ []
+
+
+Underfull \hbox (badness 3838) in paragraph at lines 115--116
+\OT1/cmr/m/n/10 (+20) The De-gen-er-acy Fron-tier ex-plores struc-tural drift
+ []
+
+
+Overfull \hbox (97.11592pt too wide) in paragraph at lines 140--171
  [][] 
  []
 
-<figures/figure1_cross_species_motifs.png, id=127, 867.24pt x 397.485pt>
+
+
+<figures/figure1_cross_species_motifs.png, id=136, 867.24pt x 397.485pt>
 File: figures/figure1_cross_species_motifs.png Graphic file (type png)
 <use figures/figure1_cross_species_motifs.png>
 Package pdftex.def Info: figures/figure1_cross_species_motifs.png  used on inpu
-t line 165.
+t line 175.
 (pdftex.def)             Requested size: 247.94499pt x 113.63617pt.
-<figures/figure3_dynamic_motifs.png, id=131, 939.51pt x 289.08pt>
+<figures/figure3_dynamic_motifs.png, id=140, 939.51pt x 289.08pt>
 File: figures/figure3_dynamic_motifs.png Graphic file (type png)
 <use figures/figure3_dynamic_motifs.png>
 Package pdftex.def Info: figures/figure3_dynamic_motifs.png  used on input line
- 176.
+ 186.
 (pdftex.def)             Requested size: 247.94499pt x 76.28824pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-<figures/figure2_degeneracy_frontier.png, id=133, 794.97pt x 325.215pt>
-File: figures/figure2_degeneracy_frontier.png Graphic file (type png)
-<use figures/figure2_degeneracy_frontier.png>
-Package pdftex.def Info: figures/figure2_degeneracy_frontier.png  used on input
- line 192.
-(pdftex.def)             Requested size: 247.94499pt x 101.43094pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 199--199
-[]\OT1/cmr/bx/n/12 (+20) CoupledEventNet Neu-ro-mor-phic
- []
-
-
-Overfull \hbox (331.9493pt too wide) in paragraph at lines 206--215
- [][] 
- []
-
-<figures/figure4_cen_benchmark.png, id=135, 794.97pt x 325.215pt>
-File: figures/figure4_cen_benchmark.png Graphic file (type png)
-<use figures/figure4_cen_benchmark.png>
-Package pdftex.def Info: figures/figure4_cen_benchmark.png  used on input line 
-219.
-(pdftex.def)             Requested size: 247.94499pt x 101.43094pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 
 
 [3 <./figures/figure1_cross_species_motifs.png> <./figures/figure3_dynamic_moti
-fs.png> <./figures/figure2_degeneracy_frontier.png>]
+fs.png>]
+Overfull \hbox (128.04218pt too wide) in paragraph at lines 205--214
+ [][] 
+ []
+
+<figures/figure6_cross_species_degeneracy.png, id=163, 1145.7204pt x 351.714pt>
+
+File: figures/figure6_cross_species_degeneracy.png Graphic file (type png)
+<use figures/figure6_cross_species_degeneracy.png>
+Package pdftex.def Info: figures/figure6_cross_species_degeneracy.png  used on 
+input line 218.
+(pdftex.def)             Requested size: 247.94499pt x 76.11076pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+
+Overfull \hbox (127.11113pt too wide) in paragraph at lines 237--248
+ [][] 
+ []
+
+<figures/figure7_stress_resilience.png, id=166, 999.735pt x 712.5822pt>
+File: figures/figure7_stress_resilience.png Graphic file (type png)
+<use figures/figure7_stress_resilience.png>
+Package pdftex.def Info: figures/figure7_stress_resilience.png  used on input l
+ine 252.
+(pdftex.def)             Requested size: 247.94499pt x 176.72073pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[4 <./figures/figure6_cross_species_degeneracy.png>]
+Overfull \hbox (140.34639pt too wide) in paragraph at lines 270--288
+ [][] 
+ []
+
+<figures/figure8_dendritic_scaling.png, id=182, 1146.2022pt x 351.4731pt>
+File: figures/figure8_dendritic_scaling.png Graphic file (type png)
+<use figures/figure8_dendritic_scaling.png>
+Package pdftex.def Info: figures/figure8_dendritic_scaling.png  used on input l
+ine 292.
+(pdftex.def)             Requested size: 247.94499pt x 76.02646pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 
-Overfull \hbox (115.35468pt too wide) in paragraph at lines 235--246
+Overfull \hbox (331.9493pt too wide) in paragraph at lines 311--320
  [][] 
  []
 
-<figures/figure5_ablation_study.png, id=156, 867.24pt x 325.215pt>
+<figures/figure4_cen_benchmark.png, id=185, 794.97pt x 325.215pt>
+File: figures/figure4_cen_benchmark.png Graphic file (type png)
+<use figures/figure4_cen_benchmark.png>
+Package pdftex.def Info: figures/figure4_cen_benchmark.png  used on input line 
+324.
+(pdftex.def)             Requested size: 247.94499pt x 101.43094pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (115.35468pt too wide) in paragraph at lines 334--345
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<figures/figure5_ablation_study.png, id=186, 867.24pt x 325.215pt>
 File: figures/figure5_ablation_study.png Graphic file (type png)
 <use figures/figure5_ablation_study.png>
 Package pdftex.def Info: figures/figure5_ablation_study.png  used on input line
- 250.
+ 349.
 (pdftex.def)             Requested size: 247.94499pt x 92.97505pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[4 <./figures/figure4_cen_benchmark.png>] (./main.bbl
+[5 <./figures/figure7_stress_resilience.png> <./figures/figure8_dendritic_scali
+ng.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 356--356
+[]\OT1/cmr/bx/n/12 (+20) Long-Horizon Work-ing Mem-ory
+ []
 
 
+Overfull \hbox (86.85275pt too wide) in paragraph at lines 363--374
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<figures/figure9_dmts_benchmark.png, id=205, 849.4134pt x 350.5095pt>
+File: figures/figure9_dmts_benchmark.png Graphic file (type png)
+<use figures/figure9_dmts_benchmark.png>
+Package pdftex.def Info: figures/figure9_dmts_benchmark.png  used on input line
+ 378.
+(pdftex.def)             Requested size: 247.94499pt x 102.31369pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+
+
+[6 <./figures/figure4_cen_benchmark.png>]
+
+(./main.bbl
+
+[7 <./figures/figure5_ablation_study.png> <./figures/figure9_dmts_benchmark.png
+>]
 Underfull \hbox (badness 10000) in paragraph at lines 51--69
 []\OT1/cmr/m/n/10 (+20) Alexander Shapson-Coe, Micha l Januszewski,
  []
@@ -620,8 +701,6 @@ Underfull \hbox (badness 3989) in paragraph at lines 51--69
  []
 
 
-
-[5 <./figures/figure5_ablation_study.png>]
 Underfull \hbox (badness 1521) in paragraph at lines 71--81
 []\OT1/cmr/m/n/10 (+20) David C. Van Es-sen, Kamil Ugur-bil, Ed-ward
  []
@@ -631,28 +710,26 @@ Underfull \hbox (badness 2197) in paragraph at lines 71--81
 \OT1/cmr/m/n/10 (+20) Richard Bu-cholz, Amanda Ce-sario, Lei Chen,
  []
 
+
+
 )
 
-
-
-[6
-
-] (./main.aux)
+[8] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: EDC3CFD251A02E44CA20B3D518FB1C76;3461.
+(rerunfilecheck)             Checksum: 2EE02691234F507E01F3D5F1CEF01E24;4344.
  ) 
 Here is how much of TeX's memory you used:
- 13462 strings out of 475178
- 207869 string characters out of 5766539
- 674247 words of memory out of 5000000
- 36049 multiletter control sequences out of 15000+600000
- 576121 words of font info for 173 fonts, out of 8000000 for 9000
+ 13528 strings out of 475178
+ 209338 string characters out of 5766539
+ 675773 words of memory out of 5000000
+ 36083 multiletter control sequences out of 15000+600000
+ 576624 words of font info for 179 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,9n,79p,1539b,570s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,10n,79p,1536b,616s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/charizard/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000
 .600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr
@@ -664,20 +741,22 @@ fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmtt9.pfb>
-Output written on main.pdf (6 pages, 1373103 bytes).
+cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmti9.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmtt9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sym
+bols/msbm10.pfb>
+Output written on main.pdf (8 pages, 2698558 bytes).
 PDF statistics:
- 289 PDF objects out of 1000 (max. 8388607)
- 225 compressed objects within 3 object streams
- 60 named destinations out of 1000 (max. 500000)
- 38554 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 353 PDF objects out of 1000 (max. 8388607)
+ 277 compressed objects within 3 object streams
+ 80 named destinations out of 1000 (max. 500000)
+ 38585 words of extra memory for PDF output out of 42996 (max. 10000000)
 

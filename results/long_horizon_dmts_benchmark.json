@@ -1,0 +1,37 @@
+[
+  {
+    "model": "CoupledEventNet (Full)",
+    "mean_accuracy": 46.99999988079071,
+    "std_accuracy": 2.4944382684693442,
+    "mean_synops_per_sample": 17.636666666666667,
+    "mean_energy_nj": 110.385
+  },
+  {
+    "model": "Dense SNN",
+    "mean_accuracy": 47.444443901379906,
+    "std_accuracy": 2.9979412516628727,
+    "mean_synops_per_sample": 2338.56,
+    "mean_energy_nj": 14087.04
+  },
+  {
+    "model": "Connectome Reservoir",
+    "mean_accuracy": 52.222222089767456,
+    "std_accuracy": 3.189488636702929,
+    "mean_synops_per_sample": 2078.451111111111,
+    "mean_energy_nj": 12646.156666666668
+  },
+  {
+    "model": "CEN w/o RIP",
+    "mean_accuracy": 45.22222280502319,
+    "std_accuracy": 1.7708192745807625,
+    "mean_synops_per_sample": 14.893333333333333,
+    "mean_energy_nj": 92.53500000000001
+  },
+  {
+    "model": "CEN w/o cFFL",
+    "mean_accuracy": 45.55555582046509,
+    "std_accuracy": 1.9309047174349119,
+    "mean_synops_per_sample": 17.043333333333333,
+    "mean_energy_nj": 106.19166666666668
+  }
+]
