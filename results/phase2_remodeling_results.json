@@ -1,0 +1,34 @@
+{
+  "causal_lesioning": {
+    "total_tested": 80,
+    "num_invariants": 0,
+    "num_regulatory": 0,
+    "num_scaffolding": 80,
+    "invariants_fraction": 0.0,
+    "scaffolding_fraction": 1.0,
+    "sample_invariants": []
+  },
+  "degeneracy_frontier": {
+    "num_candidates": 80,
+    "num_pareto_optimal": 2,
+    "base_score": 1.0,
+    "base_synops": 11376,
+    "max_structural_drift_at_85pct": 0.17715192282170958,
+    "pareto_front": [
+      {
+        "generation": 8,
+        "structural_distance": 0.17353709849723017,
+        "task_performance": 1.0,
+        "total_synops": 8230,
+        "dales_valid": true
+      },
+      {
+        "generation": 8,
+        "structural_distance": 0.17715192282170958,
+        "task_performance": 1.0,
+        "total_synops": 8537,
+        "dales_valid": true
+      }
+    ]
+  }
+}
