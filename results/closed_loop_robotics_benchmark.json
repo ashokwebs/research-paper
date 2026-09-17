@@ -1,0 +1,47 @@
+[
+  {
+    "controller": "ActiveDendriticCEN (AD-CEN)",
+    "success_rate_pct": 100.0,
+    "rmse_m": 0.4404813127033458,
+    "mean_synops": 131168.06666666668,
+    "energy_proxy_nj": 2733.1476666666704,
+    "compute_power_mw": 0.0002459832900000003,
+    "flight_endurance_min": 8.951612548073049
+  },
+  {
+    "controller": "CoupledEventNet (CEN)",
+    "success_rate_pct": 100.0,
+    "rmse_m": 0.4892080648710006,
+    "mean_synops": 208407.26666666666,
+    "energy_proxy_nj": 4334.932000000001,
+    "compute_power_mw": 0.0003901438800000001,
+    "flight_endurance_min": 8.95161233993278
+  },
+  {
+    "controller": "Classical PID Autopilot",
+    "success_rate_pct": 100.0,
+    "rmse_m": 0.18308079985787362,
+    "mean_synops": 0.0,
+    "energy_proxy_nj": 0.0,
+    "compute_power_mw": 0.0,
+    "flight_endurance_min": 8.951612903225806
+  },
+  {
+    "controller": "Connectome Reservoir (conn2res)",
+    "success_rate_pct": 100.0,
+    "rmse_m": 0.2171514540805332,
+    "mean_synops": 321737.0,
+    "energy_proxy_nj": 6524.634666666666,
+    "compute_power_mw": 0.0005872171200000001,
+    "flight_endurance_min": 8.951612055396797
+  },
+  {
+    "controller": "Dense SNN",
+    "success_rate_pct": 100.0,
+    "rmse_m": 0.2790531468005698,
+    "mean_synops": 410037.6,
+    "energy_proxy_nj": 8233.294666666663,
+    "compute_power_mw": 0.0007409965199999996,
+    "flight_endurance_min": 8.951611833368837
+  }
+]

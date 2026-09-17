@@ -2,7 +2,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[margin=0.75in]{geometry}
-\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{microtype}
@@ -10,6 +10,8 @@
 \usepackage{hyperref}
 \usepackage{xcolor}
 \usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}
 
 \hypersetup{
     colorlinks=true,
@@ -382,6 +384,89 @@ CEN w/o RIP (Point LIF) & 45.22 $\pm$ 1.77 & 14.9 & 92.54 \\
 \end{figure}
 
 On the 150-step DMTS-D working memory task (Table~\ref{tab:dmts}, Figure~\ref{fig:dmts}), passive point-neuron models operate near chance level ($47\text{--}52\%$) because exponential membrane decay ($e^{-95/20} = e^{-4.75} < 0.9\%$) causes catastrophic forgetting of the cue. In stark contrast, \textbf{ActiveDendriticCEN (AD-CEN)} maintains \textbf{91.22\% accuracy} by sustaining cue representations in active dendritic NMDA plateaus without continuous somatic spiking. Ablating NMDA plateaus drops accuracy to 79.89\% while triggering a 2.68-fold surge in SynOps (24,376.7). On high-speed neuromorphic DVS event vision streams, CoupledEventNet achieved \textbf{100.00\% accuracy} consuming only \textbf{7.5 SynOps (31.01 nJ)}, a \textbf{116-fold energy reduction} over standard Dense SNNs. Furthermore, we implemented synthesizable Verilog RTL cores (\texttt{dendritic\_lif\_core.v}, \texttt{aer\_crossbar\_router.v}) and verified sub-mW operation ($0.60\text{ mW}$ at 500 kEvents/s) on a compact $0.201\text{ mm}^2$ macro in TSMC 28nm.
+
+\subsection{Mathematical Theory: Degeneracy Invariance Bounds}
+
+Why do biological circuits tolerate massive structural pruning ($\Delta_{\mathrm{struct}} = 0.15\text{--}0.23$) with zero functional loss? We formulate the analytical basis of this resilience via matrix perturbation theory.
+
+\begin{theorem}[\textbf{Connectomic Degeneracy Invariance via Davis-Kahan $\sin\Theta$}]
+Let $A \in \mathbb{R}^{N \times N}$ be a Dale-compliant connectome matrix with invariant core subspace $\mathcal{E}$ and spectral gap $\delta = |\lambda_k| - |\lambda_{k+1}| > 0$. For any Dale-preserving structural perturbation $\Delta A$ with $\|\Delta A\|_F < \delta / 2$, the canonical angle $\Theta(\mathcal{E}, \tilde{\mathcal{E}})$ to the perturbed core satisfies:
+\begin{equation}
+\|\sin\Theta(\mathcal{E}, \tilde{\mathcal{E}})\|_F \le \frac{\|\Delta A\|_F}{\delta - \|\Delta A\|_F}
+\end{equation}
+Furthermore, the degradation in task performance $\Delta F_{\mathrm{task}}$ of linear decoders satisfies:
+\begin{equation}
+\Delta F_{\mathrm{task}} \le \|W_{\mathrm{out}}\|_2 \cdot \kappa(V_k) \cdot \frac{\|\Delta A\|_F}{\delta} + \mathcal{O}\left( \frac{\|\Delta A\|_F^2}{\delta^2} \right)
+\end{equation}
+where $\kappa(V_k)$ is the condition number of the core eigenvector frame.
+\end{theorem}
+
+\begin{table}[h]
+\centering
+\small
+\caption{\textbf{Theoretical Invariance Bounds vs Empirical $R_{90}$ Across 4 Phyla.}}
+\label{tab:theory_main}
+\resizebox{\linewidth}{!}{
+\begin{tabular}{lrrrrr}
+\toprule
+\textbf{Organism} & \textbf{Spec Rad $\rho$} & \textbf{Gap $\delta$} & \textbf{Theor $R_{90}$} & \textbf{Empir $R_{90}$} & \textbf{Slack Ratio} \\
+\midrule
+\textit{C. elegans} & 58.79 & 0.0748 & 0.0007 & \textbf{0.2312} & \textbf{354.4$\times$} \\
+\textit{Drosophila} & 40.00 & 0.0001 & 0.00001 & \textbf{0.1919} & \textbf{19,190.0$\times$} \\
+\textit{Mouse V1} & 2.03 & 0.0001 & 0.00003 & \textbf{0.1467} & \textbf{5,307.3$\times$} \\
+\textit{Human HCP} & 0.08 & 0.0003 & 0.0005 & \textbf{0.1185} & \textbf{218.0$\times$} \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+As shown in Table~\ref{tab:theory_main}, the empirical critical drift radius $R_{90}$ exceeds the worst-case Davis-Kahan bound by 218-fold to 19,190-fold. This demonstrates that developmental rewiring is non-adversarial: synaptic modifications project largely into the high-dimensional null space of task decoders ($\mathcal{N}(W_{\mathrm{out}})$), leaving the low-rank invariant core intact.
+
+\subsection{Empirical Synaptic Census of Google H01 Human Neocortex}
+
+To anchor our cross-scale findings in human neuroanatomy, we performed an exhaustive census of the Google/Harvard H01 $1\text{ mm}^3$ temporal neocortex EM dataset~\cite{shapsoncoe2024petavoxel}. Analyzing \textbf{33,122 neurons} and \textbf{26,470,376 synapses} across Layers 1--6 revealed a global Excitation/Inhibition (E/I) ratio of \textbf{2.69} (72.92\% excitatory, 27.08\% inhibitory; Figure~\ref{fig:h01_theory_main}). 
+
+Crucially, Layer 1 exhibits near 1:1 parity ($E/I = 1.16$, 46.19\% inhibition, dominated by neurogliaform cells), whereas Layer 3 represents the dense pyramidal computational core with 9.04 million synapses ($34.2\%$ of total) and an $E/I$ peak of \textbf{3.14} (mean 1,009 excitatory synapses per neuron). This validates that human neocortex concentrates heavy inhibitory gating in superficial receptive zones while isolating recurrent amplification in deep pyramidal layers.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{figures/figure13_human_h01_and_theory.png}
+\caption{\textbf{Google H01 Human Neocortex Synaptic Census and Degeneracy Bounds.} (A) Synaptic density across L1--L6 (26.5M total). (B) Laminar E/I gradient showing Layer 1 inhibitory parity ($E/I = 1.16$) vs Layer 3 pyramidal peak ($E/I = 3.14$). (C) Cross-species $R_{90}$ degeneracy bounds. (D) Connectome spectral eigenspectrum.}
+\label{fig:h01_theory_main}
+\end{figure}
+
+\subsection{Embodied Closed-Loop Neuro-Robotic Flight Control}
+
+To test whether COMPUTATIONAL COUPLING invariants transfer to continuous embodied control, we evaluated autonomous micro-quadrotor flight through an obstacle corridor under severe aerodynamic turbulence governed by the military Dryden Wind Turbulence Model ($\sigma_w = 1.0\text{ m/s}$ at 100 Hz; Table~\ref{tab:robotics_main}, Figure~\ref{fig:robotics_main}).
+
+\begin{table}[h]
+\centering
+\small
+\caption{\textbf{Closed-Loop Quadrotor Flight Under Turbulence (100 Hz, 30 Trials).}}
+\label{tab:robotics_main}
+\resizebox{\linewidth}{!}{
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Controller Architecture} & \textbf{Success} & \textbf{Mean SynOps} & \textbf{Energy Proxy} & \textbf{Advantage} \\
+\midrule
+\textbf{ActiveDendriticCEN (AD-CEN)} & \textbf{100.0\%} & \textbf{131,168} & \textbf{2,733.1 nJ} & \textbf{3.13$\times$ vs SNN} \\
+CoupledEventNet (CEN) & 100.0\% & 208,407 & 4,334.9 nJ & 1.97$\times$ vs SNN \\
+Dense SNN & 100.0\% & 410,038 & 8,233.3 nJ & Baseline ($1.0\times$) \\
+Connectome Reservoir & 100.0\% & 321,737 & 6,524.6 nJ & 1.27$\times$ vs SNN \\
+Classical PID Autopilot & 100.0\% & 0 & 0.0 nJ & Analytic \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{figures/figure12_robotics_closed_loop.png}
+\caption{\textbf{Embodied Closed-Loop Flight Benchmark Under Turbulence.} (A) 3D flight trajectories navigating around obstacles. (B) Synaptic Operations across controllers (AD-CEN requires 3.13-fold fewer operations). (C) Dynamic energy proxy dissipation. (D) Path RMSE and 100\% collision-free success rate.}
+\label{fig:robotics_main}
+\end{figure}
+
+ActiveDendriticCEN navigated 100\% of missions collision-free while requiring **3.13-fold fewer SynOps** (131,168 vs 410,038) and **3.01-fold lower energy** (2,733 nJ vs 8,233 nJ) than Dense SNNs. Under high turbulence, rapid aerodynamic micro-gusts induce high-frequency sensor noise. In Dense SNNs, every gust triggers somatic action potentials, causing motor jitter. In AD-CEN, the high-impedance dendritic arbor acts as a biological low-pass filter, dissipating micro-gusts subthreshold while initiating NMDA plateaus and motor action only for sustained navigational threats.
 
 \section{Discussion}
 

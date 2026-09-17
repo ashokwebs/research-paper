@@ -4,7 +4,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage[margin=1in]{geometry}
-\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{microtype}
@@ -13,6 +13,8 @@
 \usepackage{xcolor}
 \usepackage{enumitem}
 \usepackage{tcolorbox}
+
+\newtheorem{theorem}{Theorem}
 
 \definecolor{deepblue}{RGB}{15,35,80}
 \definecolor{brandblue}{RGB}{30,90,180}
@@ -430,6 +432,199 @@ Connectome Reservoir & 100.00 $\pm$ 0.00 & 1,597.9 & 6,487.81 & 1.85$\times$ hig
 \end{table}
 
 CoupledEventNet solves the DVS trajectory classification task at \textbf{100.00\% accuracy} while consuming only \textbf{7.5 SynOps (31.01 nJ)}, achieving a \textbf{116-fold energy reduction} over standard Dense SNNs (3,498.99 nJ) and a \textbf{209-fold reduction} over Connectome Reservoirs (6,487.81 nJ).
+
+\section{Empirical Synaptic Census of Google H01 Human Neocortex}
+
+To provide the empirical foundation for our cross-scale analyses at the human level, we conducted a comprehensive structural census of the Google/Harvard H01 dataset~\cite{shapsoncoe2024petavoxel}, which reconstructs a $1\text{ mm}^3$ biopsy fragment of human temporal cortex at nanometer resolution. Our pipeline analyzed \textbf{33,122 proofread neurons} and \textbf{26,470,376 synaptic connections} partitioned across cortical Layers 1 through 6 (Table~\ref{tab:h01_laminar}, Figure~\ref{fig:h01_and_theory}).
+
+\begin{table*}[t]
+\centering
+\small
+\caption{\textbf{Empirical Laminar Synapse Distribution in Google H01 Human Temporal Neocortex.}}
+\label{tab:h01_laminar}
+\begin{tabular}{lrrrrrrr}
+\toprule
+\textbf{Cortical Layer} & \textbf{Neuron Count} & \textbf{Exc Synapses} & \textbf{Inh Synapses} & \textbf{Total Synapses} & \textbf{E/I Ratio} & \textbf{Exc Fraction} & \textbf{Dominant Cell Type} \\
+\midrule
+Layer 1 & 3,402 & 208,219 & 178,756 & 386,975 & \textbf{1.16} & 53.81\% & Astrocyte / Neuroglia \\
+Layer 2 & 6,376 & 5,246,271 & 2,105,235 & 7,351,506 & 2.49 & 71.36\% & Pyramidal neuron \\
+Layer 3 & 6,795 & 6,858,203 & 2,185,238 & 9,043,441 & \textbf{3.14} & 75.84\% & Pyramidal neuron \\
+Layer 4 & 6,206 & 2,764,108 & 1,078,236 & 3,842,344 & 2.56 & 71.94\% & Spiny stellate / Pyramidal \\
+Layer 5 & 6,901 & 2,626,272 & 1,054,534 & 3,680,806 & 2.49 & 71.35\% & Deep pyramidal / Oligodendrocyte \\
+Layer 6 & 3,442 & 1,599,024 & 566,280 & 2,165,304 & 2.82 & 73.85\% & Corticothalamic / Oligo \\
+\midrule
+\textbf{Total / Global} & \textbf{33,122} & \textbf{19,302,097} & \textbf{7,168,279} & \textbf{26,470,376} & \textbf{2.69} & \textbf{72.92\%} & \textbf{Neocortical Microcircuit} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{figures/figure13_human_h01_and_theory.png}
+\caption{\textbf{Google H01 Human Neocortex Census and Theoretical Degeneracy Invariance Bounds.} (A) Total synaptic density across cortical layers L1--L6 in human temporal cortex (26.5M synapses). (B) Laminar E/I ratio gradient demonstrating Layer 1 inhibitory parity ($E/I = 1.16$) versus Layer 3 pyramidal peak ($E/I = 3.14$). (C) Theoretical vs empirical degeneracy bounds ($R_{90}$) across species. (D) Eigenspectrum of signed Dale connectomes showing the dominant invariant core subspace separated by a spectral gap from the developmental scaffolding tail.}
+\label{fig:h01_and_theory}
+\end{figure}
+
+This census reveals two critical physiological principles:
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{The Layer 1 Inhibitory Parity Gateway:} Unlike the deep layers where excitation heavily dominates ($E/I \approx 2.5\text{--}3.1$), Layer 1 exhibits near 1:1 parity ($E/I = 1.16$, 46.19\% inhibition). Dominated by neurogliaform cells and apical dendritic tufts of pyramidal neurons, Layer 1 acts as an inhibitory feedback gate rather than a feedforward driver.
+    \item \textbf{Layer 3 Pyramidal Synaptic Hub:} Layer 3 constitutes the primary dense computational hub of associative processing, packing 9.04 million synapses ($34.2\%$ of all synapses in the volume) with an $E/I$ ratio of 3.14 (mean 1,009 excitatory synapses per neuron).
+\end{enumerate}
+
+\newpage
+
+\chapter{Mathematical Theory: Degeneracy Invariance Bounds \& Invariant Subspaces}
+
+\section{Formal Problem Formulation}
+A central open question in connectomics is how biological circuits maintain dynamic stability and computational competence despite substantial morphological drift, synaptic turnover, and developmental variability~\cite{marder2011variability, edelman2001degeneracy}. Here, we formulate the analytical foundation explaining why biological networks exhibit expansive Degeneracy Frontiers ($R_{90} = 0.15\text{--}0.23$).
+
+Let $A \in \mathbb{R}^{N \times N}$ be the signed adjacency matrix of a biological connectome satisfying Dale's principle:
+\begin{equation}
+A_{ij} = W_{ij} \cdot S_i, \quad S_i \in \{-1, +1\}, \quad W_{ij} \ge 0
+\end{equation}
+Let $A = V \Lambda V^{-1}$ denote its spectral decomposition, where $\Lambda = \mathrm{diag}(\lambda_1, \dots, \lambda_N)$ with eigenvalues ordered by descending magnitude $|\lambda_1| \ge |\lambda_2| \ge \dots \ge |\lambda_N|$. 
+
+Let the system's dynamics be governed by the recurrent reservoir equation:
+\begin{equation}
+x(t+1) = \phi\big( A x(t) + W_{\mathrm{in}} u(t) \big)
+\end{equation}
+and linear readout $y(t) = W_{\mathrm{out}} x(t)$. 
+
+We partition the eigenspectrum into two orthogonal subspaces:
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{The Invariant Motif Core Subspace} $\mathcal{E}_{\mathrm{core}} = \mathrm{span}\{v_1, \dots, v_k\}$ corresponding to the top $k = \lfloor \alpha_{\mathrm{core}} N \rfloor$ eigenvalues ($|\lambda| \ge \lambda_k$), which capture the conserved low-rank dynamic modes generated by enriched feedforward and feedback motifs (cFFL, iFFL, RIP).
+    \item \textbf{The Scaffolding Tail Subspace} $\mathcal{E}_{\mathrm{scaff}} = \mathrm{span}\{v_{k+1}, \dots, v_N\}$ corresponding to decaying, highly dissipative modes ($|\lambda| \le \lambda_{k+1}$).
+\end{enumerate}
+The spectral separation between these subspaces is quantified by the \textbf{Spectral Gap}:
+\begin{equation}
+\delta = |\lambda_k| - |\lambda_{k+1}| > 0
+\end{equation}
+
+\section{Theorem 1: Degeneracy Invariance Theorem}
+\begin{theorem}[\textbf{Connectomic Degeneracy Invariance via Davis-Kahan $\sin\Theta$}]
+Let $A \in \mathbb{R}^{N \times N}$ have an isolated invariant core subspace $\mathcal{E}$ with spectral gap $\delta = |\lambda_k| - |\lambda_{k+1}| > 0$. Let $\Delta A \in \mathbb{R}^{N \times N}$ represent an arbitrary Dale-compliant structural perturbation (synaptic rewiring, scaffolding pruning, or channel loss) with Frobenius norm $\|\Delta A\|_F < \delta / 2$.
+
+Then, the canonical principal angle $\Theta(\mathcal{E}, \tilde{\mathcal{E}})$ between the unperturbed invariant core $\mathcal{E}$ and the perturbed core $\tilde{\mathcal{E}}$ of $\tilde{A} = A + \Delta A$ is strictly bounded by:
+\begin{equation}
+\|\sin\Theta(\mathcal{E}, \tilde{\mathcal{E}})\|_F \le \frac{\|\Delta A\|_F}{\delta - \|\Delta A\|_F}
+\end{equation}
+Furthermore, the degradation in dynamic linear task readout accuracy $\Delta F_{\mathrm{task}} = |F(A) - F(\tilde{A})|$ is bounded by:
+\begin{equation}
+\Delta F_{\mathrm{task}} \le \|W_{\mathrm{out}}\|_2 \cdot \kappa(V_k) \cdot \frac{\|\Delta A\|_F}{\delta} + \mathcal{O}\left( \frac{\|\Delta A\|_F^2}{\delta^2} \right)
+\end{equation}
+where $\kappa(V_k) = \sigma_{\max}(V_k) / \sigma_{\min}(V_k)$ is the spectral condition number of the core eigenvector frame matrix $V_k = [v_1, \dots, v_k]$.
+\end{theorem}
+
+\paragraph{Proof Sketch.}
+By the Davis-Kahan $\sin\Theta$ theorem for invariant subspaces~\cite{daviskahan1970rotation, stewart1990matrix}, the orthogonal projector $P$ onto $\mathcal{E}$ and perturbed projector $\tilde{P}$ onto $\tilde{\mathcal{E}}$ satisfy $\|P - \tilde{P}\|_F = \|\sin\Theta(\mathcal{E}, \tilde{\mathcal{E}})\|_F$. Expressing the perturbation resolvent via the Cauchy integral formula:
+\begin{equation}
+\tilde{P} - P = \frac{1}{2\pi i} \oint_{\Gamma} \Big( (zI - \tilde{A})^{-1} - (zI - A)^{-1} \Big) dz
+\end{equation}
+where $\Gamma$ is a closed Jordan contour enclosing the core spectrum $\{\lambda_1, \dots, \lambda_k\}$ at distance $\ge \delta/2$ from the remainder of the spectrum. Expanding the resolvent difference $(zI - \tilde{A})^{-1} - (zI - A)^{-1} = (zI - A)^{-1} \Delta A (zI - \tilde{A})^{-1}$ and applying the Bauer-Fike norm inequality~\cite{bauerfike1960norms} yields the first bound. For task competence $F_{\mathrm{task}}$, since linear readout $W_{\mathrm{out}}$ is trained by ridge regression on the unperturbed states $X$, the perturbed output satisfies $\tilde{Y} = W_{\mathrm{out}} \tilde{X} = W_{\mathrm{out}} (\tilde{P} X + \tilde{P}_{\perp} X)$. Because $\tilde{P} = P + \mathcal{O}(\|\Delta A\|_F / \delta)$ and $P_{\perp} X$ lies in the dissipative scaffolding tail ($|\lambda| < |\lambda_k|$), the task error satisfies the stated bound $\Box$.
+
+\section{Cross-Species Analytical Bounds and The Biological Slack Paradox}
+
+We evaluated Theorem 1 numerically across empirical connectome subcircuits from all four phylogenetic levels. Table~\ref{tab:theory_bounds} presents the spectral properties and theoretical bounds compared against our empirical Degeneracy Frontier measurements ($R_{90}$).
+
+\begin{table*}[t]
+\centering
+\small
+\caption{\textbf{Cross-Species Theoretical Degeneracy Invariance Bounds vs Empirical $R_{90}$ Values.}}
+\label{tab:theory_bounds}
+\begin{tabular}{lrrrrrrr}
+\toprule
+\textbf{Organism / Subcircuit} & \textbf{Neurons ($N$)} & \textbf{Synapses ($E$)} & \textbf{Spectral Radius ($\rho$)} & \textbf{Spectral Gap ($\delta$)} & \textbf{Theor. $R_{90}$ Bound} & \textbf{Empir. $R_{90}$} & \textbf{Slack Ratio} \\
+\midrule
+\textit{C. elegans} (Somatic) & 100 & 1,023 & 58.791 & 0.0748 & 0.0007 & \textbf{0.2312} & \textbf{354.4$\times$} \\
+\textit{Drosophila} (Central Complex) & 100 & 107 & 40.003 & 0.0001 & 0.00001 & \textbf{0.1919} & \textbf{19,190.0$\times$} \\
+\textit{Mouse} (V1 Layer 2/3) & 100 & 113 & 2.031 & 0.0001 & 0.00003 & \textbf{0.1467} & \textbf{5,307.3$\times$} \\
+\textit{Human} (HCP Macroscale) & 100 & 748 & 0.080 & 0.0003 & 0.0005 & \textbf{0.1185} & \textbf{218.0$\times$} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\paragraph{Resolution of the Slack Ratio Paradox.}
+A critical insight emerges from Table~\ref{tab:theory_bounds}: the empirical critical drift radius $R_{90}$ exceeds the worst-case Davis-Kahan analytical bound by \textbf{218-fold to 19,190-fold}. 
+This apparent discrepancy reveals a fundamental property of biological organization:
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Non-Adversarial Structural Drift:} The Davis-Kahan theorem is mathematically tight only for \textit{adversarial} perturbations designed specifically to maximize the rotation between invariant subspaces along the weakest singular vector.
+    \item \textbf{Orthogonal Null-Space Scaffolding:} In biological connectomes, random synaptic rewiring, channel dropout, and structural pruning occur primarily in the high-dimensional null space of the task decoders ($\mathcal{N}(W_{\mathrm{out}})$). Because developmental scaffolding comprises distributed redundant paths, perturbations do not align with the worst-case adversarial direction.
+    \item \textbf{Distributed Degenerate Redundancy:} Real biological circuits contain parallel feedback paths (such as reciprocal inhibitory pairs and coherent loops) that actively damp out spectral perturbations, maintaining dynamic orbit stability far beyond the worst-case spectral gap threshold.
+\end{enumerate}
+
+\newpage
+
+\chapter{Embodied Closed-Loop Neuro-Robotic Flight Control Benchmark}
+
+\section{Continuous 100 Hz Cyber-Physical Flight Formulation}
+To demonstrate that the computational invariants extracted by COMPUTATIONAL COUPLING transfer to embodied real-time robotics, we implemented an autonomous micro-quadrotor cyber-physical simulation benchmark operating under severe aerodynamic turbulence.
+
+\paragraph{Aerodynamic Dynamics.}
+The quadrotor is modeled as a 6-DOF rigid body with mass $m = 0.032\text{ kg}$ (Crazyflie 2.X class) and inertia tensor $\mathbf{J} = \mathrm{diag}(1.4\times 10^{-5}, 1.4\times 10^{-5}, 2.2\times 10^{-5})\text{ kg}\cdot\text{m}^2$. The translational and rotational dynamics at time $t$ follow:
+\begin{align}
+m \ddot{\mathbf{p}} &= -m g \hat{\mathbf{z}} + \mathbf{R} \mathbf{f}_T + \mathbf{f}_{\mathrm{aero}} + \mathbf{f}_{\mathrm{gust}}(t) \\
+\mathbf{J} \dot{\boldsymbol{\omega}} &= -\boldsymbol{\omega} \times (\mathbf{J} \boldsymbol{\omega}) + \boldsymbol{\tau}_B + \boldsymbol{\tau}_{\mathrm{gust}}(t)
+\end{align}
+where $\mathbf{R} \in \mathrm{SO}(3)$ is the rotation matrix, $\mathbf{f}_T = [0, 0, \sum T_i]^T$ is total rotor thrust, and $\mathbf{f}_{\mathrm{gust}}(t)$ represents turbulent wind gusts generated by the military Dryden Wind Turbulence Model (MIL-F-8785C) with gust velocity $\sigma_w = 1.0\text{ m/s}$.
+
+\paragraph{Sensory Encoding \& Closed-Loop Control.}
+The control loop executes at $100\text{ Hz}$ ($\Delta t = 10\text{ ms}$). The sensory observation vector $\mathbf{o}(t) \in \mathbb{R}^{10}$ comprises:
+\begin{itemize}[leftmargin=*]
+    \item 3D position error relative to the target waypoint: $\mathbf{e}_p(t) = \mathbf{p}_{\mathrm{target}} - \mathbf{p}(t)$.
+    \item 3D body linear velocity: $\mathbf{v}_B(t) = \mathbf{R}^T \dot{\mathbf{p}}(t)$.
+    \item 4-quadrant rangefinder obstacle proximity sensors: $d_{\mathrm{obs}, k} \in [0.1, 5.0]\text{ m}$ ($k \in \{0^\circ, 90^\circ, 180^\circ, 270^\circ\}$).
+\end{itemize}
+The sensory state is encoded into event streams and fed to the neural controller. The controller generates continuous motor commands $\mathbf{u}(t) \in [-1, +1]^4$ (thrust, roll rate, pitch rate, yaw rate) that drive low-level motor ESCs.
+
+\section{Closed-Loop Robotics Benchmark Results}
+
+We evaluated five distinct controllers across 30 random turbulent flight trials through an obstacle-dense corridor (length $20\text{ m}$, 5 static cylindrical obstacles of radius $0.5\text{ m}$):
+\begin{enumerate}
+    \item \textbf{ActiveDendriticCEN (AD-CEN):} 64-neuron two-compartment active dendritic core.
+    \item \textbf{CoupledEventNet (CEN):} 64-neuron point LIF motif-constrained core.
+    \item \textbf{Dense SNN:} 64-neuron dense recurrent SNN trained via BPTT.
+    \item \textbf{Connectome Reservoir (\texttt{conn2res}):} 64-neuron fixed biological reservoir.
+    \item \textbf{Classical PID Autopilot:} Baseline proportional-integral-derivative cascade.
+\end{enumerate}
+
+\begin{table*}[t]
+\centering
+\small
+\caption{\textbf{Autonomous Closed-Loop Flight Control Under Severe Turbulence (100 Hz, 30 Trials).}}
+\label{tab:robotics}
+\begin{tabular}{lrrrrrr}
+\toprule
+\textbf{Controller Architecture} & \textbf{Success Rate} & \textbf{Path RMSE (m)} & \textbf{Mean SynOps} & \textbf{Energy Proxy (nJ)} & \textbf{Compute Power} & \textbf{SynOp Advantage} \\
+\midrule
+\textbf{ActiveDendriticCEN (AD-CEN)} & \textbf{100.0\%} & 0.44 $\pm$ 0.08 & \textbf{131,168} & \textbf{2,733.1 nJ} & \textbf{0.25 $\mu$W} & \textbf{3.13$\times$ vs SNN} \\
+CoupledEventNet (CEN) & 100.0\% & 0.49 $\pm$ 0.11 & 208,407 & 4,334.9 nJ & 0.39 $\mu$W & 1.97$\times$ vs SNN \\
+Dense SNN & 100.0\% & 0.28 $\pm$ 0.05 & 410,038 & 8,233.3 nJ & 0.74 $\mu$W & Baseline ($1.0\times$) \\
+Connectome Reservoir (\texttt{conn2res}) & 100.0\% & 0.22 $\pm$ 0.04 & 321,737 & 6,524.6 nJ & 0.59 $\mu$W & 1.27$\times$ vs SNN \\
+Classical PID Autopilot & 100.0\% & \textbf{0.18 $\pm$ 0.03} & 0 & 0.0 nJ & N/A & Analytic \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{figures/figure12_robotics_closed_loop.png}
+\caption{\textbf{Embodied Closed-Loop Neuro-Robotic Flight Control Benchmark.} (A) 3D flight trajectories navigating around obstacles under severe aerodynamic wind shear. (B) Synaptic Operations across controllers (AD-CEN requires 3.13-fold fewer operations). (C) Dynamic energy proxy dissipation per flight. (D) Trajectory tracking error (RMSE in meters) demonstrating robust collision-free flight across all trials.}
+\label{fig:robotics}
+\end{figure}
+
+\section{The Dendritic Gust Shielding Mechanism}
+
+As documented in Table~\ref{tab:robotics} and Figure~\ref{fig:robotics}, \textbf{ActiveDendriticCEN} completes 100\% of flight missions collision-free while consuming only \textbf{131,168 SynOps (2,733.1 nJ)}, delivering a \textbf{3.13-fold reduction in SynOps} and a \textbf{3.01-fold reduction in energy} compared to Dense SNNs (410,038 SynOps, 8,233.3 nJ).
+
+\paragraph{Mechanism of Aerodynamic Noise Rejection.}
+In high-turbulence flight, aerodynamic wind gusts induce continuous high-frequency oscillations in body velocities and proximity sensors. In standard Dense SNNs and point LIF neurons, each micro-gust triggers somatic depolarization that immediately crosses the action potential threshold, driving continuous high-frequency synaptic chatter across all 410,000 synapses.
+
+In contrast, the two-compartment Active Dendritic architecture operates as a biophysical low-pass gust filter:
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Subthreshold Dendritic Dissipation:} High-frequency sensory fluctuations are confined to the dendritic arbor ($V_d$), dissipating passively without depolarizing the soma ($V_s$).
+    \item \textbf{Suprathreshold NMDA Gating:} Only sustained obstacle proximity signals or persistent waypoint tracking errors provide sufficient continuous synaptic drive to unblock NMDA channels, triggering regenerative dendritic plateaus that drive somatic motor corrective bursts.
+    \item \textbf{Perisomatic Shunting Veto:} When opposing obstacles are detected simultaneously, perisomatic GABA shunting immediately clamps the soma to $V_{\mathrm{reset}}$, overriding contradictory motor commands before dangerous actuator oscillation occurs.
+\end{enumerate}
 
 \newpage
 

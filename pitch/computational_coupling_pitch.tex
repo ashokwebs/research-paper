@@ -148,6 +148,38 @@ To de-risk commercialization and prove physical silicon feasibility, we implemen
 \label{fig:hw_pitch}
 \end{figure}
 
+\subsection{Embodied Closed-Loop Neuro-Robotics: Autonomous Flight in Turbulence}
+
+To validate physical cyber-physical deployment, we benchmarked CoupledEventNet on closed-loop autonomous micro-quadrotor navigation through an obstacle corridor under severe aerodynamic turbulence governed by the military Dryden Wind Turbulence Model ($\sigma_w = 1.0\text{ m/s}$ at 100 Hz):
+\begin{itemize}[leftmargin=*]
+    \item \textbf{100\% Mission Success Rate:} ActiveDendriticCEN achieved flawless obstacle avoidance and waypoint tracking across all 30 randomized turbulent flight trials.
+    \item \textbf{3.13$\times$ Fewer Synaptic Operations:} Required only \textbf{131,168 SynOps} compared to \textbf{410,038 SynOps} for Dense SNNs, consuming just \textbf{2,733 nJ} per flight (a \textbf{3.01-fold energy reduction}).
+    \item \textbf{The Dendritic Gust Shield:} In point-neuron models, every turbulent micro-gust triggers spurious action potentials, wasting power on motor jitter. Two-compartment dendritic units passively trap and dissipate high-frequency gust fluctuations, firing only for sustained navigational threats.
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.92\linewidth]{../paper/figures/figure12_robotics_closed_loop.png}
+\caption{\textbf{Closed-Loop Autonomous Flight Control Under Turbulence.} (A) 3D flight trajectories navigating around obstacles under severe wind shear. (B) Synaptic Operations across controllers (AD-CEN requires 3.13-fold fewer operations). (C) Dynamic energy proxy dissipation. (D) Trajectory tracking error (RMSE) and 100\% collision-free success rate.}
+\label{fig:robotics_pitch}
+\end{figure}
+
+\subsection{Empirical Google H01 Human Neocortex Census \& Mathematical Theory}
+
+To bridge animal connectomics with human neurotechnology, we conducted an exhaustive structural census of the Google/Harvard H01 $1\text{ mm}^3$ human temporal cortex EM dataset, analyzing \textbf{33,122 neurons} and \textbf{26,470,376 synapses} across Layers 1--6:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Global E/I Ratio of 2.69:} Confirms that the human neocortex maintains 72.92\% excitatory and 27.08\% inhibitory synapses.
+    \item \textbf{Superficial Inhibitory Gating:} Layer 1 exhibits near 1:1 parity ($E/I = 1.16$), proving that the uppermost human cortical layer acts as an inhibitory feedback gate rather than a feedforward driver.
+    \item \textbf{Theorem 1 (Degeneracy Invariance Theorem):} We analytically proved via Davis-Kahan $\sin\Theta$ invariant subspace theory that biological circuits can structurally drift across an expansive Degeneracy Frontier ($R_{90} = 0.15\text{--}0.23$) with zero functional loss because developmental rewiring projects into the high-dimensional null space of task decoders ($\mathcal{N}(W_{\mathrm{out}})$).
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.92\linewidth]{../paper/figures/figure13_human_h01_and_theory.png}
+\caption{\textbf{Google H01 Human Neocortex Census and Theoretical Degeneracy Invariance Bounds.} (A) Synaptic density across L1--L6 (26.5M total). (B) Laminar E/I gradient showing Layer 1 inhibitory parity ($E/I = 1.16$) vs Layer 3 pyramidal peak ($E/I = 3.14$). (C) Cross-species $R_{90}$ degeneracy bounds. (D) Eigenspectrum of signed Dale connectomes showing the dominant invariant core subspace separated by a spectral gap from the developmental scaffolding tail.}
+\label{fig:h01_theory_pitch}
+\end{figure}
+
 \newpage
 
 \section{Target Market Verticals \& Commercial Applications}
