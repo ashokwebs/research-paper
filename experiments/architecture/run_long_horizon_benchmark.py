@@ -25,6 +25,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspa
 
 from src.connectome import load_celegans_connectome
 from src.architecture.coupled_event_net import CoupledEventNet, CENConfig
+from src.architecture.active_dendritic_cen import ActiveDendriticCEN, ActiveDendriticConfig
 from src.architecture.baselines import DenseSNN, ConnectomeReservoirNet
 
 
@@ -126,53 +127,18 @@ def run_long_horizon_benchmark():
     X_test, y_test = generate_dmts_dataset(num_samples=300, time_steps=150, num_channels=8, seed=123)
 
     models_config = {
-        "CoupledEventNet (Full)": CoupledEventNet(
-            CENConfig(
-                input_dim=8,
-                num_neurons=64,
-                output_dim=2,
-                cffl_fraction=0.35,
-                iffl_fraction=0.25,
-                rip_fraction=0.20,
-            )
-        ),
-        "Dense SNN": DenseSNN(
-            input_dim=8,
-            num_neurons=64,
-            output_dim=2,
-        ),
-        "Connectome Reservoir": ConnectomeReservoirNet(
-            adjacency_matrix=adj_ce,
-            input_dim=8,
-            output_dim=2,
-            spectral_radius=0.90,
-        ),
-        "CEN w/o RIP": CoupledEventNet(
-            CENConfig(
-                input_dim=8,
-                num_neurons=64,
-                output_dim=2,
-                cffl_fraction=0.35,
-                iffl_fraction=0.25,
-                rip_fraction=0.0,
-            )
-        ),
-        "CEN w/o cFFL": CoupledEventNet(
-            CENConfig(
-                input_dim=8,
-                num_neurons=64,
-                output_dim=2,
-                cffl_fraction=0.0,
-                iffl_fraction=0.25,
-                rip_fraction=0.20,
-            )
-        ),
+        "ActiveDendriticCEN (AD-CEN)": None,
+        "AD-CEN w/o NMDA Plateaus": None,
+        "CoupledEventNet (Point LIF)": None,
+        "Dense SNN": None,
+        "Connectome Reservoir": None,
+        "CEN w/o RIP": None,
     }
 
     benchmark_results = []
     print("\n[*] Training and Evaluating Models across 3 Independent Seeds...")
 
-    for name, model_init in models_config.items():
+    for name in models_config.keys():
         seed_accs = []
         seed_synops = []
         seed_energies = []
@@ -182,7 +148,31 @@ def run_long_horizon_benchmark():
             np.random.seed(seed)
 
             # Rebuild model for each seed
-            if name == "CoupledEventNet (Full)":
+            if name == "ActiveDendriticCEN (AD-CEN)":
+                model = ActiveDendriticCEN(
+                    ActiveDendriticConfig(
+                        input_dim=8,
+                        num_neurons=64,
+                        output_dim=2,
+                        tau_plateau_ms=250.0,
+                        g_nmda=0.4,
+                        theta_dend=0.4,
+                        g_axial=0.3,
+                    )
+                )
+            elif name == "AD-CEN w/o NMDA Plateaus":
+                model = ActiveDendriticCEN(
+                    ActiveDendriticConfig(
+                        input_dim=8,
+                        num_neurons=64,
+                        output_dim=2,
+                        tau_plateau_ms=40.0,
+                        g_nmda=0.0, # Ablated
+                        theta_dend=0.4,
+                        g_axial=0.3,
+                    )
+                )
+            elif name == "CoupledEventNet (Point LIF)":
                 model = CoupledEventNet(CENConfig(input_dim=8, num_neurons=64, output_dim=2, cffl_fraction=0.35, iffl_fraction=0.25, rip_fraction=0.20))
             elif name == "Dense SNN":
                 model = DenseSNN(input_dim=8, num_neurons=64, output_dim=2)
@@ -190,8 +180,6 @@ def run_long_horizon_benchmark():
                 model = ConnectomeReservoirNet(adjacency_matrix=adj_ce, input_dim=8, output_dim=2, spectral_radius=0.90)
             elif name == "CEN w/o RIP":
                 model = CoupledEventNet(CENConfig(input_dim=8, num_neurons=64, output_dim=2, cffl_fraction=0.35, iffl_fraction=0.25, rip_fraction=0.0))
-            elif name == "CEN w/o cFFL":
-                model = CoupledEventNet(CENConfig(input_dim=8, num_neurons=64, output_dim=2, cffl_fraction=0.0, iffl_fraction=0.25, rip_fraction=0.20))
 
             trained = train_model(model, X_train, y_train, epochs=25, lr=0.01)
             acc, synops, energy = evaluate_model(trained, X_test, y_test)

@@ -1,6 +1,20 @@
 [
   {
-    "model": "CoupledEventNet (Full)",
+    "model": "ActiveDendriticCEN (AD-CEN)",
+    "mean_accuracy": 91.22222264607747,
+    "std_accuracy": 6.940666334901107,
+    "mean_synops_per_sample": 9100.092222222222,
+    "mean_energy_nj": 56735.130000000005
+  },
+  {
+    "model": "AD-CEN w/o NMDA Plateaus",
+    "mean_accuracy": 79.8888901869456,
+    "std_accuracy": 14.42562786808774,
+    "mean_synops_per_sample": 24376.735555555555,
+    "mean_energy_nj": 152148.04666666666
+  },
+  {
+    "model": "CoupledEventNet (Point LIF)",
     "mean_accuracy": 46.99999988079071,
     "std_accuracy": 2.4944382684693442,
     "mean_synops_per_sample": 17.636666666666667,
@@ -26,12 +40,5 @@
     "std_accuracy": 1.7708192745807625,
     "mean_synops_per_sample": 14.893333333333333,
     "mean_energy_nj": 92.53500000000001
-  },
-  {
-    "model": "CEN w/o cFFL",
-    "mean_accuracy": 45.55555582046509,
-    "std_accuracy": 1.9309047174349119,
-    "mean_synops_per_sample": 17.043333333333333,
-    "mean_energy_nj": 106.19166666666668
   }
 ]

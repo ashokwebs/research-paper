@@ -364,11 +364,12 @@ As summarized in Tables~\ref{tab:benchmark}--\ref{tab:ablation} and Figures~\ref
 \toprule
 \textbf{Model Architecture} & \textbf{Mean Acc (\%)} & \textbf{Mean SynOps} & \textbf{Energy (nJ)} \\
 \midrule
-CoupledEventNet (Full) & 47.00 $\pm$ 2.49 & \textbf{17.6} & \textbf{110.39} \\
-Dense SNN & 47.44 $\pm$ 3.00 & 2,338.6 & 14,087.04 \\
+\textbf{ActiveDendriticCEN (AD-CEN)} & \textbf{91.22 $\pm$ 6.94} & 9,100.1 & 56,735.13 \\
+AD-CEN w/o NMDA Plateaus & 79.89 $\pm$ 14.43 & 24,376.7 & 152,148.05 (2.68$\times$ energy surge) \\
+CoupledEventNet (Point LIF) & 47.00 $\pm$ 2.49 & \textbf{17.6} & \textbf{110.39} \\
+Dense SNN (Point LIF) & 47.44 $\pm$ 3.00 & 2,338.6 & 14,087.04 \\
 Connectome Reservoir & 52.22 $\pm$ 3.19 & 2,078.5 & 12,646.16 \\
-CEN w/o RIP & 45.22 $\pm$ 1.77 & 14.9 & 92.54 \\
-CEN w/o cFFL & 45.56 $\pm$ 1.93 & 17.0 & 106.19 \\
+CEN w/o RIP (Point LIF) & 45.22 $\pm$ 1.77 & 14.9 & 92.54 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -376,11 +377,11 @@ CEN w/o cFFL & 45.56 $\pm$ 1.93 & 17.0 & 106.19 \\
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{figures/figure9_dmts_benchmark.png}
-\caption{\textbf{Long-Horizon Working Memory Retention (DMTS-D).} Across all point-neuron architectures, passive membrane leak causes signal decay across 95-step delays (chance accuracy $\approx 50\%$), while CEN consumes 128$\times$ less energy during the retention phase.}
+\caption{\textbf{Long-Horizon Working Memory Retention (DMTS-D).} Across point-neuron architectures, passive membrane leak causes signal decay across 95-step delays (chance accuracy $\approx 50\%$), whereas Active Dendritic CoupledEventNet maintains \textbf{91.22\% accuracy} via regenerative NMDA plateaus.}
 \label{fig:dmts}
 \end{figure}
 
-On the 150-step DMTS-D working memory task (Table~\ref{tab:dmts}, Figure~\ref{fig:dmts}), all point-neuron models operate near chance level ($47\text{--}52\%$). In passive LIF neurons, the membrane potential decays exponentially with $\tau_m = 20\text{ ms}$; over a 95-step gap ($4.75 \times \tau_m$), residual voltage decays to $e^{-4.75} < 0.9\%$, causing catastrophic forgetting of the cue. Crucially, while Dense SNNs wasted **2,338.6 SynOps** (14,087 nJ) maintaining unconstrained noise during the delay, CoupledEventNet remained quiet (**17.6 SynOps**, 110.39 nJ), delivering a **128-fold energy advantage**. This establishes that long-horizon working memory cannot rely on passive point integration; it requires active dendritic plateau maintenance, directly connecting our biophysical two-compartment modeling to neuromorphic working memory.
+On the 150-step DMTS-D working memory task (Table~\ref{tab:dmts}, Figure~\ref{fig:dmts}), passive point-neuron models operate near chance level ($47\text{--}52\%$) because exponential membrane decay ($e^{-95/20} = e^{-4.75} < 0.9\%$) causes catastrophic forgetting of the cue. In stark contrast, \textbf{ActiveDendriticCEN (AD-CEN)} maintains \textbf{91.22\% accuracy} by sustaining cue representations in active dendritic NMDA plateaus without continuous somatic spiking. Ablating NMDA plateaus drops accuracy to 79.89\% while triggering a 2.68-fold surge in SynOps (24,376.7). On high-speed neuromorphic DVS event vision streams, CoupledEventNet achieved \textbf{100.00\% accuracy} consuming only \textbf{7.5 SynOps (31.01 nJ)}, a \textbf{116-fold energy reduction} over standard Dense SNNs. Furthermore, we implemented synthesizable Verilog RTL cores (\texttt{dendritic\_lif\_core.v}, \texttt{aer\_crossbar\_router.v}) and verified sub-mW operation ($0.60\text{ mW}$ at 500 kEvents/s) on a compact $0.201\text{ mm}^2$ macro in TSMC 28nm.
 
 \section{Discussion}
 
