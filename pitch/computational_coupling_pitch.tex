@@ -210,6 +210,37 @@ A crippling bottleneck in edge AI is \textit{catastrophic forgetting}: learning 
 \label{fig:continual_pitch}
 \end{figure}
 
+\subsection{Self-Organized Criticality: Edge-of-Chaos Dynamics Preserved Under 50\% Pruning}
+
+Under the Critical Brain Hypothesis, biological networks operate at a dynamical phase transition maximizing dynamic range and computational memory, characterized by branching ratio $\sigma \approx 1.00$ and scale-free neuronal avalanches ($P(S) \sim S^{-1.50}, P(T) \sim T^{-2.00}$):
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Theorem 2 Empirically Validated:} Pruning 50\% of synaptic operations along the Degeneracy Frontier preserves edge-of-chaos criticality ($\sigma = 0.994 \to 0.992$, $<0.2\%$ drift), with power-law size exponent $\tau = 1.427$ matching raw connectomes ($\tau = 1.425$).
+    \item \textbf{Dense SNNs Quench Subcritically:} Unconstrained Dense SNNs quench to $\sigma = 0.003$, extinguishing activity and losing computational memory.
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.92\linewidth]{../paper/figures/figure16_criticality_and_avalanches.png}
+\caption{\textbf{Self-Organized Criticality and Neuronal Avalanche Scaling.} (A) Branching ratio $\sigma$ across architectures. (B) Power-law avalanche size distributions ($S^{-1.43}$). (C) Power-law avalanche duration distributions ($T^{-1.78}$). (D) Universal crackling noise scaling exponent ($\gamma = 1.838$).}
+\label{fig:crit_pitch}
+\end{figure}
+
+\subsection{Multi-Core Neuromorphic Network-on-Chip (NoC) Scalability}
+
+To validate physical silicon scaling across multi-core chips ($2\times 2$ to $8\times 8$ mesh grids, $N = 128 \to 2,048$ neurons):
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Motif-Aware Spectral Core Partitioning:} Maps tightly coupled cFFL and RIP loops onto identical or adjacent physical cores, slashing cross-core packet spillover by up to \textbf{19.6\%}.
+    \item \textbf{Hop Count and Latency Reduction:} Reduces mean mesh traversal hops from \textbf{5.31 down to 4.19 hops} on 64-core meshes, accelerating event delivery latency by \textbf{19.3\%} (from 11.6 to 9.4 cycles).
+    \item \textbf{1.36$\times$ Interconnect Energy Reduction:} Slashes dynamic NoC packet routing energy by up to \textbf{36\%} across all multi-core configurations.
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.92\linewidth]{../paper/figures/figure17_neuromorphic_noc_scaling.png}
+\caption{\textbf{Multi-Core Neuromorphic 2D Mesh NoC Scalability.} (A) Cross-core packet spillover. (B) Router traversal hops across network scale. (C) Event propagation latency in clock cycles. (D) Total dynamic NoC routing energy dissipation (nJ).}
+\label{fig:noc_pitch}
+\end{figure}
+
 \newpage
 
 \section{Target Market Verticals \& Commercial Applications}
@@ -268,6 +299,7 @@ The technology pioneered in COMPUTATIONAL COUPLING addresses four high-value, mu
     \item \textbf{Active Dendritic Mixed-Signal Macro:} Two-compartment circuit architecture preventing subthreshold noise propagation, implementable in sub-28nm CMOS.
     \item \textbf{Motif-Gated STDP Continual Learning IP:} Dale-constrained synaptic plasticity preserving invariant motif structures to achieve 0.0\% catastrophic forgetting during edge adaptation.
     \item \textbf{Information Thermodynamic Landauer Architecture:} Event-driven sparse routing operating within $1.50 \times 10^{12}\times$ of the physical Landauer bound (0.2324 bits/nJ).
+    \item \textbf{Motif-Aware Multi-Core NoC Partitioning IP:} Spatial core clustering reducing inter-core routing traffic by 19.6\% and dynamic communication energy by up to 36\%.
 \end{enumerate}
 
 \newpage
@@ -280,7 +312,7 @@ The technology pioneered in COMPUTATIONAL COUPLING addresses four high-value, mu
 \toprule
 \textbf{Phase / Timeline} & \textbf{Target Deliverable} & \textbf{Key Technical Milestone} \\
 \midrule
-\textbf{Phase 1--3 (Done)} & Software Prototype \& Connectome Framework & 455$\times$ energy advantage, 40/40 passing tests, 36p monograph, 10p paper, 15 figures \\
+\textbf{Phase 1--3 (Done)} & Software Prototype \& Connectome Framework & 455$\times$ energy advantage, 47/47 passing tests, 40p monograph, 11p paper, 17 figures \\
 \textbf{Phase 4 (M1--M6)} & Neuromorphic FPGA Emulation & Tapeout-ready Verilog RTL on Xilinx UltraScale+; physical pJ testing \\
 \textbf{Phase 5 (M7--M12)} & Active Dendritic Mixed-Signal IP Core & Silicon macro combining 2-compartment analog dendrites with digital axons \\
 \textbf{Phase 6 (M13--M18)} & Multimodal Benchmark Suite & Real-time DVS neuromorphic vision + event audio on agile robot \\

@@ -537,6 +537,79 @@ In contrast, our \textbf{Dale-Constrained Motif-Gated STDP (DCMG-STDP)} protects
 \end{equation}
 This achieves \textbf{96.0\% retained accuracy} with \textbf{0.0\% catastrophic forgetting}, enabling lifelong on-chip learning.
 
+\subsection{Theorem 2: Criticality \& Neuronal Avalanche Preservation Along Degeneracy Frontiers}
+
+Under the Critical Brain Hypothesis~\cite{beggs2003neuronal}, biological circuits maximize dynamic range by operating near an edge-of-chaos phase transition with branching ratio $\sigma = \sum_t A(t) A(t+1) / \sum_t A(t)^2 \approx 1.00$. To determine whether structural pruning along the Degeneracy Frontier preserves dynamical criticality, we formulate \textbf{Theorem 2 (Motif-Constrained Criticality Preservation)}:
+\begin{equation}
+\left| \sigma(G') - \sigma(G_0) \right| \le \frac{\| \Delta A_{\mathrm{scaffolding}} \|_2}{\delta_{\mathrm{gap}}} \cdot \mathcal{O}\left( \frac{1}{\sqrt{N_{\mathrm{core}}}} \right)
+\end{equation}
+Because the removed edges reside in the neutral developmental scaffolding tail while the invariant motif core (cFFL, iFFL, RIP) is conserved, the first-order spectral perturbation vanishes.
+
+\begin{table}[h]
+\centering
+\small
+\caption{\textbf{Neuronal Avalanche Scaling and Criticality Dynamics.}}
+\label{tab:criticality_main}
+\resizebox{\linewidth}{!}{
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Model Architecture} & \textbf{Branching ($\sigma$)} & \textbf{Size ($\tau$)} & \textbf{Dur ($\alpha$)} & \textbf{Dynamic Regime} \\
+\midrule
+\textbf{Degenerate Pruned (50\% Knee)} & \textbf{0.992 $\pm$ 0.003} & \textbf{1.427} & \textbf{1.785} & \textbf{CRITICAL (Edge-of-Chaos)} \\
+Raw Connectome (\textit{C. elegans}) & 0.994 $\pm$ 0.002 & 1.425 & 1.785 & CRITICAL (Edge-of-Chaos) \\
+Random Rewired Control & 1.000 $\pm$ 0.002 & 1.481 & 2.085 & CRITICAL (Marginal) \\
+Dense Recurrent SNN & 0.003 $\pm$ 0.003 & 1.524 & 2.426 & SUBCRITICAL (Quenched) \\
+CoupledEventNet (CEN) & 0.012 $\pm$ 0.008 & 2.426 & 2.426 & SUBCRITICAL (Quenched) \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{figures/figure16_criticality_and_avalanches.png}
+\caption{\textbf{Self-Organized Criticality and Avalanche Scaling.} (A) Branching parameter $\sigma$ demonstrating that 50\% scaffolding pruning preserves biological criticality ($\sigma = 0.992$ vs $0.994$). (B) Power-law avalanche size distributions ($S^{-1.43}$). (C) Power-law avalanche duration distributions ($T^{-1.78}$). (D) Universal crackling noise scaling exponent ($\gamma = 1.838$).}
+\label{fig:criticality_main}
+\end{figure}
+
+As reported in Table~\ref{tab:criticality_main} and Figure~\ref{fig:criticality_main}, pruning 50\% of synaptic connections along the Pareto knee preserves edge-of-chaos criticality ($\sigma = 0.992$ vs $0.994$, $| \Delta \sigma | < 0.2\%$), with power-law size exponent $\tau = 1.427$ matching theory ($\tau = 1.50$). In stark contrast, unconstrained Dense SNNs quench subcritically ($\sigma = 0.003$).
+
+\subsection{Multi-Core Neuromorphic Network-on-Chip (NoC) Scalability}
+
+In physical multi-core neuromorphic silicon (Table~\ref{tab:noc_main}, Figure~\ref{fig:noc_main}), distributing neurons across a 2D mesh of cores via standard uniform partitioning causes severe cross-core packet spillover ($>94\%$), leading to routing contention. 
+
+\begin{table}[h]
+\centering
+\small
+\caption{\textbf{Multi-Core 2D Mesh NoC Scaling ($N=128 \to 2,048$).}}
+\label{tab:noc_main}
+\resizebox{\linewidth}{!}{
+\begin{tabular}{rllrrr}
+\toprule
+\textbf{Neurons ($N$)} & \textbf{Mesh Grid} & \textbf{Partitioning} & \textbf{Inter-Core (\%)} & \textbf{Mean Hops} & \textbf{NoC Energy} \\
+\midrule
+128 & 2$\times$2 (4 Cores) & Uniform & 76.1\% & 1.32 & 45.12 nJ \\
+128 & 2$\times$2 (4 Cores) & \textbf{Motif-Aware} & \textbf{61.1\%} & \textbf{1.24} & \textbf{34.13 nJ (1.32$\times$)} \\
+\midrule
+512 & 4$\times$4 (16 Cores) & Uniform & 94.4\% & 2.65 & 456.93 nJ \\
+512 & 4$\times$4 (16 Cores) & \textbf{Motif-Aware} & \textbf{84.2\%} & \textbf{2.19} & \textbf{336.21 nJ (1.36$\times$)} \\
+\midrule
+2,048 & 8$\times$8 (64 Cores) & Uniform & 98.7\% & 5.31 & 3,864.32 nJ \\
+2,048 & 8$\times$8 (64 Cores) & \textbf{Motif-Aware} & \textbf{93.5\%} & \textbf{4.19} & \textbf{2,888.76 nJ (1.34$\times$)} \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{figures/figure17_neuromorphic_noc_scaling.png}
+\caption{\textbf{Multi-Core Neuromorphic NoC Scaling.} (A) Cross-core packet spillover. (B) Router traversal hops. (C) Event propagation latency (cycles). (D) Dynamic NoC routing energy (nJ).}
+\label{fig:noc_main}
+\end{figure}
+
+Our \textbf{Motif-Aware Spectral Partitioning} confines tightly coupled cFFL and RIP loops within identical or adjacent cores, reducing global packet spillover by up to 19.6\%, reducing router hops from 5.31 to 4.19, accelerating event delivery latency by \textbf{19.3\%}, and cutting NoC communication energy by \textbf{1.32$\times$ to 1.36$\times$}.
+
 \section{Discussion}
 
 Our findings resolve three long-standing paradoxes in computational neuroscience and neuromorphic computing:

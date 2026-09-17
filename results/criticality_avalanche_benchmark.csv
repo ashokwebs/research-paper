@@ -1,0 +1,7 @@
+architecture,branching_ratio,branching_ratio_std,num_avalanches,mean_avalanche_size,max_avalanche_size,mean_avalanche_duration,max_avalanche_duration,tau_size_exponent,alpha_duration_exponent,crackling_scaling_gamma,dynamic_regime,is_critical
+ActiveDendriticCEN (Ours),0.9986,0.001,1,166983.0,166983,2989.0,2989,0.0,0.0,0.0,SUBCRITICAL (Quenched),False
+CoupledEventNet (Ours),0.0118,0.0083,167,1.01,2,1.01,2,2.426,2.426,1.0,SUBCRITICAL (Quenched),False
+Degenerate Pruned (50% Knee),0.9919,0.0028,28,2358.89,65941,74.57,2045,1.427,1.785,1.838,CRITICAL (Edge-of-Chaos),True
+Raw Connectome (C. elegans),0.9944,0.0024,28,3019.04,84425,74.57,2045,1.425,1.785,1.845,CRITICAL (Edge-of-Chaos),True
+Dense Recurrent SNN,0.0034,0.0031,85,3.56,5,1.01,2,1.524,2.426,2.722,SUBCRITICAL (Quenched),False
+Random Rewired Control,0.9999,0.0025,76,411.8,31006,6.05,365,1.481,2.085,2.258,CRITICAL (Edge-of-Chaos),True

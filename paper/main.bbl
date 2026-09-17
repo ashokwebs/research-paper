@@ -118,4 +118,9 @@ Rolf Landauer.
 \newblock Irreversibility and heat generation in the computing process.
 \newblock {\em IBM Journal of Research and Development}, 5(3):183--191, 1961.
 
+\bibitem{beggs2003neuronal}
+John~M. Beggs and Dietmar Plenz.
+\newblock Neuronal avalanches in neocortical circuits.
+\newblock {\em Journal of Neuroscience}, 23(35):11167--11177, 2003.
+
 \end{thebibliography}

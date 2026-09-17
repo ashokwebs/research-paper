@@ -1,0 +1,9 @@
+network_label,num_neurons,mesh_dimension,total_cores,strategy,total_spikes,intra_core_events,inter_core_packets,inter_core_ratio_pct,mean_hops_per_packet,mean_latency_cycles,max_latency_cycles,total_noc_energy_nj,energy_per_spike_pj,peak_link_contention
+"128-Neuron (2x2 Mesh, 4 Cores)",128,2x2,4,Uniform,2567,7196,22855,76.05,1.32,3.63,5,45.12,17.577,4062
+"128-Neuron (2x2 Mesh, 4 Cores)",128,2x2,4,Motif-Aware (Ours),2567,11677,18374,61.14,1.24,3.48,5,34.1295,13.295,3351
+"512-Neuron (4x4 Mesh, 16 Cores)",512,4x4,16,Uniform,10184,6845,114895,94.38,2.65,6.3,13,456.9285,44.867,8432
+"512-Neuron (4x4 Mesh, 16 Cores)",512,4x4,16,Motif-Aware (Ours),10184,19187,102553,84.24,2.19,5.37,13,336.213,33.014,7138
+"1024-Neuron (4x4 Mesh, 16 Cores)",1024,4x4,16,Uniform,20620,15699,231236,93.64,2.68,6.37,13,930.834,45.142,16319
+"1024-Neuron (4x4 Mesh, 16 Cores)",1024,4x4,16,Motif-Aware (Ours),20620,37165,209770,84.95,2.18,5.35,13,684.5745,33.2,13664
+"2048-Neuron (8x8 Mesh, 64 Cores)",2048,8x8,64,Uniform,41077,6551,485410,98.67,5.31,11.61,29,3864.3225,94.075,16528
+"2048-Neuron (8x8 Mesh, 64 Cores)",2048,8x8,64,Motif-Aware (Ours),41077,32080,459881,93.48,4.19,9.38,27,2888.76,70.325,19101
