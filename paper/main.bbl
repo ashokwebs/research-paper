@@ -113,4 +113,9 @@ Laura~E. Su{\'a}rez, Agoston Mihalik, Filip Milisav, Mingze Li, Kenji Marshall,
 \newblock Connectome-based reservoir computing with the conn2res toolbox.
 \newblock {\em Nature Communications}, 15(1):656, 2024.
 
+\bibitem{landauer1961irreversibility}
+Rolf Landauer.
+\newblock Irreversibility and heat generation in the computing process.
+\newblock {\em IBM Journal of Research and Development}, 5(3):183--191, 1961.
+
 \end{thebibliography}

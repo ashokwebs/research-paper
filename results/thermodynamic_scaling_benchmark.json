@@ -1,0 +1,57 @@
+[
+  {
+    "model_name": "ActiveDendriticCEN (AD-CEN)",
+    "accuracy_pct": 98.5,
+    "mutual_information_bits": 1.8937753139700393,
+    "energy_proxy_nj": 8.15,
+    "energy_per_bit_nj": 4.303572836692356,
+    "bits_per_nanojoule": 0.2323650691987778,
+    "bits_per_joule": 232365069.1987778,
+    "landauer_proximity_ratio": 1498991462131.3386,
+    "energy_advantage_vs_dense": 798.4748466257668
+  },
+  {
+    "model_name": "CoupledEventNet (CEN)",
+    "accuracy_pct": 96.5,
+    "mutual_information_bits": 1.7864154436677744,
+    "energy_proxy_nj": 14.31,
+    "energy_per_bit_nj": 8.010454707343696,
+    "bits_per_nanojoule": 0.12483685839746851,
+    "bits_per_joule": 124836858.3974685,
+    "landauer_proximity_ratio": 2790147551755.3467,
+    "energy_advantage_vs_dense": 454.75681341719076
+  },
+  {
+    "model_name": "Connectome Reservoir (conn2res)",
+    "accuracy_pct": 98.5,
+    "mutual_information_bits": 1.8937753139700393,
+    "energy_proxy_nj": 159.17,
+    "energy_per_bit_nj": 84.04904152347513,
+    "bits_per_nanojoule": 0.01189781563089803,
+    "bits_per_joule": 11897815.63089803,
+    "landauer_proximity_ratio": 29275395218091.426,
+    "energy_advantage_vs_dense": 40.88440032669473
+  },
+  {
+    "model_name": "Dense SNN (Standard)",
+    "accuracy_pct": 97.5,
+    "mutual_information_bits": 1.8427722586973434,
+    "energy_proxy_nj": 6507.57,
+    "energy_per_bit_nj": 3531.402195407589,
+    "bits_per_nanojoule": 0.000283173636041924,
+    "bits_per_joule": 283173.636041924,
+    "landauer_proximity_ratio": 1230034192783955.8,
+    "energy_advantage_vs_dense": 1.0
+  },
+  {
+    "model_name": "NVIDIA Jetson Orin Nano",
+    "accuracy_pct": 97.5,
+    "mutual_information_bits": 1.8427722586973434,
+    "energy_proxy_nj": 15000000.0,
+    "energy_per_bit_nj": 8139909.81750697,
+    "bits_per_nanojoule": 1.2285148391315623e-07,
+    "bits_per_joule": 122.85148391315623,
+    "landauer_proximity_ratio": 2.835238482530243e+18,
+    "energy_advantage_vs_dense": 0.000433838
+  }
+]
