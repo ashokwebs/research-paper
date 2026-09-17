@@ -11,3 +11,11 @@ __pycache__/
 data/raw/
 upstream/
 .system_generated/
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
