@@ -223,6 +223,62 @@ def plot_figure4_cen_benchmark(results_dir: str, fig_dir: str):
     print(f"[✓] Generated Figure 4: {out_path}")
 
 
+def plot_figure5_ablation_study(results_dir: str, fig_dir: str):
+    csv_file = os.path.join(results_dir, "cen_ablation_study.csv")
+    if not os.path.exists(csv_file):
+        print(f"Warning: {csv_file} not found")
+        return
+
+    df = pd.read_csv(csv_file)
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4.5))
+
+    short_conds = [
+        "Full CEN\n(cFFL+iFFL+RIP)",
+        "Ablate cFFL\n(No Persist)",
+        "Ablate iFFL\n(No Adapt)",
+        "Ablate RIP\n(No MutInh)",
+        "Random Sparse\n(Erdős-Rényi)",
+    ]
+    x = np.arange(len(short_conds))
+    w = 0.35
+
+    # Left plot: Accuracy (Test vs Noisy) with error bars
+    ax1.bar(x - w/2, df["Mean_Test_Acc_%"], w, yerr=df["Std_Test_Acc_%"], capsize=4,
+            label="Standard Test Acc", color="#2a9d8f", edgecolor="black")
+    ax1.bar(x + w/2, df["Mean_Noisy_Acc_%"], w, yerr=df["Std_Noisy_Acc_%"], capsize=4,
+            label="Noisy Test Acc (σ=0.5)", color="#e76f51", edgecolor="black")
+    ax1.set_ylabel("Classification Accuracy (%)", fontweight="bold")
+    ax1.set_title("Ablation: Task Accuracy & Noise Robustness", fontweight="bold")
+    ax1.set_xticks(x)
+    ax1.set_xticklabels(short_conds, rotation=15, ha="right")
+    ax1.set_ylim(70, 105)
+    ax1.legend(loc="lower left")
+    ax1.grid(True, axis="y", linestyle=":", alpha=0.6)
+
+    # Right plot: SynOps per Sample with error bars
+    ax2.bar(x, df["Mean_SynOps"], width=0.5, yerr=df["Std_SynOps"], capsize=4,
+            color=["#38b000", "#d00000", "#70e000", "#9ef01a", "#ccff33"], edgecolor="black")
+    ax2.set_ylabel("Synaptic Operations (SynOps)", fontweight="bold")
+    ax2.set_title("Ablation: Synaptic Activity & Noise Suppression", fontweight="bold")
+    ax2.set_xticks(x)
+    ax2.set_xticklabels(short_conds, rotation=15, ha="right")
+    ax2.grid(True, axis="y", linestyle=":", alpha=0.6)
+
+    # Annotate cFFL SynOp spike
+    ax2.annotate("+26.8% SynOps\nwhen cFFL ablated",
+                 xy=(1, df["Mean_SynOps"].iloc[1]), xytext=(1.2, df["Mean_SynOps"].iloc[1] + 1.2),
+                 arrowprops=dict(facecolor="black", arrowstyle="->"),
+                 fontweight="bold", color="#d00000",
+                 bbox=dict(boxstyle="round,pad=0.3", facecolor="#fff0f0", edgecolor="#d00000"))
+
+    plt.tight_layout()
+    out_path = os.path.join(fig_dir, "figure5_ablation_study.png")
+    plt.savefig(out_path, dpi=300)
+    plt.close()
+    print(f"[✓] Generated Figure 5: {out_path}")
+
+
 def main():
     root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     results_dir = os.path.join(root, "results")
@@ -237,6 +293,7 @@ def main():
     plot_figure2_degeneracy_frontier(results_dir, fig_dir)
     plot_figure3_dynamic_motifs(results_dir, fig_dir)
     plot_figure4_cen_benchmark(results_dir, fig_dir)
+    plot_figure5_ablation_study(results_dir, fig_dir)
     print("\n[✓] All figures generated successfully in results/figures/")
 
 
