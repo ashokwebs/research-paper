@@ -1,0 +1,84 @@
+{
+  "n_rows": 1398,
+  "median_attenuation": 0.00877606479622306,
+  "n_resolvable_cells": 77,
+  "median_spearman_pr_accuracy": 0.13220116577292879,
+  "n_spearman_positive": 26,
+  "n_spearman_cells": 35,
+  "crossings": [
+    {
+      "dataset": "celegans",
+      "acc_crossing": 1.3731645569620252,
+      "geom_crossing": 0.9175672997523817
+    },
+    {
+      "dataset": "drosophila_al",
+      "acc_crossing": 1.5701481200151919,
+      "geom_crossing": 1.6442715795656249
+    },
+    {
+      "dataset": "drosophila_cx",
+      "acc_crossing": NaN,
+      "geom_crossing": NaN
+    },
+    {
+      "dataset": "human_hcp",
+      "acc_crossing": 1.3051839464882944,
+      "geom_crossing": 0.8488980462694068
+    },
+    {
+      "dataset": "mouse_v1",
+      "acc_crossing": NaN,
+      "geom_crossing": 0.9325744406476434
+    }
+  ],
+  "mediation_by_rung": {
+    "L0_erdos_renyi": -0.002156542862104205,
+    "L1_degree": 0.020905722189866638,
+    "L3_degree_valence_motif": 0.008500384136738037,
+    "L4_connectome": 0.03334143604855189
+  },
+  "posthoc_mediator": "dead_frac",
+  "posthoc_median_attenuation": 0.16695242559223678,
+  "posthoc_median_spearman": -0.49462293449347905,
+  "posthoc_n_spearman_negative": 27,
+  "posthoc_n_spearman_cells": 35,
+  "posthoc_crossings": [
+    {
+      "dataset": "celegans",
+      "acc_crossing": 1.3731645569620252,
+      "geom_crossing": NaN
+    },
+    {
+      "dataset": "drosophila_al",
+      "acc_crossing": 1.5701481200151919,
+      "geom_crossing": NaN
+    },
+    {
+      "dataset": "drosophila_cx",
+      "acc_crossing": NaN,
+      "geom_crossing": NaN
+    },
+    {
+      "dataset": "human_hcp",
+      "acc_crossing": 1.3051839464882944,
+      "geom_crossing": 1.5272131147540984
+    },
+    {
+      "dataset": "mouse_v1",
+      "acc_crossing": NaN,
+      "geom_crossing": 2.399895178197065
+    }
+  ],
+  "posthoc_crossing_r": null,
+  "posthoc_crossing_p": null,
+  "rung_level_median_r": -0.9381440172099891,
+  "rung_level_n_negative": 26,
+  "rung_level_n_cells": 35,
+  "rung_level_pooled_r": -0.5641108374088332,
+  "rung_level_pooled_p": 4.3244506277627586e-16,
+  "gap_r": -0.4923755366055417,
+  "gap_p": 0.002659173872165576,
+  "gap_slope_pp": -25.593766509550452,
+  "gap_n_cells": 35
+}

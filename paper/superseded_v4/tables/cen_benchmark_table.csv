@@ -1,0 +1,4 @@
+Model,Dale_Compliant,Wiring_Structure,Test_Accuracy_%,Noisy_Accuracy_%,Noise_Drop_%,SynOps_Per_Sample,Energy_Proxy_nJ,Training_Time_s
+CoupledEventNet (CEN),True,Motif-Constrained (cFFL/iFFL/RIP),96.49999737739563,81.99999928474426,14.499998092651367,3.52,14.31,13.562586069107056
+Dense SNN (Standard),False,Dense Recurrent (All-to-All),97.50000238418579,82.99999833106995,14.500004053115845,1623.695,6507.565,6.730631351470947
+Connectome Reservoir (conn2res),True,Fixed C. elegans Connectome,98.50000143051147,82.4999988079071,16.00000262260437,38.97,159.17,1.6610398292541504

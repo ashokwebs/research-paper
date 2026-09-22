@@ -1,0 +1,72 @@
+{
+  "profiles": {
+    "celegans": {
+      "recip_pair": 0.540827341708243,
+      "recip_inhib_pair": 0.27788489230296193,
+      "ffl_total": 0.4934031755882775,
+      "cffl": 0.45224697082637083,
+      "iffl": 0.15794313916235217,
+      "cycle3": 0.3032459997598816,
+      "bifan": 0.25574906687906723
+    },
+    "drosophila_cx": {
+      "recip_pair": 0.6131541994771752,
+      "recip_inhib_pair": 0.3080440423716762,
+      "ffl_total": 0.07514055674720814,
+      "cffl": -0.1770144020570997,
+      "iffl": 0.39674718364485984,
+      "cycle3": -0.10078369253334266,
+      "bifan": 0.5697410933117999
+    },
+    "drosophila_al": {
+      "recip_pair": 0.5188857255093898,
+      "recip_inhib_pair": 0.010128440818557991,
+      "ffl_total": 0.4015329157997856,
+      "cffl": 0.42502450250275964,
+      "iffl": -0.015101830308984016,
+      "cycle3": 0.3634259133282878,
+      "bifan": 0.5064326693585255
+    },
+    "mouse_v1": {
+      "recip_pair": 0.5708121833513948,
+      "ffl_total": 0.7845902909227246,
+      "cycle3": 0.16513358130038508,
+      "bifan": 0.17698143138283473
+    },
+    "human_hcp": {
+      "recip_pair": 0.6712492280216095,
+      "ffl_total": 0.5405020711088419,
+      "cycle3": 0.42686451013074767,
+      "bifan": 0.2739866328824873
+    }
+  },
+  "cosine_similarity": {
+    "celegans|celegans": 1.0000000000000002,
+    "celegans|drosophila_cx": 0.5520437005051655,
+    "celegans|drosophila_al": 0.9111176943716559,
+    "celegans|mouse_v1": 0.9501816666781477,
+    "celegans|human_hcp": 0.9958947843172633,
+    "drosophila_cx|celegans": 0.5520437005051655,
+    "drosophila_cx|drosophila_cx": 1.0000000000000002,
+    "drosophila_cx|drosophila_al": 0.5221294047515378,
+    "drosophila_cx|mouse_v1": 0.5826445984841327,
+    "drosophila_cx|human_hcp": 0.6678684242940575,
+    "drosophila_al|celegans": 0.9111176943716559,
+    "drosophila_al|drosophila_cx": 0.5221294047515378,
+    "drosophila_al|drosophila_al": 1.0,
+    "drosophila_al|mouse_v1": 0.8407390155940688,
+    "drosophila_al|human_hcp": 0.9494156873431217,
+    "mouse_v1|celegans": 0.9501816666781477,
+    "mouse_v1|drosophila_cx": 0.5826445984841327,
+    "mouse_v1|drosophila_al": 0.8407390155940688,
+    "mouse_v1|mouse_v1": 1.0,
+    "mouse_v1|human_hcp": 0.9262101263908054,
+    "human_hcp|celegans": 0.9958947843172633,
+    "human_hcp|drosophila_cx": 0.6678684242940575,
+    "human_hcp|drosophila_al": 0.9494156873431217,
+    "human_hcp|mouse_v1": 0.9262101263908054,
+    "human_hcp|human_hcp": 1.0000000000000002
+  },
+  "n_nulls": 500,
+  "p_floor": 0.001996007984031936
+}

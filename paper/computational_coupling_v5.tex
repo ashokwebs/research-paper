@@ -1,0 +1,96 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.72in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[protrusion=true,expansion=false]{microtype}
+\usepackage{cite}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{dblfloatfix}
+\usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\input{generated_numbers}
+
+\title{\textbf{Computational Coupling}\\[4pt]
+\large\textbf{Four Choices Decide Whether a Connectome Beats Its Rewiring}}
+
+\author{
+  \textbf{Ashok Raj Pasala}$^{1}$ \quad \textbf{Snigdha Gorai}$^{1}$ \\[2pt]
+  \small Under the guidance of \textbf{Jeevana Jyothi P.}$^{1}$ \\[4pt]
+  \small $^{1}$School of Computer Science and Engineering, VIT-AP University,\\
+  \small Amaravati 522237, Andhra Pradesh, India
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{sections/abstract}
+\end{abstract}
+
+% A plain-language summary, in the style of a PNAS significance statement: written to be
+% readable by someone outside the field, and placed before the introduction so that it is
+% the first thing encountered rather than an appendix to the technical argument.
+%
+% Wrapped in a minipage so the block cannot break across a column boundary. Without it
+% LaTeX strands the heading at the foot of one column and starts the text in the next,
+% which is precisely the failure mode for a summary whose whole purpose is to be read
+% straight through by someone who will not read the rest.
+\vspace{6pt}
+\noindent\begin{minipage}{\columnwidth}
+\small
+% Paragraph breaks are set with vertical space rather than indentation here: this block
+% is read by people who are skimming, and an indent-only break is invisible at a glance.
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\rule{\columnwidth}{0.6pt}\\[2pt]
+\textbf{Significance}\par
+\input{sections/significance}
+\par\vspace{2pt}\rule{\columnwidth}{0.6pt}
+\end{minipage}
+\vspace{6pt}
+
+\input{sections/introduction}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion}
+
+\section*{Data and code availability}
+All connectome data used here are public releases, cited at first use. The Spiking
+Heidelberg Digits dataset is distributed by the Zenke laboratory. Analysis code,
+null-model implementations, experiment drivers and the synthesis flow are in the
+accompanying repository; every figure and table in this paper is regenerated from
+raw result files by \texttt{src/analysis/rebuild\_paper.sh}, and every number in the
+text is drawn from a machine-generated macro file rather than transcribed by hand ---
+a missing result appears in the compiled PDF as a visible placeholder rather than as a
+stale value, and the build reports unresolved placeholders, undefined references and
+\LaTeX{} errors rather than relying on the build exiting cleanly.
+
+The repository also carries \texttt{AUDIT.md}, which records every claim withdrawn from
+the previous version of this project and the evidence against it, together with the
+defects found in the replacement analysis while preparing this one. The retracted
+manuscript, its figures, its result files and the executive pitch dossier built on them
+are kept under \texttt{paper/superseded\_v4/} and \texttt{results/superseded\_v4/},
+labelled as withdrawn, so that the retraction can be checked against what was actually
+claimed.
+
+\section*{Author contributions}
+A.R.P. designed the study, implemented the methods, ran the experiments and wrote the
+manuscript. S.G. contributed to the null-ensemble and ladder experiments, the audit of
+the withdrawn claims, and the revision of the manuscript. The work was carried out under
+the guidance of J.J.P., who supervised the project and revised the manuscript.
+
+\section*{Competing interests}
+The authors declare no competing interests.
+
+\bibliographystyle{unsrt}
+\bibliography{../sources/bib/sources}
+
+\end{document}

@@ -1,0 +1,318 @@
+\section{Discussion}
+
+\subsection{What the ladder does and does not license}
+
+The decomposition reported in \S\ref{sec:res-ladder} is a statement about one class of
+models: fixed recurrent reservoirs with a trained linear readout, evaluated on one
+spike-based classification task at matched size, density and spectral radius. Within
+that class, the attribution is clean, because adjacent rungs differ in exactly one
+structural property and nothing else. Outside it, five caveats apply, and only one of them
+can be resolved by more instances of the same experiment.
+
+First, the readout is linear and the recurrent weights are untrained. A structural
+property might matter for \emph{learnability} -- how readily a network is shaped by a
+learning rule -- while being invisible to a fixed-reservoir probe. Motif structure has
+been argued to act as an inductive bias, and an inductive bias is by definition a claim
+about learning trajectories, not about the function computed by a frozen network. Our
+result does not test that claim, and the natural next experiment is to run the same
+ladder with the recurrent weights trained by surrogate-gradient descent
+\cite{neftci2019surrogate,zenke2021remarkable}, where the rungs would differ in
+initialisation rather than in final connectivity. We flag one trap in that experiment,
+having walked into it: with only a fraction of neurons driven, a firing-rate penalty
+strong enough to be useful in an all-to-all network makes total silence the global
+optimum, and a collapsed network returns a perfectly flat ladder that is
+indistinguishable from the result reported here. A trained ladder should therefore
+report its zero-recurrence control and its mean firing rate before it reports anything
+else.
+
+Second, all weights are binary up to valence. Real synapses have graded strengths that
+correlate with topological position, and a motif census computed on the binarised graph
+discards that correlation. A weighted motif-preserving null is a natural extension; the
+annealed chain generalises to weighted targets without modification, but the
+degree-preserving move set does not.
+
+Third, the motif-preserving chain is annealed, and annealing is not proven to sample
+uniformly over the constraint set. We report mean pairwise overlap between ensemble
+members as evidence that the chain explores that set rather than collapsing onto one
+region of it (Table~\ref{tab:nullval}), and we show in \S\ref{sec:res-robust} that the
+conclusion survives an eightfold variation in chain length and does not depend on which
+of the two possible starting points the chain uses. Those checks rule out the two
+specific ways an annealed sampler could manufacture a null contrast; they are not a
+uniformity guarantee, and a formally exact sampler for a census-constrained
+degree-preserving ensemble remains open. We note what would be at stake if the ensemble
+were meaningfully non-uniform: the bias would have to correlate with reservoir accuracy
+to produce the flat ladder we observe, and the chain's objective makes no reference to
+the task, the input projection or the readout.
+
+Fourth, the null contrasts are bounded by power rather than by measurement: at
+$\NinstancesLadder$ surrogates per rung the design resolves $d = \MDEHolm$ at the Holm
+worst case, so a moderate motif effect would not have been detected. We report the bound
+in \S\ref{sec:res-ladder} rather than presenting the null as though it excluded any
+effect at all.
+
+Fifth, the benchmark is a 20-class classification with a one-second horizon. Tasks that
+demand memory beyond the intrinsic time constants, or that require a specific dynamical
+regime, might be more sensitive to recurrent structure. We partly address this with
+task-independent dynamical probes (\S\ref{sec:res-dynamics}), which agree with the task
+result, but agreement across two measures is not agreement across all of them.
+
+A further objection applies specifically to the degree-sequence result, and we checked
+it rather than argued it. Three of the five networks are induced subgraphs grown by
+breadth-first expansion from an above-median-degree seed, and growing outward from a hub
+is exactly the sampling that could concentrate high-degree nodes and so inflate the
+property the effect is attributed to. Measured as the coefficient of variation of total
+degree, extraction does not concentrate it: the ratio of subgraph to full-release
+heterogeneity is at most $\MaxCVRatio$ across all five networks, and as low as
+$\MinCVRatio$ among the $\NExtractedNetworks$ that are genuinely subsampled, with the
+remaining $\NWholeNetworks$ used whole. If the extraction biases the degree result at
+all, it does so against it.
+
+\subsection{What a unit model decides}
+
+The result of \S\ref{sec:res-unit} is the one we would most like to be wrong about, so we
+have tried to state it at exactly its strength and no further.
+
+What it establishes is narrower than the draft of this section that preceded
+\S\ref{sec:res-nullchoice}, and we have rewritten it rather than leaving the stronger
+phrasing standing. That draft said an advantage unambiguous in graded units was absent in
+spiking ones. Against the published null there is no unambiguous advantage in graded units
+to be absent: what remains is that the two model classes do not give the same answer on
+identical graphs, and that capacity in the spiking model is compressed by a factor of
+$\UnitCapRatio$, so effects of the reported size sit near the resolution of the
+measurement there. It does not establish that connectome topology is useless in spiking
+systems --- one network in our set is at the capacity floor and carries no information
+either way --- nor that memory capacity is the right currency.
+
+The mechanism is the one claim in this paper that the null correction moved in our favour,
+and it is worth saying so explicitly because we had already published the opposite.
+Measured against the ensemble we first built, differential silencing did not predict the
+capacity gap and we wrote it up as a failed prediction. Measured against the published
+ensemble it does ($r = \UnitSilenceGapR$, $p = \UnitSilenceGapP$, $n =
+\UnitSilenceGapN$). We hold the surviving version to the same standard as the discarded
+one: it accounts for part of the spiking arm's behaviour in the predicted direction and
+leaves most of the variance unexplained.
+
+What we think it does establish is a constraint on how the result should be used. The
+connectome-reservoir finding is cited as evidence that biological wiring is computationally
+special, and that inference is doing work in proposals for neuromorphic hardware built on
+connectome-derived connectivity. Neuromorphic hardware is spiking. Whatever the advantage
+measured in $\tanh$ units is worth, the inference from it to a spiking substrate needs its
+own evidence --- and on our measurements that evidence does not exist in either direction
+yet, because the comparison is weaker in the spiking model rather than resolved there.
+
+We would put the general form of this more plainly than the specific result. A reservoir
+result is a statement about a triple: a graph, a unit model and an operating point. Two of
+those three are usually chosen once and reported as fixed --- and the null, a fourth, is
+usually named rather than specified. We varied all four and the conclusion turns on each.
+The methodological recommendation is unglamorous and cheap: report the unit model as a
+variable rather than an implementation detail, sweep the gain rather than picking a point
+on it, and ship the null-generating code.
+
+\subsection{What the gain axis does to a literature}
+
+The result of \S\ref{sec:res-operating} is uncomfortable in a specific way, and we want to
+state the discomfort precisely rather than soften it.
+
+It is not that the published connectome advantage is wrong. It is that the quantity being
+reported is a point on a curve whose sign changes, and the curve has not been shown. Our
+own attempt to recover the published direction at the published operating point succeeds
+against one null ensemble and fails against the other (\S\ref{sec:res-nullchoice}), which
+is a reason to doubt our replication rather than the original --- and which makes the
+point of this section sharper, not weaker: a single evaluation carries no information
+about where on the curve, or against which ensemble, it was taken. Nothing in a
+single-operating-point comparison indicates which side of the crossing it falls on, and
+nothing in the reported statistics --- ours or anyone's --- carries that information,
+because the statistics are computed conditional on the choice.
+
+We think the reason this has gone unremarked is that criticality is a principled choice.
+There are good arguments that a reservoir computes best near the edge of chaos
+\cite{bertschinger2004real,legenstein2007edge,boedecker2012information}, and if biological
+networks operate there, comparing at criticality is comparing where it matters. The
+difficulty is that the argument licenses the operating point but not the inference: a
+topology can be better at criticality and worse elsewhere without either fact being the
+more fundamental one, and ``connectome topology confers computational function'' is a
+claim of the second kind stated on evidence of the first.
+
+There is also an asymmetry in the direction of the effect that we think is the more
+interesting result. The published comparison is against a \emph{degree-preserving} null.
+Against a fully unstructured graph of the same size and density, the connectome does not
+lead at any gain we tested. So the advantage that appears at criticality is an advantage
+over graphs that share the connectome's degree sequence --- and the degree sequence is,
+by our ladder, the single most costly structural property on this task. The narrow win
+at criticality sits on top of a large loss that the degree-preserving control holds
+constant and therefore hides.
+
+What we would ask of a future comparison of this kind is small: report the contrast across
+a range of gains, and state the range over which the sign is stable. That is one sweep
+rather than one evaluation, and it converts a claim about a point into a claim about a
+regime. We have tried to hold our own results to it.
+
+\subsection{Why matched controls change the conclusion}
+
+The reason a control ladder matters here is arithmetic rather than philosophical. An
+Erd\H{o}s--R\'enyi comparison bundles every structural difference into a single contrast,
+so whatever it finds gets attributed to whichever property the authors were already
+interested in. In our measurements that bundled effect is not small --- the
+Erd\H{o}s--R\'enyi rung leads the connectome by up to $\RmLzeroMinusLfour$ of accuracy
+in percentage points at
+a matched operating point --- which makes the attribution question sharper rather than
+moot. Separating the properties shows that the largest single share is spent at the step that
+imposes the degree sequence, and that the motif census contributes a further effect of
+comparable size --- in the same, negative direction. An Erd\H{o}s--R\'enyi comparison on
+this benchmark delivers a large, significant, correctly-signed aggregate effect that a
+motif-focused reading would have assigned to motifs. Part of it is indeed the motif
+census; most of it is not, and none of it points the way that reading would require. That
+is the concrete cost of the bundled control, and it is why we regard the ladder as the
+contribution here rather than the result it produces.
+
+This is also where the protocol control in \S\ref{sec:task} does the most work. A
+reservoir comparison in which a zeroed recurrent matrix performs as well as a connectome
+is not a weak experiment; it is a measurement of the input projection. We report both
+protocols precisely because the difference between them dwarfs every structural effect we
+measure, and because the failure is silent: nothing in the naive protocol's output
+announces that recurrence is unused. We would encourage the same control in any
+study comparing connectome-derived reservoirs.
+
+\subsection{Degeneracy is a statement about directions, not magnitudes}
+
+The pruning results in \S\ref{sec:res-degeneracy} make a point that we think is
+under-appreciated. Robustness to random ablation is routinely reported as evidence that
+biological circuits are degenerate, redundant or gracefully degrading. But a randomly
+chosen perturbation direction in a high-dimensional space is nearly orthogonal to any
+fixed functional subspace, so tolerance to random damage is close to a generic property
+of large recurrent systems rather than a distinguishing property of brains. The
+operational alignment $\gamma$ makes part of this quantitative: the same perturbation
+cardinality can be almost harmless or markedly damaging depending only on its direction,
+and $\gamma$ ranks the directions correctly. It does not deliver the scaling
+Proposition~\ref{prop:tolerance} predicts --- the product $\gamma\cdot\|E\|_F^{\max}$
+should be constant across directions and instead varies by a factor of
+$\GammaProductSpread$ (\S\ref{sec:res-degeneracy}) --- so $\gamma$ should be read as a
+diagnostic of which directions are dangerous rather than as a calibrated predictor of how
+much damage they do. A degeneracy claim is nonetheless only as strong as the worst
+direction it has been tested against, and that conclusion needs only the ordering.
+
+We also note what replacing Davis--Kahan buys. The eigenvector bound is not merely loose
+on these networks; it is inapplicable, because the spectra are near-degenerate and the
+eigenvectors it bounds are themselves ill-conditioned. Quoting the ratio between an
+empirical tolerance and a vacuous bound as a measure of biological robustness -- as an
+earlier revision of this work did -- attributes to the system a property of the tool.
+The transfer-map bound is weaker in the usual sense (it is first-order and
+horizon-limited) but it is about a quantity that task performance actually depends on,
+and it requires no gap.
+
+\subsection{A method sentence is not a method}
+\label{sec:disc-null}
+
+The single most consequential finding in this paper is also the least glamorous: the
+phrase ``randomised while preserving density and degree sequence'', which appears in some
+form in nearly every paper in this literature, does not specify an ensemble. Two
+constructions satisfying it gave the connectome's advantage opposite significant verdicts
+in $\NNullVerdictFlip$ of $\NNullCells$ cells (\S\ref{sec:res-nullchoice}). The ambiguity
+is not exotic. It is whether a weight is a property of an edge or a property of the
+network's weight distribution, and both readings are natural enough that the phrase has
+carried them both for two decades.
+
+We are the demonstration and not the auditor here. Our first implementation was the
+rank-reassigning one, written from the published description without reading the toolbox
+source, and it produced a result that was clean, large, significant in every network and
+in the direction we expected. Nothing about it looked wrong, because nothing about it was
+wrong except the question it was answering. Had the two ensembles happened to agree, we
+would have reported the number and moved on, and the paper would have contained an
+undetectable error of exactly the kind we spent the rest of it cataloguing.
+
+Two consequences follow, and neither is a matter of care. The first is that a replication
+which constructs its null from a published description is testing a different hypothesis
+from the original, and cannot tell which of the two it has tested. The second is that the
+remedy is not more careful prose --- we do not think a longer sentence would have saved
+us --- but the null-generating code as an artefact, cited and versioned the way a dataset
+is. Where the original code exists, as it does here, calling it is not a courtesy to the
+original authors; it is the only way to know what was compared.
+
+This generalises past reservoir computing. Motif enrichment, small-worldness, rich-club
+coefficients and every other statistic in network neuroscience defined as a deviation from
+a null inherit whatever ambiguity the null's description carries. The $Z$-scores we report
+in \S\ref{sec:res-motifs} are no exception, and we state the construction we used in the
+methods for that reason.
+
+\subsection{On correcting the record}
+
+A substantial part of this work consisted of removing claims from our own earlier
+manuscript: fabricated commercial-process silicon figures, a human microscale tier built
+on a connectivity graph that was empty, sign-attributed motif results for datasets with
+no usable inhibition, p-values below the resolution of the null ensemble that produced
+them, and an ablation table whose own control row contradicted the conclusion drawn from
+it. We report these in full in the accompanying audit rather than quietly omitting them,
+because the corrected analysis is only interpretable against the record of what it
+replaces, and because several of the errors are of kinds that are easy to reproduce:
+a silently swallowed exception in a loader, a null model believed to impose a constraint
+that it does not, and a benchmark protocol under which the object of study makes no
+difference to the result.
+
+The replacement analysis produced four more of the same kind, and we record those too.
+The largest is the null-ensemble substitution discussed above, which is not a coding
+error at all --- the code did exactly what it was written to do --- but a
+misreading of a method sentence that no test could have caught.
+Our annealing energy was normalised by a quantity several times larger than the one the
+methods described, which left the chain unable to hold its census on the most reciprocal
+network in the set. Our ``weakest-first'' pruning arm was executing as whole-neuron
+ablation in index order, because these graphs are unweighted and every edge magnitude is
+therefore equal. And the first version of Proposition~\ref{prop:gapfree} was stated in
+the spectral radius rather than the operator norm, an inequality that holds only for
+normal matrices --- in a paper whose central argument is that eigenvalue-based reasoning
+fails on these networks. Each was caught by checking a diagnostic that the code already
+recorded, or by checking the code against the prose; none was caught by the result
+looking wrong, because in every case it did not. We take that to be the substantive
+methodological point, and it is why the convergence diagnostics, the protocol control
+and the held-out statistic are reported in the paper rather than kept in the
+repository.
+
+\subsection{Coupling is a relation, not a property}
+\label{sec:disc-coupling}
+
+It is worth stating plainly what the four results have in common, because it is the
+thing the title names. Computational coupling --- the degree to which what a network
+computes is attributable to how it is wired --- reads like a property of the network, and
+is written down that way: one connectome, one number, one verdict. Definition~\ref{def:coupling}
+makes explicit that it is nothing of the kind. $\kappa$ takes four arguments besides $W$,
+and this paper is an empirical demonstration that none of them is inert. Change
+$\mathcal{N}$ and the sign flips in $\NNullVerdictFlip$ of $\NNullCells$ cells with
+significance on both sides. Change $U$ and the whole capacity scale compresses by
+$\UnitCapRatio\times$, taking the contrast with it. Move along $\rho$ and the sign flips
+again, in $\NGainSignFlip$ of $\NGainNetworks$ networks. Choose $R$ badly and the coupling
+is identically zero: deleting the recurrent matrix costs nothing
+($\ZeroRecFull$ against $\ZeroRecFullConn$), which is to say the measurement was never
+touching $W$.
+
+The practical consequence is a reporting standard rather than a new experiment. A
+coupling is quotable only with its protocol attached --- and, given
+\S\ref{sec:res-nullchoice}, with the null-generating code attached rather than a
+description of it, since the description does not determine the ensemble. Where a claim
+is meant to be about the connectome rather than about one cell of the design, the
+defensible object is not a number but a surface: $\kappa$ over the ranges of
+$\mathcal{N}$, $U$, $\rho$ and $R$ that the claim is supposed to survive. That is
+why we report axes rather than points throughout, including for our own null results,
+and it is why a non-detection here is reported as a non-detection rather than as a
+refutation.
+
+We do not claim the four are exhaustive. They are the four our design happened to vary,
+and the honest reading of Definition~\ref{def:coupling} is that any further argument
+smuggled into $C$ --- the task, the horizon, the delay structure, the regularisation of
+the readout --- is a further candidate for the same treatment. The claim we do make is
+narrower and, we think, secure: a connectome-versus-null result reported as a single
+signed number is under-determined by its own methods section, and on our data the
+under-determination is large enough to reverse the conclusion.
+
+\subsection{Outlook}
+
+The motif-preserving ensemble is not specific to neuroscience. Any field that infers
+function from subgraph overrepresentation -- gene regulatory networks, food webs,
+software dependency graphs -- faces the same attribution problem, and the same annealed
+construction applies wherever a motif census admits incremental evaluation. The
+immediate extensions we regard as most informative are the trained ladder described above,
+applying $\gamma$ to measured biological perturbations --- where the prediction is that
+developmental and activity-dependent rewiring occupies the low-$\gamma$ regime that makes
+degeneracy cheap --- and extending the null-sensitivity analysis of
+\S\ref{sec:res-nullchoice} beyond the two constructions we happened to write. We suspect
+the two we compared are not the only pair in circulation under that description, and the
+cheapest useful contribution anyone could make to this literature is an inventory of
+which published results were measured against which ensemble.

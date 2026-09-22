@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering\small
+\caption{\textbf{Logic synthesis of the accompanying RTL} with Yosys and ABC onto the
+Nangate45 Open Cell Library (typical corner). These are the quantities this flow can
+establish. No die area, power or energy-per-operation figure is reported: the flow
+performs no placement, routing, clock-tree synthesis or parasitic extraction. No clock
+frequency is reported either, because the toolchain ships no static timing analyser. The
+commercial-process figures reported in earlier revisions of this project were never
+measured and are withdrawn.}
+\label{tab:synthesis}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Module} & \textbf{Cells} & \textbf{Flip-flops} &
+\textbf{Cell area ($\mu$m$^2$)} \\
+\midrule
+\texttt{dendritic\_lif\_core} & 4,401 & 70 & 5,301 \\
+\texttt{synaptic\_accumulator} & 19,649 & 8,192 & 63,361 \\
+\texttt{aer\_crossbar\_router} & 39 & 17 & 124 \\
+\texttt{cen\_accelerator\_top} & 590,116 & 25,644 & 749,263 \\
+\bottomrule
+\end{tabular}}
+\end{table}

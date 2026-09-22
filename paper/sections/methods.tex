@@ -1,0 +1,368 @@
+\section{Methods}
+
+\subsection{Connectomes, and what each one can support}
+\label{sec:data}
+
+We analyse four public connectome releases spanning three phyla, from which we take
+five networks --- the \textit{Drosophila} release supplies two functionally distinct
+circuits (Table~\ref{tab:datasets}). Two of the releases carry synaptic valence and two
+do not, and this distinction constrains which questions each dataset can answer; we
+state it here rather than in a caption because it is the reason several rows of our
+tables are deliberately empty.
+
+\textit{Caenorhabditis elegans.} The adult hermaphrodite somatic connectome
+\cite{cook2019whole,varshney2011structural}, with neurotransmitter assignments
+giving an excitatory/inhibitory (E/I) label per neuron.
+
+\textit{Drosophila melanogaster.} FlyWire v630 \cite{dorkenwald2024neuronal,
+lin2024network}, from which we take the central complex and the antennal lobe as
+two functionally distinct circuits. Valence follows the released neurotransmitter
+predictions.
+
+\textit{Mus musculus.} The MICrONS Pinky100 V1 layer 2/3 proofread subgraph
+\cite{microns2025functional}. This release annotates 34 inhibitory somata, but every
+one of them is disconnected in the accompanying synapse table: all 1{,}736 synapses
+are excitatory$\rightarrow$excitatory. We therefore treat this network as
+\textbf{topology-only} and do not compute sign-attributed motifs on it. Reporting
+coherent feedforward loops here would be reporting plain feedforward loops under
+another name, since with no inhibitory neuron in the graph the two counts are
+identically equal.
+
+\textit{Homo sapiens.} The Human Connectome Project group-consensus structural
+network \cite{vanessen2012human}, 1{,}015 parcellated regions from diffusion
+tractography. Streamline density carries no synaptic valence, so this network is
+likewise treated as topology-only. We emphasise that it is a regional network, not a
+neuronal connectome, and we make no microscale claim from it.
+
+We do not analyse human microscale connectivity. The H01 release
+\cite{shapsoncoe2024petavoxel} provides cell and synapse tables but the connectivity
+export needed to build a wiring diagram is not part of the distribution we worked
+from, and a census of a synapse table is not a connectome analysis.
+
+Reservoir capacity grows with neuron count, so cross-species comparison requires
+size matching. From each connectome we extract an induced subgraph of at most
+$N = \NnodesTarget$ neurons by breadth-first expansion from a seed neuron of
+above-median degree, following both afferent and efferent edges; degree-zero nodes
+are then removed. Uniform node sampling is not used, because it destroys degree
+structure and motif density by construction.
+
+\subsection{Exact sign-attributed motif census}
+\label{sec:census}
+
+For a directed graph with neuron valences $\sigma_i \in \{+1,-1\}$ and Dale's
+principle -- every synapse carries the valence of its presynaptic neuron -- the sign
+product around a feedforward loop $(u \to v,\; v \to w,\; u \to w)$ is
+\begin{equation}
+\sigma_u \cdot \sigma_v \cdot \sigma_u \;=\; \sigma_u^2\,\sigma_v \;=\; \sigma_v .
+\label{eq:coherence}
+\end{equation}
+
+\begin{remark}
+A feedforward loop is coherent if and only if its \emph{intermediate} neuron is
+excitatory. Coherence is a property of one node, not of a product over three edges.
+\end{remark}
+
+Equation~\eqref{eq:coherence} makes the sign-attributed census exactly as cheap as
+the topological one and removes any need to store per-edge signs. We count
+\begin{align}
+\mathrm{FFL} &= \sum_{(u,v) \in E} \big| N^{+}(u) \cap N^{+}(v) \big| ,\\
+\mathrm{cFFL} &= \sum_{\substack{(u,v)\in E \\ \sigma_v = +1}} \big| N^{+}(u) \cap N^{+}(v) \big| ,
+\end{align}
+with $\mathrm{iFFL} = \mathrm{FFL} - \mathrm{cFFL}$; reciprocal pairs, mutually
+inhibitory pairs and directed 3-cycles follow analogously, and bi-fans are counted
+exactly by accumulating source-pair co-occurrence through shared targets rather than
+by sampling node pairs. All counts are exact; none are estimated. Single-edge
+insertions and deletions admit exact $O(d)$ updates of every 3-node count, which is
+what makes the annealed null model of \S\ref{sec:nulls} tractable.
+
+\subsection{Null ensembles and the structural control ladder}
+\label{sec:nulls}
+
+\paragraph{Dale's principle constrains nothing here.}
+The conventional null is the Maslov--Sneppen double-edge swap
+\cite{maslov2002specificity}, which fixes the joint in/out degree sequence. It is
+common to describe a connectome null as preserving degrees \emph{and} Dale's
+principle. Under the convention above this is not an additional constraint: the swap
+$(u\to v,\, x\to y) \Rightarrow (u\to y,\, x\to v)$ leaves $u$ and $x$ presynaptic,
+so every neuron's outgoing synapses retain a single shared valence automatically.
+A ``Dale-compliant'' rewiring is therefore the standard ensemble, and it cannot test
+whether the \emph{placement} of inhibition in the graph is non-random. That requires
+permuting valence labels across neurons, which we include as a separate rung.
+
+\paragraph{Two weighted rewirings, and which one we report.}
+For the weighted \texttt{conn2res} connectomes the swap above underdetermines the
+ensemble, because it says what happens to edges and not what happens to weights. We
+implement both readings and report both (\S\ref{sec:res-nullchoice}).
+
+\emph{Weight-carrying rewiring} moves each weight with the edge that carries it, and
+rejects swaps that disconnect the graph. We obtain it by calling
+\texttt{bct.reference.randmio\_und\_connected} or \texttt{randmio\_dir\_connected}
+\cite{rubinov2010complex} directly, dispatching on symmetry and using the toolbox default
+of ten swap attempts per edge, rather than reimplementing it --- the point of
+\S\ref{sec:res-nullchoice} is that a reimplementation from a description is not
+guaranteed to be the same ensemble. This is what \texttt{conn2res} calls, so it is the
+ensemble every comparison in this paper reports unless stated otherwise.
+
+\emph{Rank-reassigned rewiring} randomises the binary topology by the same swaps and then
+assigns the original multiset of weight values to the new edges in decreasing order of
+endpoint-degree product $d^{\mathrm{out}}_u d^{\mathrm{in}}_v$. It preserves the degree
+sequence and the weight distribution exactly and destroys the association between a
+weight and its edge. Both constructions satisfy the description ``randomised while
+preserving density and degree sequence''; they are different distributions over graphs;
+and \S\ref{sec:res-nullchoice} reports what that difference is worth.
+
+Both are applied \emph{after} the toolbox's preprocessing (min--max scaling followed by
+division by the spectral radius) and before the gain is set, so that each arm of a
+comparison is a randomisation of the same object.
+
+\paragraph{The motif-preserving ensemble.}
+The rung the connectome literature does not use is one that preserves the motif census
+itself. Constructions for it exist outside that literature and we do not claim the idea:
+Milo et al.\ proposed a simulated-annealing null preserving lower-order subgraph counts
+\cite{milo2002network,milo2004superfamilies}; exponential random graph models condition
+on triad counts by design \cite{frank1986markov,robins2007introduction}; the $dk$-series
+is a nested hierarchy of nulls constraining progressively higher-order structure, with
+$2K$ and $3K$ fixing degree correlations and connected triads
+\cite{mahadevan2006systematic,orsini2015quantifying}; and Fischer et al.\ sample
+motif-constrained ensembles at fixed degree sequence by Wang--Landau multicanonical
+sampling, which unlike annealing comes with a sampling guarantee
+\cite{fischer2015sampling}. What we contribute is an implementation for the
+\emph{sign-attributed} census at connectome scale --- exact coherent and incoherent
+feedforward-loop counts under Dale's principle, with $O(d)$ incremental updates and a
+move set that survives near-total reciprocity --- and the use of that ensemble as a
+control rung rather than as an enrichment null. Where a formally exact sampler is
+available it should be preferred, and \S\ref{sec:res-robust} reports what our annealed
+chain can and cannot demonstrate in its place. We sample it with a Metropolis chain over degree-preserving swaps whose
+energy is the squared deviation of the running census from a target census $c^{*}$,
+measured in units of the unconstrained-ensemble standard deviation $s_m$:
+\begin{equation}
+\mathcal{E}(G) \;=\; \sum_{m \in \mathcal{M}} \left( \frac{c_m(G) - c^{*}_m}{s_m} \right)^{2},
+\label{eq:anneal}
+\end{equation}
+over $\mathcal{M} = \{$reciprocal pairs, mutually inhibitory pairs, FFL, cFFL, iFFL,
+3-cycles$\}$, over $\SweepCount \times |E|$ proposals with a geometric temperature
+schedule. Exact incremental updates (\S\ref{sec:census}) make each proposal $O(d)$.
+Setting $c^{*}$ to the empirical census yields graphs that are maximally randomised
+subject to reproducing the connectome's motif spectrum.
+
+Two things about the construction are worth stating precisely, because the obvious
+implementation of it does not work. First, where the chain starts determines which
+property is guaranteed and which must be demonstrated. Starting from a fully rewired
+graph and annealing towards $c^{*}$ guarantees randomisation and leaves convergence to
+be shown; starting from the connectome itself and running a low-temperature constrained
+walk guarantees convergence --- the chain begins on the constraint surface --- and
+leaves randomisation to be shown. These are equivalent where both succeed, but the
+random start fails outright on networks whose census is hard to rebuild by chance. We
+therefore use the empirical start and demonstrate randomisation directly, by edge
+overlap against the empirical graph and against an unconstrained rewiring
+(\S\ref{sec:res-null}).
+
+Second, an ordinary double-edge swap destroys reciprocal pairs far more readily than it
+creates them. In a near-symmetric network --- diffusion tractography above all, where
+almost every edge is reciprocal --- the reciprocal-pair count therefore drifts down by
+tens of percent however stiff the penalty, and the constrained ensemble is effectively
+unreachable by that move set. We add a move that swaps two reciprocal \emph{pairs} as
+units, $(u \leftrightarrow v,\, x \leftrightarrow y) \mapsto (u \leftrightarrow y,\,
+x \leftrightarrow v)$, which preserves every node's in- and out-degree and the
+reciprocity of all four edges, and mix it in proportion to the fraction of edges that
+are reciprocal.
+Bi-fan is deliberately excluded from $\mathcal{M}$ and reported post hoc as a
+held-out statistic, which tests whether the chain reproduces structure it was not
+asked to reproduce.
+
+\paragraph{The ladder.}
+Each rung adds exactly one structural property to the one below it, so the
+contribution of that property is the difference between adjacent rungs:
+\begin{description}[leftmargin=1.1em,itemsep=1pt]
+  \item[L0] Erd\H{o}s--R\'enyi: node count, edge count and E:I ratio only.
+  \item[L1] $+$ joint in/out degree sequence (valence labels permuted across nodes).
+  \item[L2] $+$ valence placement (labels left on their own neurons).
+  \item[L3] $+$ 3-node motif census (the annealed ensemble above).
+  \item[L4] the empirical connectome.
+\end{description}
+Every rung has identical node and edge counts by construction. We draw
+$\NinstancesLadder$ independent surrogates per rung. Rung L4 is different in kind: the
+connectome is one graph, so its $\NinstancesLadder$ replicates differ in the input
+coding and the sensory/motor split only. Its replicates therefore carry one variance
+component where L0--L3 carry two, and we state the consequence rather than leave it to
+be inferred. Contrasts use Welch's test, which does not assume equal variances, but a
+contrast involving L4 supports inference about \emph{this} connectome rather than about
+connectomes as a class; the surrogate rungs support the stronger reading. The asymmetry
+works against us where our conclusion is a null one: in the L3--L4 contrast a real
+difference specific to the empirical graph would be easier, not harder, to detect at
+reduced variance, so a small measured effect there is not an artefact of the variance
+structure.
+
+\subsection{Task and evaluation protocol}
+\label{sec:task}
+
+\paragraph{Benchmark.}
+We use the Spiking Heidelberg Digits (SHD) dataset \cite{cramer2022heidelberg}:
+20 spoken-digit classes in English and German, converted to spike trains by a
+cochlear model, from 12 speakers, with a canonical test split that holds out two
+speakers entirely. Spikes are binned into $\Tsteps$ time steps over 1\,s and the 700
+cochlear channels are pooled into $\Cchannels$ bands. We use a real spike-based
+benchmark rather than a synthetic pattern task because synthetic tasks of the kind
+used in earlier work saturate near 100\% accuracy for every architecture and
+therefore cannot discriminate between them.
+
+\paragraph{Reservoir protocol.}
+The connectome or surrogate supplies the recurrent weight matrix and is never
+trained; only a ridge readout is fitted \cite{lukosevicius2009reservoir,
+suarez2024connectome}. Neurons are discrete-time leaky integrate-and-fire units,
+\begin{equation}
+v_i(t{+}1) = \lambda\, v_i(t)\,\big(1 - s_i(t)\big) + I_i(t),
+\qquad
+s_i(t) = \mathbb{I}\!\left[v_i(t) \ge \vartheta\right],
+\end{equation}
+with $I(t) = x(t) W_{\mathrm{in}} + s(t) W_{\mathrm{rec}}$, leak $\lambda =
+\Leak$ and threshold $\vartheta = 1$.
+
+\paragraph{Controls that the comparison depends on.}
+Four quantities are held fixed across every network in a comparison: node count, edge
+count, spectral radius (each $W_{\mathrm{rec}}$ is rescaled to $\rho =
+\SpectralRadius$), and the input projection. Without spectral-radius matching the
+comparison measures effective gain rather than topology.
+
+A fifth control is less obvious and turned out to be decisive. If every neuron
+receives the stimulus and every neuron feeds the readout, then the task is solved by
+the input projection and the per-neuron leak alone: under that protocol a reservoir
+with $W_{\mathrm{rec}} = 0$ scores $\ZeroRecFull$ on SHD, statistically
+indistinguishable from any connectome, and no structural comparison can detect
+anything. We therefore drive a sensory subset ($\FracInput$ of neurons) and decode
+from a \emph{disjoint} motor subset ($\FracReadout$), so task-relevant signal must
+traverse the recurrent graph to be decodable. The zero-matrix control then falls to
+$\ZeroRecSplit$ against a chance level of $5.0\%$, which is the diagnostic that the
+benchmark is sensitive to recurrent structure at all. We recommend that any
+structural comparison of this kind report the corresponding control.
+
+\paragraph{Matching the operating point, not only the gain.}
+A sixth control is needed because spectral radius fixes the recurrent gain but not the
+activity level the network settles into. At the common $\rho = \SpectralRadius$ the
+rungs do not fire at the same rate: the Erd\H{o}s--R\'enyi surrogates run at roughly
+twice the mean rate of the connectomes they are matched to (\S\ref{sec:res-rate}), and
+firing rate is both correlated with accuracy across our runs ($r = \RateAccCorr$) and
+the direct determinant of the synaptic-operation count used as an energy proxy. A
+contrast at matched $\rho$ therefore confounds topology with operating point, and in
+the direction that flatters the unstructured control.
+
+We consequently report the ladder twice. In the \emph{matched-gain} version every
+network is set to $\rho = \SpectralRadius$, and the rung differences include whatever
+change in activity level the topology induces. In the \emph{matched-rate} version each
+network is calibrated individually, by bisection on its own spectral radius, to a common
+mean firing rate of $\TargetRate$, so that the comparison is made at a common operating
+point and the residual difference is attributable to wiring rather than to activity. The
+two versions answer different questions --- at equal gain, what operating point does
+each topology select; and at equal operating point, does topology still change what the
+network computes --- and we regard reporting only the first as the more common error.
+
+\paragraph{Readout and statistics.}
+Features are the time-averaged firing rate and the final membrane potential of the
+motor population. A ridge readout is fitted with the regulariser selected on a
+held-out validation split, never on test. Energy is reported as synaptic operations,
+$\mathcal{S} = \sum_t \sum_{i: s_i(t)=1} k^{\mathrm{out}}_i$. Comparisons between
+rungs use Welch's $t$-test with Holm correction \cite{holm1979simple} across the full
+family of contrasts, and are reported with percentile-bootstrap confidence intervals
+and Hedges' $g$, because with $\NinstancesLadder$ instances per rung a detectable
+difference can still be operationally negligible.
+
+\subsection{Perturbation theory without a spectral gap}
+\label{sec:theory}
+
+Degeneracy is naturally posed as matrix perturbation, and the standard tool is the
+Davis--Kahan $\sin\Theta$ theorem \cite{daviskahan1970rotation,stewart1990matrix},
+which bounds the rotation of an invariant subspace by $\|E\|/\delta$ for a spectral
+gap $\delta$. On real connectomes this is vacuous: the smallest measured gap is
+$\MinSpectralGap$ (\S\ref{sec:res-degeneracy}), so the bound admits perturbations of
+norm at most $\MaxDKAdmissible$ --- far smaller than the removal of a single synapse
+--- while the networks in fact tolerate removal of a large fraction of their edges.
+That ratio is a statement about eigenvector instability under near-degenerate
+spectra, not about brains.
+
+What must be stable is not an eigenvector but the finite-horizon input--output map.
+For horizon $T$ that map is the sequence of Markov parameters $H_t = W_{\mathrm{out}}
+A^{t} W_{\mathrm{in}}$, $t = 0,\dots,T-1$.
+
+\begin{proposition}[Gap-free sensitivity of the transfer map]
+\label{prop:gapfree}
+Let $a = \|A\|_2$. For a perturbation $A \mapsto A + E$, to first order in $E$,
+\begin{equation}
+\|\Delta H_t\|_F \;\le\; t\,a^{\,t-1}\,\|E\|_F\,\|W_{\mathrm{in}}\|_2\,\|W_{\mathrm{out}}\|_2 ,
+\end{equation}
+and hence, aggregating over the horizon,
+\begin{equation}
+\Big(\textstyle\sum_{t<T} \|\Delta H_t\|_F^{2}\Big)^{1/2} \;\le\; C(T,a)\,\|E\|_F,
+\end{equation}
+\begin{equation}
+C(T,a) = \|W_{\mathrm{in}}\|_2 \|W_{\mathrm{out}}\|_2
+         \Big(\textstyle\sum_{t<T} t^{2}a^{2(t-1)}\Big)^{1/2}.
+\end{equation}
+No spectral gap is assumed, and $C$ is finite for every $A$.
+\end{proposition}
+
+\noindent\emph{Proof.} Expand $(A+E)^{t} - A^{t} = \sum_{s<t} A^{s} E A^{t-1-s} +
+O(\|E\|^{2})$ and bound each of the $t$ terms submultiplicatively by
+$\|A\|_2^{s}\,\|E\|_F\,\|A\|_2^{t-1-s} = a^{\,t-1}\|E\|_F$; multiply by the input and
+output operators and collect. \hfill$\square$
+
+\begin{remark}
+The constant is stated in the operator norm and not in the spectral radius. Substituting
+$\rho(A)$ for $\|A\|_2$ would require $\|A\|_2 \le \rho(A)$, which holds only for normal
+matrices; connectome matrices are markedly non-normal, and we measure
+$\|A\|_2/\rho(A)$ up to $2.1$ across our networks at matched $\rho$. With $\rho$ in
+place of $a$ the constant is too small by up to that ratio raised to the horizon, and
+the measured alignment $\gamma$ --- which is defined as the fraction of the worst case
+a direction realises --- can exceed $1$. This matters because transient amplification
+in a non-normal recurrent network is precisely the regime the bound is meant to cover.
+\end{remark}
+
+Proposition~\ref{prop:gapfree} is worst-case over the \emph{direction} of $E$. Real
+remodelling is not adversarial, and the quantity that expresses this is the fraction
+of the worst case a given direction realises.
+
+\begin{definition}[Operational alignment]
+\label{def:gamma}
+\begin{equation}
+\gamma(E) \;=\; \frac{\big(\sum_{t<T}\|\Delta H_t\|_F^{2}\big)^{1/2}}{C(T,a)\,\|E\|_F} \;\in\; [0,1].
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Tolerance scales inversely with alignment]
+\label{prop:tolerance}
+If task performance degrades once the aggregated transfer-map perturbation exceeds a
+task-determined tolerance $\tau$, then the largest admissible perturbation magnitude
+satisfies $\|E\|_F^{\max} \ge \tau / \big(\gamma(E)\,C(T,a)\big)$, i.e. it scales
+as $1/\gamma$.
+\end{proposition}
+
+This is falsifiable in a way the usual degeneracy demonstration is not. Showing that
+a connectome survives \emph{random} pruning establishes only that random directions
+are benign. We therefore construct the maximally damaging perturbation of the same
+cardinality by ranking synapses on their exact first-order influence on the
+horizon-aggregated map,
+\begin{multline}
+\frac{\partial}{\partial A_{ij}} \sum_{t<T} \big\|W_{\mathrm{out}} A^{t} W_{\mathrm{in}}\big\|_F^{2} \\
+= 2 \sum_{t<T} \sum_{s<t} \Big[ \big(W_{\mathrm{out}} A^{\,t-1-s}\big)^{\!\top} H_t
+\big(A^{s} W_{\mathrm{in}}\big)^{\!\top} \Big]_{ij},
+\end{multline}
+evaluated by accumulating forward states $A^{s}W_{\mathrm{in}}$ and adjoint states
+$W_{\mathrm{out}}A^{j}$ iteratively, so no matrix power is ever formed. If a
+connectome tolerated adversarial and random pruning equally,
+Proposition~\ref{prop:tolerance} would be false. Every pruned network is renormalised
+to the original spectral radius before evaluation, so measured degradation reflects
+lost structure rather than lost gain, and $\gamma$ is computed on exactly the
+perturbation applied.
+
+\subsection{Synthesis flow}
+\label{sec:synth}
+
+The accompanying Verilog is synthesised with Yosys \cite{wolf2013yosys} and mapped
+with ABC \cite{ajaykumar2019abc} onto the Nangate45 Open Cell Library
+\cite{nangate45} at the typical corner. We report gate count, flip-flop count and
+mapped pre-layout cell area, and nothing else. We do not report die area, power,
+energy per operation or a clock frequency: this flow performs no placement, routing,
+clock-tree synthesis or parasitic extraction, switching power cannot be estimated
+without activity factors and extracted parasitics, and the toolchain ships no static
+timing analyser, so a critical path would have to be guessed rather than measured. Earlier revisions of
+this project reported such figures for a commercial 28\,nm flow; no such flow was
+run, and those figures are withdrawn (see the repository's audit record).

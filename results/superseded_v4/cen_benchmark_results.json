@@ -1,0 +1,35 @@
+[
+  {
+    "Model": "CoupledEventNet (CEN)",
+    "Dale_Compliant": true,
+    "Wiring_Structure": "Motif-Constrained (cFFL/iFFL/RIP)",
+    "Test_Accuracy_%": 96.49999737739563,
+    "Noisy_Accuracy_%": 81.99999928474426,
+    "Noise_Drop_%": 14.499998092651367,
+    "SynOps_Per_Sample": 3.52,
+    "Energy_Proxy_nJ": 14.31,
+    "Training_Time_s": 13.562586069107056
+  },
+  {
+    "Model": "Dense SNN (Standard)",
+    "Dale_Compliant": false,
+    "Wiring_Structure": "Dense Recurrent (All-to-All)",
+    "Test_Accuracy_%": 97.50000238418579,
+    "Noisy_Accuracy_%": 82.99999833106995,
+    "Noise_Drop_%": 14.500004053115845,
+    "SynOps_Per_Sample": 1623.695,
+    "Energy_Proxy_nJ": 6507.565,
+    "Training_Time_s": 6.730631351470947
+  },
+  {
+    "Model": "Connectome Reservoir (conn2res)",
+    "Dale_Compliant": true,
+    "Wiring_Structure": "Fixed C. elegans Connectome",
+    "Test_Accuracy_%": 98.50000143051147,
+    "Noisy_Accuracy_%": 82.4999988079071,
+    "Noise_Drop_%": 16.00000262260437,
+    "SynOps_Per_Sample": 38.97,
+    "Energy_Proxy_nJ": 159.17,
+    "Training_Time_s": 1.6610398292541504
+  }
+]

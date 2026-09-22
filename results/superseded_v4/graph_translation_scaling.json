@@ -1,0 +1,72 @@
+[
+  {
+    "num_neurons": 100,
+    "num_synapses": 1163,
+    "density": 0.11747474747474747,
+    "ei_ratio": 2.7037037037037037,
+    "num_cffl": 1223,
+    "num_iffl": 684,
+    "num_rip": 75,
+    "spectral_radius": 7.185412406921387,
+    "spectral_gap": 0.01647019386291504,
+    "theoretical_r90_bound": 0.00022921709889678755,
+    "estimated_synops_per_sample": 30.000000000000004,
+    "estimated_energy_nj": 0.6125
+  },
+  {
+    "num_neurons": 250,
+    "num_synapses": 2966,
+    "density": 0.04764658634538153,
+    "ei_ratio": 2.676470588235294,
+    "num_cffl": 1506,
+    "num_iffl": 902,
+    "num_rip": 222,
+    "spectral_radius": 8.402639389038086,
+    "spectral_gap": 0.020339012145996094,
+    "theoretical_r90_bound": 0.00024205504014048206,
+    "estimated_synops_per_sample": 30.000000000000004,
+    "estimated_energy_nj": 0.6125
+  },
+  {
+    "num_neurons": 500,
+    "num_synapses": 5967,
+    "density": 0.023915831663326653,
+    "ei_ratio": 2.676470588235294,
+    "num_cffl": 1901,
+    "num_iffl": 1213,
+    "num_rip": 435,
+    "spectral_radius": 8.413833618164062,
+    "spectral_gap": 0.0001,
+    "theoretical_r90_bound": 1.1885188671204134e-06,
+    "estimated_synops_per_sample": 30.000000000000004,
+    "estimated_energy_nj": 0.6125
+  },
+  {
+    "num_neurons": 1000,
+    "num_synapses": 11956,
+    "density": 0.011967967967967967,
+    "ei_ratio": 2.690036900369004,
+    "num_cffl": 29519,
+    "num_iffl": 19370,
+    "num_rip": 798,
+    "spectral_radius": 8.716020584106445,
+    "spectral_gap": 0.005916595458984375,
+    "theoretical_r90_bound": 6.788184357633588e-05,
+    "estimated_synops_per_sample": 30.000000000000004,
+    "estimated_energy_nj": 0.6125
+  },
+  {
+    "num_neurons": 2000,
+    "num_synapses": 23966,
+    "density": 0.005994497248624312,
+    "ei_ratio": 2.690036900369004,
+    "num_cffl": 174222,
+    "num_iffl": 111704,
+    "num_rip": 1870,
+    "spectral_radius": 8.752802848815918,
+    "spectral_gap": 0.0001,
+    "theoretical_r90_bound": 1.1424911737104651e-06,
+    "estimated_synops_per_sample": 30.000000000000004,
+    "estimated_energy_nj": 0.6125
+  }
+]

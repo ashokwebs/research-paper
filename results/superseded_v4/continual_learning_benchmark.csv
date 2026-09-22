@@ -1,0 +1,5 @@
+method,task_a_initial_acc,task_b_acc,task_a_retained_acc,forgetting_pct,backward_transfer_pct,mean_synops,energy_proxy_nj
+DCMG-STDP ActiveDendriticCEN (Ours),96.0,98.0,96.0,0.0,0.0,23038.08,461.96150000000006
+Unconstrained STDP (No Motif Gate),96.0,98.0,96.0,0.0,0.0,23038.08,461.96150000000006
+Dense SNN (Sequential BPTT),98.0,96.0,52.0,46.0,-46.0,1840.0,36.8
+Connectome Reservoir (Fixed Graph),96.0,98.0,96.0,0.0,0.0,2425.18,49.7035

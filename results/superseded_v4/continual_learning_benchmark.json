@@ -1,0 +1,42 @@
+[
+  {
+    "method": "DCMG-STDP ActiveDendriticCEN (Ours)",
+    "task_a_initial_acc": 96.0,
+    "task_b_acc": 98.0,
+    "task_a_retained_acc": 96.0,
+    "forgetting_pct": 0.0,
+    "backward_transfer_pct": 0.0,
+    "mean_synops": 23038.08,
+    "energy_proxy_nj": 461.96150000000006
+  },
+  {
+    "method": "Unconstrained STDP (No Motif Gate)",
+    "task_a_initial_acc": 96.0,
+    "task_b_acc": 98.0,
+    "task_a_retained_acc": 96.0,
+    "forgetting_pct": 0.0,
+    "backward_transfer_pct": 0.0,
+    "mean_synops": 23038.08,
+    "energy_proxy_nj": 461.96150000000006
+  },
+  {
+    "method": "Dense SNN (Sequential BPTT)",
+    "task_a_initial_acc": 98.0,
+    "task_b_acc": 96.0,
+    "task_a_retained_acc": 52.0,
+    "forgetting_pct": 46.0,
+    "backward_transfer_pct": -46.0,
+    "mean_synops": 1840.0,
+    "energy_proxy_nj": 36.8
+  },
+  {
+    "method": "Connectome Reservoir (Fixed Graph)",
+    "task_a_initial_acc": 96.0,
+    "task_b_acc": 98.0,
+    "task_a_retained_acc": 96.0,
+    "forgetting_pct": 0.0,
+    "backward_transfer_pct": 0.0,
+    "mean_synops": 2425.18,
+    "energy_proxy_nj": 49.7035
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "n_cells": 10,
+  "n_sign_flip": 6,
+  "n_verdict_flip": 3,
+  "median_abs_disagreement": 0.7284265668112744,
+  "max_abs_disagreement": 6.976452158849203,
+  "bct_randmio_rate_leads": 1,
+  "bct_randmio_rate_trails": 3,
+  "bct_randmio_rate_n": 5,
+  "bct_randmio_rate_median": -0.5051771531481505,
+  "bct_randmio_spiking_leads": 0,
+  "bct_randmio_spiking_trails": 1,
+  "bct_randmio_spiking_n": 5,
+  "bct_randmio_spiking_median": 0.0011924570681486556,
+  "rank_reassigned_rate_leads": 5,
+  "rank_reassigned_rate_trails": 0,
+  "rank_reassigned_rate_n": 5,
+  "rank_reassigned_rate_median": 2.132515900499552,
+  "rank_reassigned_spiking_leads": 0,
+  "rank_reassigned_spiking_trails": 1,
+  "rank_reassigned_spiking_n": 5,
+  "rank_reassigned_spiking_median": 0.029435820918594997
+}

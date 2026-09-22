@@ -1,0 +1,5 @@
+model,accuracy,accuracy_std,synops_per_sample,spikes_per_sample,energy_proxy_nj
+CoupledEventNet (CEN),100.0,0.0,7.47,1.1333333333333335,31.013333333333335
+ActiveDendriticCEN (AD-CEN),100.0,0.0,9671.131666666666,1529.265,40213.791666666664
+Dense SNN,100.0,0.0,871.29,13.83,3498.9900000000002
+Connectome Reservoir,100.0,0.0,1597.8533333333335,96.39166666666667,6487.805

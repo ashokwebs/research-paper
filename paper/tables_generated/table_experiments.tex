@@ -1,0 +1,32 @@
+\begin{table*}[t]
+\centering\small
+\caption{\textbf{Every experiment in this study.} Counts are read from each experiment's
+own output file at build time rather than transcribed, so the table cannot disagree with
+what was run; an experiment whose output is absent is reported as absent. This list is the
+same one the accompanying documentation prints, generated from a single source. The unit
+differs by row --- a ``run'' is one network at one rung trained to convergence, an
+``evaluation'' one network at one operating point probed for one metric --- so the totals
+are not comparable across rows and are not summed.}
+\label{tab:experiments}
+\begin{tabular}{@{}l p{0.70\textwidth} r@{}}
+\toprule
+\textbf{Section} & \textbf{Experiment} & \textbf{Size} \\
+\midrule
+\S\ref{sec:res-motifs} & Are the classic subgraphs really over-represented? Exact sign-attributed counts against 500 degree-preserving surrogates per network. & 35 tests \\
+\S\ref{sec:res-null} & Validation of the annealed chain: does it hit the target census, does it actually randomise, and does it leave untargeted structure alone? & 5 networks \\
+\S\ref{sec:res-robust} & The same ensemble redrawn over a factor-of-eight range of chain lengths and from both possible starting points, ruling out two ways a sampler could fake the result. & 200 draws \\
+\S\ref{sec:res-protocol} & What does the benchmark measure? Includes the reservoir with its recurrent matri$\times$ set to zero, under both readout protocols. & 8 conditions \\
+\S\ref{sec:res-ladder} & L0 density to L4 real connectome on spoken digits, each rung adding exactly one structural property; accuracy, memory capacity, kernel and generalisation rank. & 375 runs \\
+\S\ref{sec:res-rate} & The same decomposition with every network recalibrated to a common firing rate, because matching spectral radius does not match activity. & 250 runs \\
+\S\ref{sec:res-ladder} & Does taking a size-matched subgraph of a larger connectome bias the degree result? Run because the ladder depends on the extraction being neutral. & 5 networks \\
+\S\ref{sec:res-nullchoice} & The headline experiment. Both readings of ''degree-preserving randomisation'' against both unit models across nine gains, on the original toolbox's own connectomes. & 2,700 evaluations \\
+\S\ref{sec:res-nullchoice} & Structural descriptors of both ensembles against the real graph, including the prediction that they must coincide on an unweighted network. & 105 graphs \\
+\S\ref{sec:res-unit} & Input gain $\times$ threshold $\times$ leak, searching for the configuration that would refute our own spiking result rather than the one that confirms it. & 1,728 evaluations \\
+\S\ref{sec:res-operating} & The whole decomposition across the critical region, because a comparison at one gain is a statement about that gain. & 1,400 evaluations \\
+\S\ref{sec:res-operating} & Locating the published advantage on the gain axis at matched spectral radius. & 2,500 evaluations \\
+\S\ref{sec:res-dynamics} & The same decomposition measured on task-independent probes, so the ordering does not depend on one benchmark. & 250 runs \\
+\S\ref{sec:res-degeneracy} & Random, hub-targeted and adversarial edge removal, testing whether the operational alignment predicts how much damage a direction does. & 540 prunings \\
+\S\ref{sec:res-hardware} & Real logic synthesis and technology mapping of the accompanying RTL, reporting only what the open flow can establish. & 4 designs \\
+\bottomrule
+\end{tabular}
+\end{table*}

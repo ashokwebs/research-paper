@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering\small
+\caption{\textbf{Size-matched subcircuits and the analyses each supports.}
+Networks are induced subgraphs grown by breadth-first expansion and stripped of
+degree-zero nodes. The final column records whether synaptic valence is available:
+in the MICrONS release used here every annotated inhibitory soma is disconnected,
+and diffusion tractography carries no valence at all, so neither network can support
+sign-attributed motif analysis.}
+\label{tab:datasets}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llrrrrrc}
+\toprule
+\textbf{Network} & \textbf{Species} & \textbf{$N$} & \textbf{$|E|$} &
+\textbf{Dens.\ (\%)} & \textbf{$\bar{k}$} & \textbf{Inh.\ (\%)} & \textbf{Valence} \\
+\midrule
+\textit{C. elegans} & C. elegans & 300 & 5,044 & 5.62 & 16.8 & 8.7 & yes \\
+\textit{Drosophila} CX & D. melanogaster & 400 & 7,856 & 4.92 & 19.6 & 45.5 & yes \\
+\textit{Drosophila} AL & D. melanogaster & 400 & 16,468 & 10.32 & 41.2 & 29.8 & yes \\
+Mouse V1 L2/3 & M. musculus & 334 & 1,734 & 1.56 & 5.2 & 0.0 & \textbf{no} \\
+Human HCP & H. sapiens & 400 & 6,092 & 3.82 & 15.2 & 0.0 & \textbf{no} \\
+\bottomrule
+\end{tabular}}
+\end{table}

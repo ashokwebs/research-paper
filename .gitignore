@@ -1,0 +1,42 @@
+# Environments
+.venv/
+env/
+*.egg-info/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Data caches & huge parquet files
+data/raw/
+upstream/
+.system_generated/
+scratch/
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+
+# Downloaded EDA toolchain (2 GB); see README for how to fetch it
+hardware/tools/
+# Synthesis build scratch
+results/hardware/build/
+# SHD dataset and its binned caches
+data/raw/shd/
+
+# Retracted v4 PDFs. The withdrawn manuscripts, monograph, supplement and pitch
+# dossier are kept in this repository as LaTeX sources under paper/superseded_v4/,
+# so every withdrawn claim AUDIT.md cites remains checkable against what was
+# actually written. Their compiled PDFs are not published here: they carry the
+# authors' contact details on their title pages, and build_docs.sh already refuses
+# to render fresh copies of withdrawn claims (see its header). The retraction
+# notices in those directories ARE tracked and rendered.
+paper/superseded_v4/main.pdf
+paper/superseded_v4/computational_coupling_paper.pdf
+paper/superseded_v4/computational_coupling_technical_monograph.pdf
+paper/superseded_v4/supplementary_information.pdf
+paper/superseded_v4/pitch/computational_coupling_pitch.pdf

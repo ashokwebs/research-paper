@@ -1,0 +1,542 @@
+{
+  "C. elegans (Whole Nervous System)": {
+    "graph_name": "CElegans_Cook2019_Hermaphrodite",
+    "organism": "Caenorhabditis elegans",
+    "num_neurons": 300,
+    "num_synapses": 5089,
+    "density": 0.05673355629877369,
+    "ei_ratio": 10.538461538461538,
+    "motifs": {
+      "FFL_Total": {
+        "real_count": 26284,
+        "null_mean": 11551.32,
+        "null_std": 199.28205538883824,
+        "z_score": 73.92878385990983,
+        "p_value": 0.0,
+        "significance_profile": 0.3964534128389004
+      },
+      "cFFL_Coherent": {
+        "real_count": 24672,
+        "null_mean": 10960.64,
+        "null_std": 193.25938631797422,
+        "z_score": 70.94796408718993,
+        "p_value": 0.0,
+        "significance_profile": 0.38046835113151684
+      },
+      "iFFL_Incoherent": {
+        "real_count": 1612,
+        "null_mean": 590.68,
+        "null_std": 31.648974706931664,
+        "z_score": 32.27023969835944,
+        "p_value": 0.0,
+        "significance_profile": 0.17305366047664308
+      },
+      "FBL_3Cycle": {
+        "real_count": 3510,
+        "null_mean": 1835.08,
+        "null_std": 82.09648957172286,
+        "z_score": 20.401846762725725,
+        "p_value": 0.0,
+        "significance_profile": 0.10940774830850505
+      },
+      "Reciprocal_Pair": {
+        "real_count": 1579,
+        "null_mean": 253.56,
+        "null_std": 9.736857809375671,
+        "z_score": 136.12605071871616,
+        "p_value": 0.0,
+        "significance_profile": 0.7299949297959694
+      },
+      "Reciprocal_Inhibitory_Pair": {
+        "real_count": 39,
+        "null_mean": 0.52,
+        "null_std": 0.7547184905645282,
+        "z_score": 50.98589802830592,
+        "p_value": 0.0,
+        "significance_profile": 0.2734189881749084
+      },
+      "Disinhibitory_Triad": {
+        "real_count": 1503,
+        "null_mean": 489.28,
+        "null_std": 86.85782405747912,
+        "z_score": 11.671026887907757,
+        "p_value": 0.0,
+        "significance_profile": 0.06258750921445558
+      },
+      "Bi_Fan": {
+        "real_count": 118612,
+        "null_mean": 66513.52,
+        "null_std": 1323.177814807972,
+        "z_score": 39.37375567890764,
+        "p_value": 0.0,
+        "significance_profile": 0.2111472555096757
+      },
+      "Fan_In": {
+        "real_count": 61627,
+        "null_mean": 61627.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      },
+      "Fan_Out": {
+        "real_count": 56117,
+        "null_mean": 56117.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      }
+    }
+  },
+  "Drosophila (FlyWire Central Complex)": {
+    "graph_name": "FlyWire_v630_CentralComplex",
+    "organism": "Drosophila melanogaster",
+    "num_neurons": 2859,
+    "num_synapses": 70951,
+    "density": 0.008683246722380628,
+    "ei_ratio": 2.0158227848101267,
+    "motifs": {
+      "FFL_Total": {
+        "real_count": 653590,
+        "null_mean": 140912.16,
+        "null_std": 679.0954972608786,
+        "z_score": 754.9421871708446,
+        "p_value": 0.0,
+        "significance_profile": 0.6143479072092322
+      },
+      "cFFL_Coherent": {
+        "real_count": 255248,
+        "null_mean": 69762.28,
+        "null_std": 398.0996377792876,
+        "z_score": 465.9278793487274,
+        "p_value": 0.0,
+        "significance_profile": 0.37915726853339743
+      },
+      "iFFL_Incoherent": {
+        "real_count": 398342,
+        "null_mean": 71149.88,
+        "null_std": 491.23471538562904,
+        "z_score": 666.0606625554703,
+        "p_value": 0.0,
+        "significance_profile": 0.5420189533304578
+      },
+      "FBL_3Cycle": {
+        "real_count": 63373,
+        "null_mean": 12760.68,
+        "null_std": 174.3100043026791,
+        "z_score": 290.3580904749143,
+        "p_value": 0.0,
+        "significance_profile": 0.23628416619955644
+      },
+      "Reciprocal_Pair": {
+        "real_count": 10875,
+        "null_mean": 911.72,
+        "null_std": 26.368951439145242,
+        "z_score": 377.84134204173586,
+        "p_value": 0.0,
+        "significance_profile": 0.3074752500060479
+      },
+      "Reciprocal_Inhibitory_Pair": {
+        "real_count": 3739,
+        "null_mean": 234.8,
+        "null_std": 15.346660874600703,
+        "z_score": 228.3363155433754,
+        "p_value": 0.0,
+        "significance_profile": 0.1858128211375137
+      },
+      "Disinhibitory_Triad": {
+        "real_count": 547085,
+        "null_mean": 553016.08,
+        "null_std": 3005.8936497487734,
+        "z_score": -1.97315031438177,
+        "p_value": 0.04,
+        "significance_profile": -0.0016056868815245528
+      },
+      "Bi_Fan": {
+        "real_count": 8105653,
+        "null_mean": 2539798.24,
+        "null_std": 394750.6417187721,
+        "z_score": 14.099672481255194,
+        "p_value": 0.0,
+        "significance_profile": 0.011473864394379755
+      },
+      "Fan_In": {
+        "real_count": 2122491,
+        "null_mean": 2122491.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      },
+      "Fan_Out": {
+        "real_count": 2039506,
+        "null_mean": 2039506.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      }
+    }
+  },
+  "Drosophila (FlyWire Antennal Lobe)": {
+    "graph_name": "FlyWire_v630_AntennalLobe",
+    "organism": "Drosophila melanogaster",
+    "num_neurons": 1109,
+    "num_synapses": 37134,
+    "density": 0.030220415178731287,
+    "ei_ratio": 2.0550964187327825,
+    "motifs": {
+      "FFL_Total": {
+        "real_count": 1175514,
+        "null_mean": 629698.36,
+        "null_std": 3216.8472252191277,
+        "z_score": 169.67409447392072,
+        "p_value": 0.0,
+        "significance_profile": 0.45428999410870297
+      },
+      "cFFL_Coherent": {
+        "real_count": 1008440,
+        "null_mean": 516992.2,
+        "null_std": 2880.0989844100845,
+        "z_score": 170.63573254259546,
+        "p_value": 0.0,
+        "significance_profile": 0.45686470979472127
+      },
+      "iFFL_Incoherent": {
+        "real_count": 167074,
+        "null_mean": 112706.16,
+        "null_std": 933.3595954400427,
+        "z_score": 58.24961811676418,
+        "p_value": 0.0,
+        "significance_profile": 0.15595909766394128
+      },
+      "FBL_3Cycle": {
+        "real_count": 183447,
+        "null_mean": 94501.64,
+        "null_std": 1025.1115794878135,
+        "z_score": 86.76651574303807,
+        "p_value": 0.0,
+        "significance_profile": 0.23231100804133628
+      },
+      "Reciprocal_Pair": {
+        "real_count": 9867,
+        "null_mean": 3462.56,
+        "null_std": 29.167214471046083,
+        "z_score": 219.57667594063895,
+        "p_value": 0.0,
+        "significance_profile": 0.587900510851487
+      },
+      "Reciprocal_Inhibitory_Pair": {
+        "real_count": 203,
+        "null_mean": 107.12,
+        "null_std": 10.281322872082173,
+        "z_score": 9.325648186805983,
+        "p_value": 0.0,
+        "significance_profile": 0.024968741828146863
+      },
+      "Disinhibitory_Triad": {
+        "real_count": 109012,
+        "null_mean": 126338.24,
+        "null_std": 3240.0555585359953,
+        "z_score": -5.347513240738622,
+        "p_value": 0.0,
+        "significance_profile": -0.014317576092941825
+      },
+      "Bi_Fan": {
+        "real_count": 28757430,
+        "null_mean": 14342695.72,
+        "null_std": 96441.35570574275,
+        "z_score": 149.4663173751056,
+        "p_value": 0.0,
+        "significance_profile": 0.40018514700382146
+      },
+      "Fan_In": {
+        "real_count": 1653093,
+        "null_mean": 1653093.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      },
+      "Fan_Out": {
+        "real_count": 1726589,
+        "null_mean": 1726589.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      }
+    }
+  },
+  "Mouse (MICrONS Pinky100 V1 L2/3)": {
+    "graph_name": "Mouse_MICrONS_Pinky100_V1",
+    "organism": "Mus musculus",
+    "num_neurons": 456,
+    "num_synapses": 1736,
+    "density": 0.008367071524966262,
+    "ei_ratio": 10.647058823529411,
+    "motifs": {
+      "FFL_Total": {
+        "real_count": 1130,
+        "null_mean": 1039.56,
+        "null_std": 32.17462354092119,
+        "z_score": 2.8109108995470993,
+        "p_value": 0.0,
+        "significance_profile": 0.6497000318628443
+      },
+      "cFFL_Coherent": {
+        "real_count": 1130,
+        "null_mean": 1039.56,
+        "null_std": 32.17462354092119,
+        "z_score": 2.8109108995470993,
+        "p_value": 0.0,
+        "significance_profile": 0.6497000318628443
+      },
+      "iFFL_Incoherent": {
+        "real_count": 0,
+        "null_mean": 0.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      },
+      "FBL_3Cycle": {
+        "real_count": 53,
+        "null_mean": 50.8,
+        "null_std": 7.812809993849844,
+        "z_score": 0.2815888267770262,
+        "p_value": 0.44,
+        "significance_profile": 0.06508504761169481
+      },
+      "Reciprocal_Pair": {
+        "real_count": 31,
+        "null_mean": 24.24,
+        "null_std": 4.60677761564415,
+        "z_score": 1.4674031533546847,
+        "p_value": 0.12,
+        "significance_profile": 0.3391683015081647
+      },
+      "Reciprocal_Inhibitory_Pair": {
+        "real_count": 0,
+        "null_mean": 0.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      },
+      "Disinhibitory_Triad": {
+        "real_count": 0,
+        "null_mean": 0.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      },
+      "Bi_Fan": {
+        "real_count": 5826,
+        "null_mean": 5690.32,
+        "null_std": 164.1286617260983,
+        "z_score": 0.8266685329246528,
+        "p_value": 0.16,
+        "significance_profile": 0.19107207285285863
+      },
+      "Fan_In": {
+        "real_count": 5592,
+        "null_mean": 5592.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      },
+      "Fan_Out": {
+        "real_count": 20734,
+        "null_mean": 20734.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      }
+    }
+  },
+  "Human (HCP Macroscale Visual Network)": {
+    "graph_name": "Human_HCP_Consensus1015_VIS",
+    "organism": "Homo sapiens",
+    "num_neurons": 151,
+    "num_synapses": 1500,
+    "density": 0.06622516556291391,
+    "ei_ratio": 151.0,
+    "motifs": {
+      "FFL_Total": {
+        "real_count": 7248,
+        "null_mean": 1412.32,
+        "null_std": 29.534684694440198,
+        "z_score": 197.5873472283436,
+        "p_value": 0.0,
+        "significance_profile": 0.587924304284233
+      },
+      "cFFL_Coherent": {
+        "real_count": 7248,
+        "null_mean": 1412.32,
+        "null_std": 29.534684694440198,
+        "z_score": 197.5873472283436,
+        "p_value": 0.0,
+        "significance_profile": 0.587924304284233
+      },
+      "iFFL_Incoherent": {
+        "real_count": 0,
+        "null_mean": 0.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      },
+      "FBL_3Cycle": {
+        "real_count": 1208,
+        "null_mean": 275.32,
+        "null_std": 21.407886397306953,
+        "z_score": 43.56712207316872,
+        "p_value": 0.0,
+        "significance_profile": 0.12963466686423358
+      },
+      "Reciprocal_Pair": {
+        "real_count": 750,
+        "null_mean": 72.84,
+        "null_std": 8.013388796258422,
+        "z_score": 84.50357485664202,
+        "p_value": 0.0,
+        "significance_profile": 0.25144173528331626
+      },
+      "Reciprocal_Inhibitory_Pair": {
+        "real_count": 0,
+        "null_mean": 0.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      },
+      "Disinhibitory_Triad": {
+        "real_count": 0,
+        "null_mean": 0.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      },
+      "Bi_Fan": {
+        "real_count": 14274,
+        "null_mean": 3491.12,
+        "null_std": 67.0965394040557,
+        "z_score": 160.70694697181688,
+        "p_value": 0.0,
+        "significance_profile": 0.4781860848754543
+      },
+      "Fan_In": {
+        "real_count": 8175,
+        "null_mean": 8175.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      },
+      "Fan_Out": {
+        "real_count": 8175,
+        "null_mean": 8175.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      }
+    }
+  },
+  "Human (HCP Macroscale Whole Brain)": {
+    "graph_name": "Human_HCP_Consensus1015_WholeBrain",
+    "organism": "Homo sapiens",
+    "num_neurons": 1015,
+    "num_synapses": 15206,
+    "density": 0.014774438647117692,
+    "ei_ratio": 1015.0,
+    "motifs": {
+      "FFL_Total": {
+        "real_count": 86568,
+        "null_mean": 9379.04,
+        "null_std": 114.21190130629995,
+        "z_score": 675.8399003707176,
+        "p_value": 0.0,
+        "significance_profile": 0.5912800734592195
+      },
+      "cFFL_Coherent": {
+        "real_count": 86568,
+        "null_mean": 9379.04,
+        "null_std": 114.21190130629995,
+        "z_score": 675.8399003707176,
+        "p_value": 0.0,
+        "significance_profile": 0.5912800734592195
+      },
+      "iFFL_Incoherent": {
+        "real_count": 0,
+        "null_mean": 0.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      },
+      "FBL_3Cycle": {
+        "real_count": 14428,
+        "null_mean": 1701.08,
+        "null_std": 65.21589990178775,
+        "z_score": 195.1505694035684,
+        "p_value": 0.0,
+        "significance_profile": 0.17073369439900846
+      },
+      "Reciprocal_Pair": {
+        "real_count": 7603,
+        "null_mean": 240.2,
+        "null_std": 14.647866738880444,
+        "z_score": 502.65339869979925,
+        "p_value": 0.0,
+        "significance_profile": 0.43976234363303496
+      },
+      "Reciprocal_Inhibitory_Pair": {
+        "real_count": 0,
+        "null_mean": 0.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      },
+      "Disinhibitory_Triad": {
+        "real_count": 0,
+        "null_mean": 0.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      },
+      "Bi_Fan": {
+        "real_count": 292608,
+        "null_mean": 45785.44,
+        "null_std": 772.0300035620377,
+        "z_score": 319.70591668872385,
+        "p_value": 0.0,
+        "significance_profile": 0.2797049091084504
+      },
+      "Fan_In": {
+        "real_count": 160732,
+        "null_mean": 160732.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      },
+      "Fan_Out": {
+        "real_count": 160732,
+        "null_mean": 160732.0,
+        "null_std": 0.0,
+        "z_score": 0.0,
+        "p_value": 1.0,
+        "significance_profile": 0.0
+      }
+    }
+  }
+}

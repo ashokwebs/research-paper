@@ -1,0 +1,24 @@
+{
+  "cFFL": {
+    "motif": "cFFL",
+    "cffl_noise_rejection": true,
+    "cffl_sustained_spikes": 14,
+    "cffl_synops": 10,
+    "chain_sustained_spikes": 12,
+    "chain_synops": 8
+  },
+  "iFFL": {
+    "motif": "iFFL",
+    "transient_spikes": 1,
+    "steady_state_spikes": 0,
+    "adaptation_index": 1.0,
+    "total_synops": 24
+  },
+  "RIP": {
+    "motif": "RIP",
+    "phase1_winner": "A",
+    "phase2_winner": "B",
+    "bistable_switch_successful": true,
+    "total_synops": 3
+  }
+}

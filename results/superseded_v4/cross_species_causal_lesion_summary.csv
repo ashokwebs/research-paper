@@ -1,0 +1,4 @@
+organism,num_neurons,num_synapses,synaptic_density,edges_tested,invariants_count,invariants_pct,regulatory_count,regulatory_pct,scaffolding_count,scaffolding_pct,mean_relative_drop,max_relative_drop
+C. elegans,100,1732,0.17494949494949494,60,0,0.0,0,0.0,60,100.0,0.0,0.0
+Drosophila CX,100,1006,0.10161616161616162,60,0,0.0,0,0.0,60,100.0,0.0,0.0
+Mouse V1 L2/3,100,745,0.07525252525252525,60,0,0.0,0,0.0,60,100.0,0.0,0.0

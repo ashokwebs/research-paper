@@ -1,0 +1,36 @@
+\begin{table*}[t]
+\centering\small
+\caption{\textbf{Validation of the motif-preserving ensemble.} The chain must hit its
+target census, genuinely randomise, and not reproduce structure it was not asked to
+preserve. Columns 2--3: worst-case relative error across the six targeted motif counts,
+and the fraction of chains meeting the 2\% convergence criterion. Columns 4--5: edge
+overlap with the empirical connectome for the motif-matched (L3) and degree-matched
+(L2) ensembles --- L3 is close to the unconstrained level, so it is not the
+connectome in disguise. Columns 6--7: mean pairwise overlap \emph{between} ensemble
+members, as evidence of mixing. L3 members are somewhat less mutually distinct than L2
+members, which is expected because the constrained set is a subset of the unconstrained
+one; what matters is that they remain far from identical, so the chain explores the
+constraint surface rather than collapsing onto one region of it. This is empirical
+evidence of adequate mixing, not a proof of uniform sampling. Columns 8--10: bi-fan
+counts, a 4-node motif deliberately excluded from the objective, reproduced neither in
+value nor in a consistent direction, confirming the chain constrains 3-node structure
+specifically rather than reconstructing the graph.}
+\label{tab:nullval}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+& \multicolumn{2}{c}{\textbf{Target match}} & \multicolumn{2}{c}{\textbf{Overlap w/ real (\%)}}
+& \multicolumn{2}{c}{\textbf{Pairwise overlap (\%)}}
+& \multicolumn{3}{c}{\textbf{Held-out bi-fan count}} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-10}
+\textbf{Network} & \textbf{max err (\%)} & \textbf{conv.\ (\%)} & \textbf{L3} & \textbf{L2}
+& \textbf{L3} & \textbf{L2} & \textbf{empirical} & \textbf{L3} & \textbf{L2} \\
+\midrule
+\textit{C. elegans} & 0.3 & 100 & 13.9 & 11.6 & 21.0 & 11.1 & 118,612 & 179,732 & 65,882 \\
+\textit{Drosophila} CX & 0.2 & 100 & 20.5 & 19.9 & 22.4 & 20.4 & 824,107 & 647,161 & 573,668 \\
+\textit{Drosophila} AL & 0.1 & 100 & 43.9 & 40.0 & 45.6 & 38.9 & 12,622,936 & 12,038,186 & 9,058,482 \\
+Mouse V1 L2/3 & 0.9 & 100 & 10.6 & 10.7 & 10.7 & 10.4 & 5,826 & 5,930 & 5,594 \\
+Human HCP & 0.5 & 100 & 11.4 & 7.8 & 20.3 & 7.9 & 129,726 & 243,934 & 46,585 \\
+\bottomrule
+\end{tabular}}
+\end{table*}
