@@ -1,0 +1,26 @@
+{
+  "null": "bct_randmio",
+  "rate": {
+    "n_networks": 5,
+    "n_sig_positive": 1,
+    "n_sig_negative": 3,
+    "median_diff": -0.5051771531481505
+  },
+  "spiking": {
+    "n_networks": 5,
+    "n_sig_positive": 0,
+    "n_sig_negative": 1,
+    "median_diff": 0.0011924570681486556
+  },
+  "n_reversal": 0,
+  "n_networks": 5,
+  "dead_frac_rate": 0.0061716322163782,
+  "dead_frac_spiking": 0.6074863976317777,
+  "spiking_gap_r": -0.5848573252143392,
+  "spiking_gap_p": 2.4529829646591314e-05,
+  "spiking_gap_n": 45,
+  "rate_frac_positive_all_gains": 0.28888888888888886,
+  "rate_frac_negative_all_gains": 0.5777777777777777,
+  "spiking_frac_positive_all_gains": 0.022222222222222223,
+  "spiking_frac_negative_all_gains": 0.2222222222222222
+}

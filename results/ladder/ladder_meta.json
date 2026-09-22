@@ -1,0 +1,162 @@
+{
+  "celegans": {
+    "label": "C. elegans (whole nervous system)",
+    "organism": "Caenorhabditis elegans",
+    "signed": true,
+    "summary": {
+      "n_nodes": 300.0,
+      "n_edges": 5044.0,
+      "density": 0.05623188405797101,
+      "mean_degree": 16.813333333333333,
+      "frac_inhibitory_neurons": 0.08666666666666667,
+      "frac_inhibitory_edges": 0.05154639175257732,
+      "n_isolated": 0.0
+    },
+    "real_census": {
+      "recip_pair": 1579,
+      "recip_inhib_pair": 39,
+      "ffl_total": 26284,
+      "cffl": 24672,
+      "iffl": 1612,
+      "cycle3": 7128,
+      "bifan": 0
+    },
+    "null_census_std": {
+      "recip_pair": 13.768321127380299,
+      "recip_inhib_pair": 0.6992058987801011,
+      "ffl_total": 149.9242771831463,
+      "cffl": 131.92826333529396,
+      "iffl": 29.64231210055428,
+      "cycle3": 49.38915760456832,
+      "bifan": 0.0
+    }
+  },
+  "drosophila_cx": {
+    "label": "Drosophila central complex",
+    "organism": "Drosophila melanogaster",
+    "signed": true,
+    "summary": {
+      "n_nodes": 400.0,
+      "n_edges": 7856.0,
+      "density": 0.04922305764411027,
+      "mean_degree": 19.64,
+      "frac_inhibitory_neurons": 0.455,
+      "frac_inhibitory_edges": 0.6554226069246436,
+      "n_isolated": 0.0
+    },
+    "real_census": {
+      "recip_pair": 1132,
+      "recip_inhib_pair": 298,
+      "ffl_total": 49781,
+      "cffl": 19824,
+      "iffl": 29957,
+      "cycle3": 8872,
+      "bifan": 0
+    },
+    "null_census_std": {
+      "recip_pair": 11.89023876033521,
+      "recip_inhib_pair": 6.93541635375988,
+      "ffl_total": 435.81290583103305,
+      "cffl": 385.2889824534306,
+      "iffl": 150.45279806120072,
+      "cycle3": 149.87239016354323,
+      "bifan": 0.0
+    }
+  },
+  "drosophila_al": {
+    "label": "Drosophila antennal lobe",
+    "organism": "Drosophila melanogaster",
+    "signed": true,
+    "summary": {
+      "n_nodes": 400.0,
+      "n_edges": 16468.0,
+      "density": 0.10318295739348371,
+      "mean_degree": 41.17,
+      "frac_inhibitory_neurons": 0.2975,
+      "frac_inhibitory_edges": 0.1925552586835074,
+      "n_isolated": 0.0
+    },
+    "real_census": {
+      "recip_pair": 5102,
+      "recip_inhib_pair": 80,
+      "ffl_total": 567055,
+      "cffl": 496783,
+      "iffl": 70272,
+      "cycle3": 178515,
+      "bifan": 0
+    },
+    "null_census_std": {
+      "recip_pair": 20.274779078122325,
+      "recip_inhib_pair": 6.069962474714687,
+      "ffl_total": 1574.0285328488244,
+      "cffl": 1484.893221002028,
+      "iffl": 372.42927740265895,
+      "cycle3": 526.7217692693384,
+      "bifan": 0.0
+    }
+  },
+  "mouse_v1": {
+    "label": "Mouse V1 L2/3 (MICrONS Pinky100)",
+    "organism": "Mus musculus",
+    "signed": false,
+    "summary": {
+      "n_nodes": 334.0,
+      "n_edges": 1734.0,
+      "density": 0.01559044074014134,
+      "mean_degree": 5.191616766467066,
+      "frac_inhibitory_neurons": 0.0,
+      "frac_inhibitory_edges": 0.0,
+      "n_isolated": 0.0
+    },
+    "real_census": {
+      "recip_pair": 31,
+      "recip_inhib_pair": 0,
+      "ffl_total": 1130,
+      "cffl": 1130,
+      "iffl": 0,
+      "cycle3": 104,
+      "bifan": 0
+    },
+    "null_census_std": {
+      "recip_pair": 3.4464152068167557,
+      "recip_inhib_pair": 0.0,
+      "ffl_total": 30.64510111293846,
+      "cffl": 30.64510111293846,
+      "iffl": 0.0,
+      "cycle3": 9.600925881277169,
+      "bifan": 0.0
+    }
+  },
+  "human_hcp": {
+    "label": "Human HCP macroscale",
+    "organism": "Homo sapiens",
+    "signed": false,
+    "summary": {
+      "n_nodes": 400.0,
+      "n_edges": 6092.0,
+      "density": 0.03817042606516291,
+      "mean_degree": 15.23,
+      "frac_inhibitory_neurons": 0.0,
+      "frac_inhibitory_edges": 0.0,
+      "n_isolated": 0.0
+    },
+    "real_census": {
+      "recip_pair": 3046,
+      "recip_inhib_pair": 0,
+      "ffl_total": 37464,
+      "cffl": 37464,
+      "iffl": 0,
+      "cycle3": 12488,
+      "bifan": 0
+    },
+    "null_census_std": {
+      "recip_pair": 12.54325848148452,
+      "recip_inhib_pair": 0.0,
+      "ffl_total": 168.6592883761685,
+      "cffl": 168.6592883761685,
+      "iffl": 0.0,
+      "cycle3": 54.279216403088704,
+      "bifan": 0.0
+    }
+  }
+}

@@ -1,0 +1,31 @@
+Empirical connectomes are reported to outperform degree-preserving rewirings as reservoir
+computers --- to have, in the term we use throughout, positive \emph{computational
+coupling}: a score gap attributable to wiring and nothing else --- and that result is
+increasingly invoked as a reason to build neuromorphic hardware on connectome-derived
+wiring. We find that the comparison it rests on is not one experiment but a composition of
+four choices --- the null ensemble, the unit model, the operating point and the readout
+protocol --- each normally reported in a subordinate clause, each able to change the sign
+of the answer on identical data, and so each a part of the coupling it reports.
+
+The first is the one we got wrong. ``Degree-preserving randomisation'' names at least two
+ensembles, depending on whether an edge's weight travels with it or is re-assigned
+afterwards; both preserve the degree sequence and the weight distribution exactly, and the
+phrase does not distinguish them. Over $\NUnitEvaluations$
+evaluations --- $\NUnitNetworks$ connectomes $\times$ $\NUnitInstances$ paired instances
+$\times$ $\NUnitGains$ gains $\times$ two unit models --- the two give the connectome's
+advantage opposite signs in $\NNullSignFlip$ of $\NNullCells$ cells and opposite
+\emph{significant} verdicts in $\NNullVerdictFlip$ (median disagreement
+$\NullDisagreeMedian$ capacity units, maximum $\NullDisagreeMax$). Against the ensemble
+the published toolbox builds the connectome leads in $\NBctRateLeads$ of
+$\NBctRateNetworks$ networks; against the other, on the same graphs at the same operating
+point, in $\NRankRateLeads$ of $\NRankRateNetworks$. The cause is that rank-reassignment
+\emph{installs} a weight--degree association the data lacks ($\NullShiftRank$ median shift
+against $\NullShiftBct$), which predicts that the two must coincide on an unweighted
+network --- and on the one binary network in the set they agree to $0.008$ capacity units.
+
+We do not read this as a refutation of the published finding --- our harness differs in
+other respects too --- but as evidence that a reproduction which builds its null from a
+published description cannot tell which hypothesis it tested. We
+report the remaining three choices on the same terms, together with a motif-preserving
+null ensemble, a gap-free perturbation bound whose prediction our own test partly
+falsifies, and a full audit of the withdrawn claims of an earlier version of this work.

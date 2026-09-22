@@ -12,7 +12,7 @@ Supports functional subcircuits:
 import os
 import gzip
 from collections import defaultdict
-from typing import Optional, Set, List, Dict, Any
+from typing import Any, Dict, List, Optional, Set, Tuple
 import pandas as pd
 import numpy as np
 from .unified_schema import ConnectomeGraph, NeuronMetadata, SynapseMetadata

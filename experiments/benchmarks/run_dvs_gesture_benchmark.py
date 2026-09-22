@@ -355,13 +355,12 @@ def run_comprehensive_dvs_benchmark():
         lat = baseline_metrics[name]["decision_latency_ms"]
         en = baseline_metrics[name]["energy_nj"]
         acc = baseline_metrics[name]["accuracy"]
-        ax.scatter(lat, en, s=acc * 3.0, color=colors[name], edgecolors="black", linewidth=1.5, label=f"{name} (Acc: {acc:.1f}%)")
-        ax.text(lat + 0.8, en * 1.1, name, fontsize=9, fontweight="bold", color=colors[name])
+        ax.scatter(lat, en, s=acc * 3.0, color=colors[name], edgecolors="black", linewidth=1.5, label=f"{name} ({acc:.1f}%)")
     ax.set_yscale("log")
     ax.set_title("D. Decision Latency vs Energy Dissipation Trade-Off", fontsize=13, fontweight="bold", pad=10)
     ax.set_xlabel("Decision Latency (ms)", fontsize=11)
     ax.set_ylabel("Energy per Inference (nJ, log scale)", fontsize=11)
-    ax.legend(frameon=True, fontsize=9, loc="upper right")
+    ax.legend(frameon=True, fontsize=8.5, loc="upper right")
 
     plt.tight_layout()
     fig18_path_results = os.path.join(figures_dir, "figure18_dvs_gesture_benchmark.png")

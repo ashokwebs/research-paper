@@ -1,0 +1,58 @@
+{
+  "library": "Nangate45_typ.lib",
+  "tool": "yosys native (oss-cad-suite) + abc",
+  "note": "pre-layout mapped cell area; no place-and-route, no parasitics, no power signoff, no static timing",
+  "modules": [
+    {
+      "top": "dendritic_lif_core",
+      "files": [
+        "dendritic_lif_core.v"
+      ],
+      "ok": true,
+      "cells": 4401.0,
+      "wires": 4414.0,
+      "cell_area_um2": 5301.114,
+      "sequential_area_um2": 372.4,
+      "flip_flops": 70.0
+    },
+    {
+      "top": "synaptic_accumulator",
+      "files": [
+        "synaptic_accumulator.v"
+      ],
+      "ok": true,
+      "cells": 19649.0,
+      "wires": 19914.0,
+      "cell_area_um2": 63360.668,
+      "sequential_area_um2": 43581.44,
+      "flip_flops": 8192.0
+    },
+    {
+      "top": "aer_crossbar_router",
+      "files": [
+        "aer_crossbar_router.v"
+      ],
+      "ok": true,
+      "cells": 39.0,
+      "wires": 52.0,
+      "cell_area_um2": 124.488,
+      "sequential_area_um2": 90.44,
+      "flip_flops": 17.0
+    },
+    {
+      "top": "cen_accelerator_top",
+      "files": [
+        "cen_accelerator_top.v",
+        "dendritic_lif_core.v",
+        "synaptic_accumulator.v",
+        "aer_crossbar_router.v"
+      ],
+      "ok": true,
+      "cells": 590116.0,
+      "wires": 592079.0,
+      "cell_area_um2": 749263.48,
+      "sequential_area_um2": 91860.44,
+      "flip_flops": 25644.0
+    }
+  ]
+}

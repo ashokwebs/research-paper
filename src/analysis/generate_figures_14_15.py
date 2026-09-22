@@ -117,17 +117,17 @@ def plot_figure_14(continual_data_path: str, save_paths: list[str]):
 
     scatter_colors = [ACCENT_GREEN, BRAND_BLUE, ACCENT_RED, PURPLE]
     for i, m in enumerate(methods):
-        ax_d.scatter(energy[i], task_b_acc[i], s=180, color=scatter_colors[i], label=m.replace("\n", " "), zorder=4)
-        ax_d.text(energy[i] * 1.08, task_b_acc[i] - 0.8, m.replace("\n", " "), fontsize=8)
+        ax_d.scatter(energy[i], task_b_acc[i], s=180, color=scatter_colors[i], label=m.replace("\n", " "), edgecolors="black", linewidth=1.0, zorder=4)
 
     ax_d.set_xscale("log")
     ax_d.set_xlabel("Dynamic Energy Proxy (nJ, log scale)")
     ax_d.set_ylabel("Task B Accuracy (%)")
     ax_d.set_title("(D) Task B Acquisition vs Energy Proxy")
-    ax_d.set_ylim(85, 102)
+    ax_d.set_ylim(85, 103)
+    ax_d.legend(loc="lower left", fontsize=8, frameon=True)
     ax_d.grid(True, linestyle=":", alpha=0.5)
 
-    plt.suptitle("Figure 14: Continual Learning Without Catastrophic Forgetting via DCMG-STDP", fontsize=13, fontweight="bold", y=0.98)
+    plt.suptitle("Continual Learning Without Catastrophic Forgetting via DCMG-STDP", fontsize=13, fontweight="bold", y=0.98)
     for p in save_paths:
         os.makedirs(os.path.dirname(p), exist_ok=True)
         fig.savefig(p, dpi=300)
@@ -217,7 +217,7 @@ def plot_figure_15(thermo_path: str, scaling_path: str, save_paths: list[str]):
 
     ax_d.set_title("(D) Spectral Radius & Dynamic Stability Across Scale")
 
-    plt.suptitle("Figure 15: Thermodynamic Landauer Proximity & Cross-Scale Graph Scaling", fontsize=13, fontweight="bold", y=0.98)
+    plt.suptitle("Thermodynamic Landauer Proximity & Cross-Scale Graph Scaling", fontsize=13, fontweight="bold", y=0.98)
     for p in save_paths:
         os.makedirs(os.path.dirname(p), exist_ok=True)
         fig.savefig(p, dpi=300)

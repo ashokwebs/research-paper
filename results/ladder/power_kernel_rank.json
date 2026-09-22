@@ -1,0 +1,8 @@
+{
+  "metric": "kernel_rank",
+  "n_per_group": 10,
+  "n_contrasts": 20,
+  "mde_uncorrected": 1.3249473925792303,
+  "mde_holm_worst_case": 1.9828599767014765,
+  "power": 0.8
+}

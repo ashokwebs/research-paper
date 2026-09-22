@@ -4,13 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "computational-coupling"
-version = "0.1.0"
-description = "Biologically Constrained Connectome Remodeling and Event-Driven Architecture Discovery across Invertebrate and Mammalian Systems"
+version = "5.0.0"
+description = "Motif-preserving null models and gap-free degeneracy theory for connectome-derived spiking networks"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [
-    { name = "Antigravity Research Team", email = "research@antigravity.ai" }
+    { name = "Ashok Raj Pasala" },
+    { name = "Snigdha Gorai" },
+    { name = "Jeevana Jyothi P." },
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -34,11 +36,18 @@ dependencies = [
     "openpyxl>=3.1.2",
     "pyarrow>=15.0.0",
     "torch>=2.2.0",
+    "h5py>=3.10.0",
+    # The published null ensemble. The unit-model comparison calls
+    # bct.reference.randmio_*_connected directly so that it randomises against
+    # the same ensemble the result under test was measured against, rather than
+    # a reimplementation of it.
+    "bctpy>=0.6.0",
 ]
 
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0.0",
+    "pyflakes>=3.0.0",
     "pytest-cov>=4.1.0",
     "black>=24.0.0",
     "flake8>=7.0.0",
@@ -46,6 +55,12 @@ dev = [
 neuromorphic = [
     "lava-nc>=1.4.0",
     "snntorch>=0.9.1",
+]
+# Logic synthesis of the RTL. The WASM build of ABC in yowasp-yosys aborts on the
+# Nangate45 liberty file, so the synthesis experiment expects native Yosys/ABC
+# (e.g. the OSS CAD Suite) on PATH or under hardware/tools/.
+synthesis = [
+    "yowasp-yosys>=0.45",
 ]
 
 [tool.setuptools.packages.find]

@@ -1,127 +1,262 @@
-# COMPUTATIONAL COUPLING: Executive Pitch & Commercialization Dossier
+# Computational Coupling — Executive Summary
 
-> **Extracting Nature's 20-Watt Compute Invariants to Solve the AI Energy Crisis**  
-> **Official Executive Whitepaper PDF (13 Pages):** [`pitch/computational_coupling_pitch.pdf`](file:///home/charizard/brain/computational-coupling/pitch/computational_coupling_pitch.pdf)  
-> **Technical Monograph PDF (45 Pages):** [`paper/computational_coupling_technical_monograph.pdf`](file:///home/charizard/brain/computational-coupling/paper/computational_coupling_technical_monograph.pdf)  
-> **Academic Publication Manuscript PDF (12 Pages):** [`paper/computational_coupling_paper.pdf`](file:///home/charizard/brain/computational-coupling/paper/computational_coupling_paper.pdf)  
-> **Master Research Dossier:** [`computational_coupling_master_report.md`](file:///home/charizard/.gemini/antigravity-cli/brain/a942bac5-f639-4fc9-b377-70bb4e1abbe0/computational_coupling_master_report.md)  
-> **Project Directory:** [`/home/charizard/brain/computational-coupling/`](file:///home/charizard/brain/computational-coupling/)
+**Four choices decide whether a connectome beats its rewiring.**
 
----
+*Computational coupling* is the extent to which what a network computes is attributable
+to how it is wired. It is never measured directly — only as the gap between a network's
+score and the scores of surrogate networks, under some unit model, at some operating
+point, through some readout. This project shows that each of those four choices can flip
+the sign of that gap on identical data, so a coupling reported as a single signed number
+is under-determined by its own methods section.
 
-## 1. Executive Summary & The \$500 Billion Problem
+**Ashok Raj Pasala** · **Snigdha Gorai**
+Under the guidance of **Jeevana Jyothi P.**
+School of Computer Science and Engineering, VIT-AP University,
+Amaravati 522237, Andhra Pradesh, India
 
-Artificial Intelligence is colliding head-on with fundamental physics:
-- **The Datacenter Energy Wall:** Frontier model training runs and multi-token generative inference consume gigawatts of electrical power. Global AI energy consumption is projected to exceed **1,000 Terawatt-hours by 2030**, threatening municipal power grids and requiring dedicated nuclear facilities.
-- **The Edge Autonomy Barrier:** Autonomous drones, quadruped robots, self-driving vehicles, and implantable medical prosthetics cannot run deep GPU/TPU architectures because battery capacity, thermal dissipation ($<10\text{ mW}$ in biology), and compute latency make continuous matrix operations physically unviable.
-- **Nature's Proof of Concept:** The biological human brain performs lifelong multimodal perception, spatial navigation, and abstract reasoning while consuming a mere **20 Watts** of power.
-
-**COMPUTATIONAL COUPLING** is an end-to-end research and neuromorphic silicon architecture initiative that extracts the transferable computational invariants of biological neural wiring across four phylogenetic levels (*C. elegans*, *Drosophila melanogaster*, *Mus musculus*, and *Homo sapiens*) and synthesizes them into an ultra-low-energy event-driven architecture: **CoupledEventNet (CEN)**.
+Version 5.0 · September 2026
 
 ---
 
-## 2. Our Core Technological Breakthroughs & Moats
+> **This document replaces a withdrawn one.** Version 4 of this project circulated a pitch
+> whose hardware figures — a TSMC 28 nm node, a die area, 116.71 pJ/SynOp, a 455× energy
+> reduction, a "physical tapeout" — were never measured by any tool. They came from a
+> Python model with those values written in as constants. Every one is retracted. The
+> retracted document is kept at `paper/superseded_v4/pitch/` behind its own notice, and
+> `AUDIT.md` gives the evidence for each withdrawal.
+>
+> This version claims nothing that is not produced by a script in this repository from a
+> result file also in this repository.
 
+---
+
+## 0. The headline
+
+The reservoir-computing literature reports that empirical connectomes outperform
+degree-preserving rewirings on memory capacity. That result is increasingly cited as a
+reason to build **neuromorphic hardware** on connectome-derived wiring.
+
+**We tried to check it and found that the comparison is not one experiment.** It is a
+composition of four choices, each normally reported in a subordinate clause, each of which
+can flip the sign of the answer on identical data. We measured all four on the five
+connectomes distributed with the original authors' own toolbox.
+
+![The connectome's measured advantage over two rewirings that answer to the same
+description in the literature. Blue and orange differ only in what happened to the edge
+weights during randomisation. In four of five networks they point in opposite
+directions.](paper/figures/fig_null_choice.png)
+
+*(A) The result. (B) The cause: one rewiring installs a weight-degree association the
+real graphs do not have. (C) The test that could have refuted (B) — on the one network
+with no weight variation, the two procedures must agree, and they do, to 0.008.*
+
+**The first one caught us.** "Degree-preserving randomisation" names at least two
+different ensembles — one where each weight travels with its edge (what the published
+toolbox actually calls), one where the weight multiset is re-assigned to the rewired graph
+afterwards. Both match the phrase. We built the second believing it was the first:
+
+| null ensemble | connectome beats it, graded units | median difference |
+|---|---|---|
+| BCT `randmio` — the published one | **1 of 5** lead, **3 of 5** trail | −0.51 |
+| rank-reassigned — ours, by mistake | **5 of 5** lead, all significant | +2.13 |
+
+Across 10 (network, unit model) cells the two nulls give opposite **signs** in 6 and
+opposite **significant verdicts** in 3 — one says the connectome wins at p < 0.05, the
+other says it loses at p < 0.05, same graphs, same operating point.
+
+Our version produced a clean, large, highly significant result in the expected direction.
+Nothing in its output indicated it was answering a different question. It was caught by
+reading the toolbox source, not by anything in the numbers.
+
+**We can say why, and the explanation was falsifiable.** Rank-reassignment does not merely
+randomise — it *installs* a weight–degree association the data does not have (+0.66 median
+shift, against +0.06 for the published ensemble). That predicts the two must agree exactly
+on a network with no weight variation. One of the five is binary. There they agree to
+**0.008 capacity units**.
+
+This is not a claim that the published result is wrong — our harness differs in other
+respects too. It is a demonstration that a replication which builds its null from a
+published description is not a replication, and cannot tell which hypothesis it tested.
+
+**The other three choices**: the unit model (graded vs spiking — capacity compresses 5×,
+and neuromorphic hardware is the spiking one), the operating point (the contrast changes
+sign along the gain axis in 4 of 5 networks, significant on both sides), and the readout
+protocol (under an all-to-all readout, a reservoir with its recurrent matrix **set to
+zero** scores 0.596 against the connectome's 0.596 — the wiring is not being measured at
+all).
+
+**One mechanism we proposed changed sign when the null was corrected, and we report
+that too.** We expected a threshold to silence a heavy-tailed graph's low-degree neurons
+differentially. Against our mistaken null the silencing gap did not predict the capacity
+gap, and we wrote the prediction up as failed. Against the published null it does —
+r = −0.58, p = 2.5×10⁻⁵. A wrong control manufactured a clean positive result in one
+place and destroyed a real one in another, from the same code.
+
+## 1. The problem
+
+Connectomes contain statistically overrepresented subgraphs — feedforward loops,
+reciprocal inhibitory pairs. A large literature argues these *motifs* are what make
+biological wiring computationally effective, and a neuromorphic literature builds
+architectures on that premise.
+
+The argument has never been properly tested, for a reason that is methodological rather
+than empirical. Establishing that a structural property **causes** a computational
+advantage needs a control that differs in that property **and nothing else**. The
+standard comparison — a connectome against a degree-preserving rewiring, or against an
+Erdős–Rényi graph — does not have that form. Rewiring a connectome changes its motif
+census *together with* its clustering, its spectrum, and every higher-order statistic
+that co-varies with them. A performance difference cannot be attributed to motifs.
+
+The control that would settle it does not exist: an ensemble that randomises a connectome
+while **holding its motif census fixed**.
+
+## 2. What we built
+
+**A motif-preserving null ensemble.** Degree-, valence- and census-matched surrogates,
+sampled by an annealed Metropolis chain over exact, incrementally updated motif counts.
+On *C. elegans* it reproduces all six targeted motif counts to within **0.3%** while
+retaining only **13.9%** edge overlap with the empirical graph — against **11.6%** for an
+unconstrained rewiring. It converges on all five networks we test, including diffusion
+tractography, where almost every edge is reciprocal and an ordinary swap chain cannot
+hold the census at all.
+
+**A five-rung control ladder.** Density → degree sequence → valence placement → motif
+census → the empirical connectome. Each rung adds exactly one structural property, so
+each property's contribution is the difference between adjacent rungs, with node count,
+edge count, spectral radius and input projection matched throughout.
+
+**Two controls that catch silent failures.** Both are cheap, both are transferable, and
+both changed our own conclusions:
+
+| Control | What it exposes |
+|---|---|
+| **Zero-recurrence** | Under an all-to-all protocol, a reservoir with its recurrent matrix **set to zero** scores 59.6% — against 59.6% for the connectome. The wiring is not used, and any structural comparison run in that regime measures the input projection. Under the disjoint protocol we use, the same control falls to 4.9% (chance) while the connectome reaches 35.2%. |
+| **Matched firing rate** | Matching spectral radius does not match activity level. Erdős–Rényi surrogates run **1.77×** hotter than the connectomes they are matched to, and rate predicts accuracy (*r* = 0.38). A matched-gain comparison confounds topology with operating point. |
+
+**A gap-free perturbation bound.** The Davis–Kahan theorem conventionally invoked for
+degeneracy is inapplicable to measured connectomes — their spectral gaps make it vacuous.
+We bound the finite-horizon input–output map instead, which needs no gap, and extract the
+**operational alignment** γ of a perturbation.
+
+## 3. What we found
+
+Evaluated as fixed reservoirs on Spiking Heidelberg Digits, across five networks from
+four species:
+
+**Every structural property that measurably moves accuracy moves it down.**
+
+| Property added | Significant | Median effect |
+|---|---|---|
+| Degree sequence | 3 / 5 networks | **−4.65 pp** |
+| Motif census | 2 / 5 networks | **−3.50 pp** |
+| Valence placement | 1 / 5 networks | −0.82 pp |
+| Residual wiring | 2 / 5 networks | +1.06 pp |
+
+Adding a connectome's exact 3-node motif spectrum to a degree- and valence-matched
+surrogate **costs** accuracy, by about as much as the degree sequence does. That is the
+opposite sign to the one the motif hypothesis predicts. Task-independent dynamical probes
+(memory capacity, kernel rank) reproduce the ordering and the direction.
+
+Recomputing enrichment itself, with 500 surrogates and exact counts, already qualifies
+the premise: of 29 interpretable tests, 23 motifs are enriched, **3 are significantly
+depleted** — coherent feedforward loops in the *Drosophila* central complex, *Z* = −10.9 —
+and 3 are indistinguishable from the null. Mouse V1 sits at its null throughout. Motif
+enrichment is real but not conserved across phylogeny.
+
+## 4. Why this is worth something
+
+**The operating-point result generalises to a whole class of published comparison.**
+Any study that compares a network against a null at one dynamical regime — and most do —
+inherits a dependence it has not reported. The fix is one sweep rather than one
+evaluation. That is cheap, and it converts a claim about a point into a claim about a
+regime.
+
+**The null ensemble is a reusable instrument, though not a new idea.** Motif-constrained
+ensembles are standard in statistical network science (ERGMs, the dk-series, and
+Fischer et al.'s Wang–Landau sampler, which has a sampling guarantee ours does not). What
+we supply is the sign-attributed version at connectome scale and its use as a *control
+rung*. Any field that infers function from subgraph overrepresentation faces the same
+attribution problem — gene regulatory networks, food webs, software dependency graphs.
+
+**The controls generalise further than the finding.** The zero-recurrence control is four
+lines and would invalidate a category of published comparison. We would encourage it in
+any study comparing connectome-derived reservoirs, and we report it on our own work
+first.
+
+**A negative result, properly bounded, is worth more than an unbounded positive one.** We
+state what the design could have detected (80% power at *d* = 1.54 after correction), we
+state where our own prediction failed, and we state where two of our measurements
+disagree rather than choosing the one that reads better.
+
+## 5. What we are not claiming
+
+- **Not** that connectome wiring is bad for computation. It is a poor fixed reservoir for
+  one classification task with a linear readout, which is not the objective any nervous
+  system is under selection for.
+- **Not** that motif structure is functionally irrelevant. Our design is powered for
+  *d* = 1.54; it does not exclude moderate effects, and it does not test motifs as an
+  inductive bias for **learning**, which is a different claim requiring a trained ladder
+  we have not run to publication standard.
+- **Not** any silicon result beyond what an open flow establishes. We report gate count,
+  flip-flop count and mapped pre-layout cell area from Yosys/Nangate45 — 590,116 cells,
+  25,644 flip-flops, 749,263 µm² for the top macro. **No die area, no power, no energy
+  per operation, no clock frequency.** The toolchain performs no place-and-route and
+  ships no static timing analyser.
+
+## 6. Where our own prediction failed
+
+We predicted tolerance to structural damage would scale as 1/γ. Tested two ways:
+
+- **Ordering — holds.** γ ranks the perturbation directions correctly in 3 of 5 networks.
+  Tolerated pruning falls from **83%** for random removal to **64%** along the adversarial
+  direction at identical cardinality.
+- **Scaling — fails.** The product γ·‖E‖max should be constant across directions. It
+  varies by a factor of **2.2**.
+
+We report the failure. γ identifies which direction is dangerous and does not predict by
+how much. The conclusion that matters for the literature needs only the ordering:
+robustness to *random* ablation is much weaker evidence of degeneracy than it appears,
+because a random direction is nearly orthogonal to any fixed functional subspace.
+
+## 7. Verification
+
+Everything in the manuscript regenerates from raw result files:
+
+```bash
+./src/analysis/rebuild_paper.sh
 ```
-====================================================================================================
-COMPUTATIONAL COUPLING — 6-PILLAR INTELLECTUAL PROPERTY & ARCHITECTURAL MOAT
-====================================================================================================
-1. Conserved Cross-Scale Motifs:      cFFL, iFFL, and RIP enriched up to Z = +754.94 (p < 0.0001)
-2. The Degeneracy Frontier:           Prunes 33.6% to 50.4% of wiring with ZERO task loss (R_90 = 0.15 - 0.23)
-3. The Dendritic Energy Shield:       Active NMDA plateaus deliver a 40- to 45-fold somatic energy reduction
-4. CoupledEventNet Silicon Core:      455-fold energy reduction over Dense SNNs (3.52 vs 1,623.7 SynOps)
-5. Lifelong Continual Learning:       0.0% catastrophic forgetting via DCMG-STDP (vs 46.0% collapse in SNNs)
-6. Cycle-Accurate Silicon Validation: 2,857x real-time speedup, 116.7 pJ/SynOp on TSMC 28nm (<1.95 mV Q8.8 error)
-====================================================================================================
-```
 
-### 1. Conserved Cross-Scale Computational Motifs
-Using Dale-compliant configuration null models preserving joint degree sequences, we proved that **Coherent Feedforward Loops (cFFL)**, **Incoherent Feedforward Loops (iFFL)**, and **Reciprocal Inhibitory Pairs (RIP)** are statistically overrepresented by up to $Z = +754.94$ ($p < 0.0001$) across invertebrate, insect, rodent, and human connectomes:
-- **cFFL:** 100% rejection of transient noise spikes while faithfully transmitting sustained sensorimotor signals.
-- **iFFL:** Adaptive pulse generation and dynamic range compression (Adaptation Index = 1.00).
-- **RIP:** Bistable winner-take-all categorical attractor switching.
+It reports unresolved numbers, undefined references and LaTeX errors, because a clean
+exit status is not evidence of anything — `pdflatex` exits 0 on a hard error by design.
+Current state: **0 unresolved, 0 errors, 0 undefined references, 108 tests passing.**
 
-### 2. The Degeneracy Frontier & 50% Scaffolding Pruning
-Biological neural networks exhibit *degeneracy*—the ability of distinct structural wirings to perform identical dynamic computations. We mapped the **Degeneracy Frontier** across species, proving via Davis-Kahan perturbation theory (**Theorem 1**) that biological circuits tolerate 15% to 23% structural drift ($R_{90}$) with zero functional loss. Evolutionary pruning along this frontier eliminates **33.6% to 50.4% of synaptic operations**, proving that biological networks contain massive developmental scaffolding that can be discarded for silicon AI.
+No number in the manuscript is transcribed by hand. A missing result appears in the PDF
+as a visible placeholder rather than as a stale value.
 
-### 3. The Dendritic Energy Shield (Two-Compartment Non-Linearity)
-Standard point-neuron LIF models force all subthreshold inputs directly into the somatic integrator, triggering spurious, energy-wasting action potentials. By implementing **active two-compartment dendritic non-linearities** (regenerative NMDA plateaus and perisomatic GABA shunting), subthreshold noise is trapped in the dendritic arbor. This achieves a **40.4- to 45.0-fold energy reduction** in cortical microcircuits.
+## 8. The record
 
-### 4. CoupledEventNet (455x Neuromorphic Advantage)
-Synthesizing these invariants into an event-driven architecture yields:
-- **96.50% test accuracy** at only **3.52 SynOps per sample (14.31 nJ energy proxy)**.
-- **455-fold energy reduction** compared to Dense SNNs (1,623.7 SynOps, 6,507.6 nJ).
-- **17,650-fold energy advantage** under 30% channel failure (maintaining 98.0% accuracy at 0.17 nJ).
+`AUDIT.md` documents 34 entries: **15** defects in the retracted v4 manuscript, **12**
+found in the **replacement** analysis while building it — our own, recorded on the same
+terms — and **7** where a correction changed a conclusion, including our own partly
+falsified prediction and two conclusions that reversed outright when we found that our
+null ensemble was not the published one.
 
-### 5. Neuromorphic DVS 10-Gesture Benchmark (Noise Immunity & Jitter Phase Invariance)
-On 10 dynamic gesture primitives under Poisson dark shot noise ($\lambda \in [0.0, 0.25]$) and temporal jitter ($\sigma_t \in [0, 40\text{ ms}]$):
-- **High-Noise Shielding:** ActiveDendriticCEN achieves **55.5% accuracy at $\lambda = 0.20$**, whereas Dense SNNs collapse to chance (20.0%).
-- **Jitter Phase Invariance:** AD-CEN retains **85.0% accuracy under 30 ms jitter** (vs 60.5% in Dense SNN).
-- **Point-CEN Clean Efficiency:** CoupledEventNet requires only **613.3 SynOps (2,500.2 nJ)** per inference (a **5.7-fold energy reduction** over Dense SNNs).
+One pattern runs through nearly all of them, and it is the most transferable thing in
+this project:
 
-### 6. Information Bottleneck & Thermodynamic Landauer Limit
-- **0.2324 Bits per Nanojoule:** Operates **798.5$\times$ closer to the fundamental Landauer limit** ($E_{\mathrm{Landauer}} = k_B T \ln 2$) than Dense SNNs ($0.0003\text{ bits/nJ}$) and **2.84 million times closer** than edge GPUs.
-- **Rate-Distortion Optimization (Theorem 3):** Motif-constrained connectomes hug the theoretical Rate-Distortion frontier, cutting thermodynamic energy dissipation per transmitted predictive bit from 21.40 nJ/bit down to **2.56 nJ/bit** (an **8.36-fold efficiency advantage**).
+> **Every defect produced a plausible number and no error.** A loader that swallowed its
+> exception returned an empty graph. An `argsort` over equal values returned index order.
+> A null model imposed a constraint it did not impose. A protocol control decoded nothing
+> and scored chance. `pdflatex` reported a duplicate macro and exited 0 with a complete
+> PDF. None was caught by a result looking wrong. Each was caught by checking a recorded
+> diagnostic, or by reading the code against the prose.
+
+That is why the convergence diagnostics, the protocol control and the held-out statistic
+are reported in the paper rather than kept in the repository.
 
 ---
 
-## 3. High-Value Commercial Market Verticals
-
-| Market Vertical | Existing Barrier | CoupledEventNet Solution | Commercial Impact |
-|---|---|---|---|
-| **Edge AI & Micro-Robotics** | Drones limited to 15-min flight because GPU vision burns battery faster than motors. | Sub-watt ($<25\text{ mW}$) event-driven obstacle avoidance and flight control. | **$3\times\text{ to }5\times$ mission flight duration extension.** |
-| **Aerospace, Defense & Satellites** | Radiation bit-flips and sensor failure in GPS-denied environments. | Validated **98.0% accuracy retention at 30% physical synaptic channel failure**. | Rad-hardened autonomous navigation without heavy shielding. |
-| **Biomedical Implants & BCIs** | Brain-computer interfaces limited to $<10\text{ mW}$ to prevent tissue thermal necrosis. | Consumes only **14.31 nanojoules per inference** on micro-batteries. | High-density closed-loop neural prosthetics and seizure interceptors. |
-| **Sustainable Edge Hyperscaling** | Continuous dense matrix inference burns megawatts on streaming sensor telemetry. | Asynchronous motif-gated silicon wakes up only on meaningful Address-Events. | **$>99\%$ energy reduction on streaming sensor telemetry.** |
-
----
-
-## 4. Competitive Matrix Across State-of-the-Art Paradigms
-
-| Dimension | Dense Recurrent SNNs | Connectome Reservoirs (`conn2res`) | Neural Circuit Policies (NCPs) | CoupledEventNet (Ours) |
-|---|---|---|---|---|
-| **Energy Consumption** | High ($>6,500\text{ nJ}$) | Moderate ($>150\text{ nJ}$) | Moderate (Continuous ODE) | **Ultra-Low ($14.3\text{ nJ}$)** |
-| **Dale's E/I Compliance** | No (Synaptic signs flip) | Yes (Fixed biological) | Yes (Fixed 4-layer) | **Yes (Strictly enforced)** |
-| **Biological Remodeling** | None (All-to-all dense) | None (Frozen graph) | None (Hand-crafted) | **Degeneracy Frontier Optimized** |
-| **Dendritic Shield** | None (Point LIF) | None (Point LIF) | None (Sigmoid continuous) | **Active NMDA Dendritic Shield** |
-| **30% Channel Failure** | Fragile ($>3,000\text{ nJ}$) | Sensitive ($>500\text{ nJ}$) | Untested | **98.0% Accuracy Retention** |
-| **Continual Learning** | 46.0% Forgetting (Collapse)| Fixed weights | Fixed weights | **0.0% Forgetting (DCMG-STDP)** |
-| **Silicon RTL Verification** | Generic GPU/FPGA | Untested in RTL | Software ODE only | **Synthesizable Verilog (116.7 pJ/SynOp)** |
-| **Energy Advantage** | $1.0\times$ (Baseline) | $41\times$ | $\sim 10\times$ | **455$\times$ Advantage** |
-
----
-
-## 5. 24-Month Silicon Tapeout & Commercialization Roadmap
-
-- **Phases 1–3 (Completed & Validated):**
-  - Cross-species connectome ingestion across 4 phylogenetic levels (*C. elegans*, *Drosophila*, *Mouse*, *Human*).
-  - Degeneracy Frontier multi-objective remodeling (33.6% to 50.4% pruning).
-  - Two-compartment active dendritic simulation & long-horizon DMTS-D working memory (91.22% retention).
-  - Theorems 1, 2, and 3 mathematically derived and empirically verified.
-  - Cycle-accurate Verilog RTL simulation on TSMC 28nm (2,857x real-time speedup, 116.7 pJ/SynOp).
-  - Complete 19-figure publication suite (300 DPI) and 58/58 unit tests passing (100%).
-- **Phase 4: FPGA Emulation & Physical DVS Interfacing (Months 1–6)**
-  - Synthesize fixed-point Q8.8 accelerator on AMD Xilinx UltraScale+ FPGA.
-  - Interface directly with Prophesee Metavision DVS event cameras for live real-time gesture tracking.
-  - Characterize physical picojoule power dissipation with board-level current monitors.
-- **Phase 5: Active Dendritic Mixed-Signal Silicon Macro (Months 7–12)**
-  - Design subthreshold CMOS differential pairs modeling active NMDA plateau currents ($g_{\mathrm{NMDA}}$).
-  - Implement perisomatic GABA shunting switches and asynchronous AER crossbars.
-  - Tape out mixed-signal test structures on TSMC 28nm via Europractice / TSMC MPW shuttle.
-- **Phase 6: Agile Autonomous Robotic Flight Integration (Months 13–18)**
-  - Deploy CoupledEventNet accelerator board on a physical micro-UAV quadrotor (Crazyflie 2.X).
-  - Benchmark closed-loop flight stability and high-speed obstacle avoidance under severe physical wind gusts.
-  - Verify continuous operation at $< 25\text{ mW}$ total compute power.
-- **Phase 7: Production Silicon Tapeout (CEN-V1 Commercial SoC, Months 19–24)**
-  - Package in compact QFN/BGA format.
-  - Validate commercial production yield and publish sub-1.0 pJ/SynOp silicon efficiency metrics.
-
----
-
-## 6. Verification & Production Dossier
-
-- **Official Executive Whitepaper PDF (13 Pages):** [`pitch/computational_coupling_pitch.pdf`](file:///home/charizard/brain/computational-coupling/pitch/computational_coupling_pitch.pdf)
-- **Academic Publication Manuscript PDF (12 Pages):** [`paper/computational_coupling_paper.pdf`](file:///home/charizard/brain/computational-coupling/paper/computational_coupling_paper.pdf)
-- **Comprehensive Technical Monograph PDF (45 Pages):** [`paper/computational_coupling_technical_monograph.pdf`](file:///home/charizard/brain/computational-coupling/paper/computational_coupling_technical_monograph.pdf)
-- **Master Report Artifact:** [`computational_coupling_master_report.md`](file:///home/charizard/.gemini/antigravity-cli/brain/a942bac5-f639-4fc9-b377-70bb4e1abbe0/computational_coupling_master_report.md)
-- **Automated Verification:** **58/58 passing tests (100%)** via `.venv/bin/pytest`.
+**Repository:** analysis code, null-model implementations, experiment drivers, the
+synthesis flow, the audit and the retracted v4 material.
+**Manuscript:** `paper/computational_coupling_v5.pdf` (27 pages).
+**Full technical detail:** `info.md`.

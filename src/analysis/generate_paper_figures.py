@@ -44,7 +44,7 @@ def plot_figure1_cross_species_motifs(results_dir: str, fig_dir: str):
     }
     sub_df["short_name"] = sub_df["dataset"].map(name_map)
 
-    fig, ax = plt.subplots(figsize=(12, 5.5))
+    fig, ax = plt.subplots(figsize=(12.5, 5.5))
     palette = sns.color_palette("deep", len(target_motifs))
 
     sns.barplot(
@@ -63,7 +63,9 @@ def plot_figure1_cross_species_motifs(results_dir: str, fig_dir: str):
     ax.set_yscale("symlog", linthresh=1.0)
     ax.set_ylabel("Enrichment Z-Score vs Null Model (symlog)", fontweight="bold")
     ax.set_xlabel("Biological Connectome & Scale", fontweight="bold")
-    ax.set_title("Figure 1: Cross-Scale Computational Motif Enrichment Profiles", fontweight="bold", pad=12)
+    ax.set_title("Cross-Scale Computational Motif Enrichment Profiles", fontweight="bold", pad=12)
+    ax.tick_params(axis="x", rotation=18)
+    plt.setp(ax.get_xticklabels(), ha="right")
     ax.legend(title="Motif Classification", bbox_to_anchor=(1.02, 1), loc="upper left", frameon=True)
 
     plt.tight_layout()
@@ -74,6 +76,7 @@ def plot_figure1_cross_species_motifs(results_dir: str, fig_dir: str):
 
 
 def plot_figure2_degeneracy_frontier(results_dir: str, fig_dir: str):
+    import matplotlib.ticker as ticker
     json_file = os.path.join(results_dir, "phase2_remodeling_results.json")
     if not os.path.exists(json_file):
         print(f"Warning: {json_file} not found")
@@ -95,8 +98,10 @@ def plot_figure2_degeneracy_frontier(results_dir: str, fig_dir: str):
     ax1.axhline(base_score, color="red", linestyle="--", label=f"Biological Baseline ({base_score:.2f})")
     ax1.set_xlabel("Structural Drift $\\Delta_{\\mathrm{struct}}(G_0, G')$", fontweight="bold")
     ax1.set_ylabel("Task Competence $F_{\\mathrm{task}}$", fontweight="bold")
-    ax1.set_title("Degeneracy Frontier: Drift vs Competence", fontweight="bold")
+    ax1.set_title("A. Degeneracy Frontier: Drift vs Competence", fontweight="bold")
     ax1.set_ylim(-0.05, 1.15)
+    ax1.xaxis.set_major_locator(ticker.MaxNLocator(nbins=4))
+    ax1.xaxis.set_major_formatter(ticker.FormatStrFormatter('%.3f'))
     ax1.legend(loc="lower left")
     ax1.grid(True, linestyle=":", alpha=0.6)
 
@@ -105,7 +110,9 @@ def plot_figure2_degeneracy_frontier(results_dir: str, fig_dir: str):
     ax2.axhline(base_ops, color="red", linestyle="--", label=f"Biological Baseline ({base_ops} SynOps)")
     ax2.set_xlabel("Structural Drift $\\Delta_{\\mathrm{struct}}(G_0, G')$", fontweight="bold")
     ax2.set_ylabel("Synaptic Operations (SynOps)", fontweight="bold")
-    ax2.set_title("Energy Optimization along Frontier", fontweight="bold")
+    ax2.set_title("B. Energy Optimization along Frontier", fontweight="bold")
+    ax2.xaxis.set_major_locator(ticker.MaxNLocator(nbins=4))
+    ax2.xaxis.set_major_formatter(ticker.FormatStrFormatter('%.3f'))
     ax2.legend(loc="upper right")
     ax2.grid(True, linestyle=":", alpha=0.6)
 
@@ -294,7 +301,18 @@ def main():
     plot_figure3_dynamic_motifs(results_dir, fig_dir)
     plot_figure4_cen_benchmark(results_dir, fig_dir)
     plot_figure5_ablation_study(results_dir, fig_dir)
-    print("\n[✓] All figures generated successfully in results/figures/")
+
+    paper_fig_dir = os.path.join(root, "paper", "figures")
+    artifact_dir = "/home/charizard/.gemini/antigravity-cli/brain/a942bac5-f639-4fc9-b377-70bb4e1abbe0"
+    os.makedirs(paper_fig_dir, exist_ok=True)
+    import shutil
+    for fn in ["figure1_cross_species_motifs.png", "figure2_degeneracy_frontier.png", "figure3_dynamic_motifs.png", "figure4_cen_benchmark.png", "figure5_ablation_study.png"]:
+        src = os.path.join(fig_dir, fn)
+        if os.path.exists(src):
+            shutil.copy(src, os.path.join(paper_fig_dir, fn))
+            if os.path.exists(artifact_dir):
+                shutil.copy(src, os.path.join(artifact_dir, fn))
+    print("\n[✓] All figures generated and synced to paper/figures and artifact directory.")
 
 
 if __name__ == "__main__":

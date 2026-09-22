@@ -1,0 +1,8 @@
+{
+  "metric": "accuracy",
+  "n_per_group": 15,
+  "n_contrasts": 20,
+  "mde_uncorrected": 1.0597995839073993,
+  "mde_holm_worst_case": 1.537814598478612,
+  "power": 0.8
+}

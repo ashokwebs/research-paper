@@ -1,0 +1,5 @@
+top,files,ok,cells,wires,cell_area_um2,sequential_area_um2,flip_flops
+dendritic_lif_core,['dendritic_lif_core.v'],True,4401.0,4414.0,5301.114,372.4,70.0
+synaptic_accumulator,['synaptic_accumulator.v'],True,19649.0,19914.0,63360.668,43581.44,8192.0
+aer_crossbar_router,['aer_crossbar_router.v'],True,39.0,52.0,124.488,90.44,17.0
+cen_accelerator_top,"['cen_accelerator_top.v', 'dendritic_lif_core.v', 'synaptic_accumulator.v', 'aer_crossbar_router.v']",True,590116.0,592079.0,749263.48,91860.44,25644.0

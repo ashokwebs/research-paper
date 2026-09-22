@@ -1,4 +1,19 @@
 # RESEARCH LANDSCAPE REPORT — COMPUTATIONAL COUPLING
+
+> **Status: planning document, superseded.** This was written at the start of the project
+> (September 2026), before any experiment was run, and it records the research plan and
+> novelty analysis as they stood then. It is **not** a statement of findings. Several of
+> its premises did not survive: the human H01 microscale tier was withdrawn when its
+> connectivity graph turned out to be empty, the CoupledEventNet / neuromorphic-efficiency
+> direction was withdrawn along with the fabricated silicon figures supporting it, and the
+> central motif hypothesis it sets out was tested and came out with the opposite sign.
+>
+> For what the project actually found, see [`../info.md`](../info.md) and the manuscript.
+> For what was withdrawn and why, see [`../AUDIT.md`](../AUDIT.md). This file is kept
+> because the retraction is only checkable against the plan it replaced.
+
+---
+
 ## Cross-Species & Cross-Scale Connectome Analysis, Circuit Remodeling, and Event-Driven Computing
 
 **Project:** COMPUTATIONAL COUPLING  

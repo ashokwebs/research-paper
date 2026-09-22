@@ -1,0 +1,268 @@
+\section{Introduction}
+\label{sec:intro}
+
+Connectomes are now available at a scale that invites a structural explanation of
+neural computation: the complete somatic wiring of \textit{C. elegans}
+\cite{cook2019whole}, the adult \textit{Drosophila} brain \cite{dorkenwald2024neuronal,
+lin2024network}, proofread mammalian cortical volumes \cite{microns2025functional},
+and whole-brain human networks \cite{vanessen2012human}. Alongside them has grown a
+family of claims of the following shape: biological wiring contains statistically
+overrepresented subgraphs -- feedforward loops, reciprocal inhibitory pairs -- these
+motifs implement identifiable computations, and networks built to contain them
+inherit an advantage in accuracy, robustness or energy over conventional artificial
+networks.
+
+Each step of that chain is plausible, and the first step is well established in the
+sense that motif overrepresentation against degree-preserving nulls is a reproducible
+empirical finding \cite{milo2002network,milo2004superfamilies,sporns2004motifs} --- our
+own recomputation finds it too, though less uniformly across species than the phrase
+``conserved motifs'' suggests (\S\ref{sec:res-motifs}). The later steps are where the
+evidence is thinner than the claims, for a reason that is methodological rather than
+empirical.
+
+\paragraph{A contradiction, and what it turned out to be about.}
+The sharpest quantitative support for the later steps comes from reservoir computing, and
+it is the part of this literature that reaches furthest: it is routinely offered as a
+reason to build neuromorphic systems on connectome-derived wiring.
+Su\'arez et al.~\cite{suarez2024connectome} report that empirical connectomes have
+significantly greater linear memory capacity than degree-preserving rewirings. Our own
+ladder, run in a spiking network at a higher gain, found no such advantage.
+
+We set out to adjudicate that disagreement and did not manage to. What we found instead
+is that the comparison ``does a connectome beat its rewiring?'' is not one experiment. It
+is a composition of four choices, each of which is normally reported in a subordinate
+clause, and each of which can change the sign of the answer on identical data.
+
+\paragraph{Computational coupling.}
+We call the quantity this literature is trying to measure the \emph{computational
+coupling} of a network: the extent to which what a network computes is attributable to
+how it is wired. Coupling is never observed directly. What is observed is a score on a
+task, and a score belongs to the network together with everything the measurement
+supplies around it --- the units the network is built from, the regime it is driven in,
+the channels it is read through, and the alternative networks it is scored against. The
+coupling is the part of that score which moves when the wiring moves and nothing else
+does. It is therefore defined only relative to a stated procedure for moving the wiring,
+and it is the sign of that difference, not the score itself, that the structural claims
+in this literature rest on.
+
+\begin{definition}[Computational coupling]
+\label{def:coupling}
+Let $C_{U,\rho,R}(W)$ denote the task capacity of a network with weight matrix $W$,
+evaluated with unit model $U$, at operating point $\rho$, under readout protocol $R$;
+and let $\mathcal{N}$ be an ensemble of surrogate networks that alters the wiring while
+holding stated properties of $W$ fixed. The \emph{computational coupling} of $W$ under
+the measurement protocol $P = (\mathcal{N}, U, \rho, R)$ is the standardised contrast
+\begin{equation}
+\label{eq:coupling}
+\kappa(W; P) \;=\;
+\frac{C_{U,\rho,R}(W) \;-\; \mathbb{E}_{W' \sim \mathcal{N}}\, C_{U,\rho,R}(W')}
+     {\operatorname{sd}_{W' \sim \mathcal{N}}\, C_{U,\rho,R}(W')}\,.
+\end{equation}
+\end{definition}
+
+\noindent
+Equation~\ref{eq:coupling} is not a new statistic: it is the $Z$-score the field already
+reports, under connectome-versus-null comparisons, motif enrichment, small-worldness and
+rich-club analysis alike. Naming it is worth the trouble for one reason --- the name
+carries its arguments with it. ``The connectome beats its rewiring'' is the claim
+$\kappa > 0$, and $\kappa$ is a function of four things besides $W$. Each of
+$\mathcal{N}$, $U$, $\rho$ and $R$ is a choice; each is normally reported in a
+subordinate clause, if at all; and each, we find, can change the sign of $\kappa$ on
+identical data. A coupling reported without its protocol is not a measurement of the
+connectome, because the same connectome supports both signs. We measured all four
+choices (Table~\ref{tab:four-choices}).
+
+\begin{enumerate}[leftmargin=1.4em,itemsep=3pt,topsep=4pt]
+\item\textbf{Which rewiring counts as the null} ($\mathcal{N}$)\textbf{.} ``Degree-preserving randomisation'' names
+at least two different ensembles, depending on whether a weight travels with its edge or
+is re-assigned afterwards. Both match the phrase; they are not the same distribution over
+graphs; and on the same connectomes, at the same operating point, in the same unit model,
+they do not agree about the sign of the result (\S\ref{sec:res-nullchoice}).
+
+\item\textbf{What a unit is} ($U$)\textbf{.} A $\tanh$ unit is never silent; a sub-threshold
+integrate-and-fire unit contributes nothing at all. Running identical graphs, identical
+rewirings, identical input and an identical readout through both --- on the five
+connectomes distributed with the original toolbox --- changes the outcome, and it matters
+because the hardware the result is invoked for is spiking (\S\ref{sec:res-unit}).
+
+\item\textbf{Where on the gain axis it is measured} ($\rho$)\textbf{.} The published comparison is located
+\emph{at criticality}, at a spectral radius of $1$, the regime a reservoir is
+conventionally evaluated in \cite{bertschinger2004real,legenstein2007edge,%
+boedecker2012information}. The connectome-versus-null contrast changes sign along that
+axis --- in $\NGainSignFlip$ of $\NGainNetworks$ networks, significant on both sides --- so
+a comparison reported at one gain is a statement about that gain
+(\S\ref{sec:res-operating}).
+
+\item\textbf{How the reservoir is read out} ($R$)\textbf{.} Under a protocol in which every neuron is
+both driven and decoded, a reservoir with its recurrent matrix \emph{set to zero} scores
+$\ZeroRecFull$ against $\ZeroRecFullConn$ for the connectome. In that regime the
+comparison is not measuring the wiring at all (\S\ref{sec:res-protocol}).
+\end{enumerate}
+
+\begin{table*}[t]
+\centering\small
+\caption{\textbf{Four choices that a connectome-versus-null comparison has to make, and
+what each one is worth.} Each row is a decision normally reported in a subordinate clause
+of a methods section. For each we ran both settings on otherwise identical data and
+report the largest effect the choice alone produces. None of the four is a robustness
+check in our design: each can change the sign of the reported result, and the first and
+fourth can change it between two significant verdicts in opposite directions.}
+\label{tab:four-choices}
+\begin{tabular}{p{0.15\textwidth}p{0.25\textwidth}p{0.25\textwidth}p{0.25\textwidth}}
+\toprule
+\textbf{Choice} & \textbf{Setting A} & \textbf{Setting B} & \textbf{What the choice alone
+does} \\
+\midrule
+Null ensemble \newline (\S\ref{sec:res-nullchoice})
+& BCT \texttt{randmio}: weights travel with their edges
+& Rank-reassigned: same weight multiset, re-placed by degree rank
+& Opposite signs in $\NNullSignFlip$ of $\NNullCells$ cells; opposite significant
+verdicts in $\NNullVerdictFlip$; median disagreement $\NullDisagreeMedian$ capacity
+units \\
+\addlinespace
+Unit model \newline (\S\ref{sec:res-unit})
+& Graded $\tanh$, never silent
+& Leaky integrate-and-fire, silent below threshold
+& Capacity compressed $\UnitCapRatio\times$ for every topology alike; the contrast
+survives in $\NUnitSpkLeads$ of $\NUnitSpkNetworks$ networks \\
+\addlinespace
+Operating point \newline (\S\ref{sec:res-operating})
+& At criticality, $\rho = 1$
+& Above it, $\rho > 1$
+& Contrast changes sign along the axis in $\NGainSignFlip$ of $\NGainNetworks$ networks,
+significant on both sides \\
+\addlinespace
+Readout protocol \newline (\S\ref{sec:res-protocol})
+& All-to-all: every neuron driven and decoded
+& Sensory/motor-disjoint
+& Under A, zeroing the recurrent matrix entirely costs nothing ($\ZeroRecFull$ against
+$\ZeroRecFullConn$); under B it falls to chance ($\ZeroRecSplit$) \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+This is the paper's central claim, and it is a claim about how the field measures rather
+than about what brains are. Computational coupling is a property of a connectome
+\emph{and} the apparatus that measures it, and the four arguments of $\kappa$ are that
+apparatus. Each of the four is a fact about the measurement that is indistinguishable,
+in a single reported number, from a fact about the topology. The fourth is the limiting
+case: under an all-to-all readout the coupling is driven to zero by construction, since a
+reservoir whose recurrent matrix has been deleted outright scores as well as the
+connectome, and a comparison run there reports a number that no change to $W$ could have
+moved. Our own
+results carry exactly the same dependence, which is why we report the axis and not the
+point for them too --- and why, where our design could not resolve an effect, we say so
+rather than reporting a non-detection as a refutation.
+
+\paragraph{The attribution problem.}
+Establishing that a structural property \emph{causes} a computational advantage
+requires a control that differs in that property and nothing else. The standard
+comparison -- a connectome against a degree-preserving rewiring, or against an
+Erd\H{o}s--R\'enyi graph -- does not have this form. Rewiring a connectome
+simultaneously changes its motif census, its clustering, its spectral structure and
+every higher-order statistic that co-varies with them, so a performance difference
+cannot be attributed to motifs in particular. The ensemble that would settle the question --- one that randomises a connectome while
+\emph{holding its motif census fixed} --- is standard in statistical network science and
+absent from this debate. Motif-constrained ensembles have been sampled by annealing
+\cite{milo2002network}, by exponential random graph models
+\cite{frank1986markov,robins2007introduction}, by the $dk$-series
+\cite{mahadevan2006systematic,orsini2015quantifying}, and, with a sampling guarantee, by
+Wang--Landau multicanonical methods \cite{fischer2015sampling}. None has been used to ask
+what a connectome's motifs \emph{do}. We build a sign-attributed version at connectome
+scale and place it in a nested ladder of controls in which each rung adds exactly one
+structural property, so that the contribution of each can be read off as a difference
+between adjacent rungs.
+
+Three further confounds recur in this literature and are worth stating plainly, since
+all three appear in our own earlier work on this project. First, a null model described as
+preserving degrees \emph{and} Dale's principle preserves nothing beyond degrees: when
+synapses inherit their presynaptic neuron's valence, Dale's principle is automatically
+invariant under double-edge swaps, so such a null cannot test whether the placement of
+inhibition carries information. Second, and more consequential, a reservoir in which
+every neuron is both driven and decoded does not require its recurrent connectivity at
+all -- we show that zeroing the recurrent matrix entirely leaves SHD accuracy unchanged
+under that protocol. A structural comparison run in that regime measures nothing,
+whatever it reports. Third, matching spectral radius across networks equalises recurrent
+gain but not the activity level each network settles into, and since firing rate both
+predicts accuracy and determines the synaptic-operation count outright, a comparison at
+matched gain confounds topology with operating point -- in the direction that flatters
+the unstructured control. We therefore report the ladder both at matched gain and with
+every network recalibrated to a common firing rate.
+
+A common thread runs through all three: each is a failure that produces no error and no
+warning. The naive protocol returns plausible accuracies, the Dale-compliant null returns
+plausible $Z$-scores, and the matched-gain comparison returns a plausible ordering. In the
+first two the object of study turns out to have made no difference to the number reported;
+in the third it made one, but not for the reason the comparison was set up to attribute it
+to. Nothing in any of their outputs says so. That is why we regard the controls that
+expose them as part of the method rather than as robustness checks.
+
+\paragraph{The degeneracy problem.}
+A second strand asks the converse question: how much can a circuit be rewired before
+function degrades? Biological circuits are famously degenerate
+\cite{prinz2004similar,marder2011variability,edelman2001degeneracy}, and the natural
+formal tool is the Davis--Kahan theorem \cite{daviskahan1970rotation}, bounding
+invariant-subspace rotation by the perturbation size over the spectral gap. Applied to
+measured connectomes the bound is vacuous, because their spectral gaps are tiny
+($\MinSpectralGap$ at the smallest): it permits a perturbation of norm at most
+$\MaxDKAdmissible$ while the networks tolerate a great deal more.
+Reporting the resulting discrepancy as a finding about biology inverts the situation --
+it is a statement about the instability of eigenvectors under near-degenerate spectra.
+We replace it with a bound on the object that task performance actually depends on, the
+finite-horizon input--output map, which requires no gap assumption; and we extract from
+it a quantity, the operational alignment $\gamma$ of a perturbation, that turns
+``biological rewiring is non-adversarial'' into a measurable prediction. Crucially, the
+prediction is falsifiable, and it is partly falsified: we construct the maximally
+damaging perturbation of matched cardinality and find that $\gamma$ ranks the
+perturbation directions by tolerance as predicted, but does not reproduce the $1/\gamma$
+scaling the bound implies (\S\ref{sec:res-degeneracy}). We report the failure alongside
+the part that holds. What survives is enough for the point at issue: a degeneracy result
+demonstrated only against random pruning shows that random directions are benign, which
+is a much weaker statement than it appears.
+
+\paragraph{Contributions.}
+\begin{enumerate}[leftmargin=1.2em,itemsep=2pt]
+\item An exact sign-attributed motif census with $O(d)$ incremental updates, resting on
+the observation that under Dale's principle a feedforward loop's coherence is decided
+solely by the valence of its intermediate neuron (Eq.~\ref{eq:coherence}).
+\item A \textbf{motif-preserving null ensemble}: degree-, valence- and census-matched
+surrogates sampled by an annealed swap chain. On \textit{C. elegans} it matches all six
+targeted motif counts to within $\CeleAnnealErr$ while retaining only
+$\CeleOverlap$ edge overlap with the empirical graph, against $\CeleOverlapLtwo$
+for unconstrained rewiring, and it converges on every network we test --- including
+diffusion tractography, where almost every edge is reciprocal and an ordinary swap
+chain cannot hold the census at all.
+\item A \textbf{sampler-robustness analysis} of that ensemble: the same surrogates drawn
+over a factor-of-eight range of chain lengths and from both possible starting points
+(the empirical graph under a census constraint, and a fully rewired graph annealed
+towards the census), which rules out the two ways an annealed sampler could manufacture
+the null result reported below.
+\item A \textbf{structural decomposition} of reservoir performance on a real
+spike-based benchmark, isolating the contribution of density, degree sequence, valence
+placement, motif census and residual wiring, with matched controls, effect sizes and
+multiplicity correction.
+\item A \textbf{null-ensemble sensitivity analysis}: two rewiring constructions that
+both satisfy the phrase ``degree-preserving randomisation'' --- one carrying weights with
+their edges, one re-assigning them afterwards --- run over the full design, giving the
+connectome's advantage opposite significant verdicts in $\NNullVerdictFlip$ of
+$\NNullCells$ cells. We built the second believing it was the first, and report the
+episode as the worked example it is rather than removing it.
+\item A \textbf{unit-model comparison} on the connectomes distributed with
+\texttt{conn2res}: identical graphs, rewirings, inputs, delays and readout run through
+graded and spiking units, with capacity compressed $\UnitCapRatio\times$ between them, and
+with the silencing hypothesis we proposed for the difference supported against the
+published null after we had reported it as refuted against the other one.
+\item A \textbf{sweep of the gain axis} showing that the connectome-versus-null contrast
+changes sign along it, and that against an unstructured graph it does not appear at any
+gain we tested.
+\item A \textbf{gap-free perturbation bound} on the transfer map, the operational
+alignment $\gamma$, and an adversarial-pruning test of the resulting prediction, which
+it passes ordinally and fails quantitatively.
+\item A \textbf{reproducible open-PDK synthesis} of the accompanying RTL, reporting
+only quantities the flow can establish, and withdrawing previously reported commercial
+process figures that were never measured.
+\end{enumerate}
+
+We regard the fifth item, and the corrections it entails, as part of the contribution
+rather than an appendix to it. The audit record accompanying this work documents each
+withdrawn claim and the evidence against it.

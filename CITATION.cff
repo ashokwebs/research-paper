@@ -1,22 +1,32 @@
 cff-version: 1.2.0
 message: "If you use this software or research framework in your work, please cite it as below."
-title: "COMPUTATIONAL COUPLING: Biologically Constrained Connectome Remodeling and Event-Driven Architecture Discovery"
+title: "Computational Coupling: Four Choices Decide Whether a Connectome Beats Its Rewiring"
 authors:
-  - family-names: "Antigravity"
-    given-names: "Lead Autonomous Research Engineer"
-    affiliation: "Advanced Agentic Coding / Google DeepMind Team"
-version: 0.1.0
-date-released: 2026-09-17
+  - family-names: "Pasala"
+    given-names: "Ashok Raj"
+    affiliation: "School of Computer Science and Engineering, VIT-AP University, Amaravati 522237, Andhra Pradesh, India"
+  - family-names: "Gorai"
+    given-names: "Snigdha"
+    affiliation: "School of Computer Science and Engineering, VIT-AP University, Amaravati 522237, Andhra Pradesh, India"
+  - family-names: "P."
+    given-names: "Jeevana Jyothi"
+    affiliation: "School of Computer Science and Engineering, VIT-AP University, Amaravati 522237, Andhra Pradesh, India"
+version: 5.0.0
+date-released: 2026-09-18
 license: MIT
 repository-code: "https://github.com/computational-coupling/computational-coupling"
 keywords:
   - "connectomics"
   - "computational neuroscience"
-  - "neuromorphic computing"
-  - "neural architecture search"
   - "spiking neural networks"
   - "C. elegans"
   - "Drosophila"
   - "FlyWire"
   - "MICrONS"
   - "neural degeneracy"
+  - "null models"
+  - "network motifs"
+  - "research integrity"
+  - "retraction"
+  - "reservoir computing"
+  - "Spiking Heidelberg Digits"

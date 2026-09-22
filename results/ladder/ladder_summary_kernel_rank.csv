@@ -1,0 +1,26 @@
+dataset,rung,mean,std,n,sem,label
+celegans,L0_erdos_renyi,109.8,22.996618108853404,10,7.272169170505072,Erdos-Renyi (density)
+celegans,L1_degree,96.0,20.725722075613085,10,6.554048791056987,+ degree sequence
+celegans,L2_degree_valence,95.3,20.088968780568766,10,6.352689719061262,+ valence placement
+celegans,L3_degree_valence_motif,89.0,21.060758665241753,10,6.659996663329161,+ motif census
+celegans,L4_connectome,94.2,21.233097853220674,10,6.7144950997408905,Empirical connectome
+drosophila_al,L0_erdos_renyi,147.5,20.81265640581871,10,6.581539840088082,Erdos-Renyi (density)
+drosophila_al,L1_degree,123.9,23.923256931743683,10,7.565198095372137,+ degree sequence
+drosophila_al,L2_degree_valence,110.8,20.687086686035702,10,6.5418312081217405,+ valence placement
+drosophila_al,L3_degree_valence_motif,108.4,19.167101444344105,10,6.061169670763044,+ motif census
+drosophila_al,L4_connectome,108.2,18.866784451929153,10,5.966201099154768,Empirical connectome
+drosophila_cx,L0_erdos_renyi,188.7,13.719815353470812,10,4.338586559391588,Erdos-Renyi (density)
+drosophila_cx,L1_degree,166.4,27.809670580173684,10,8.794190001232504,+ degree sequence
+drosophila_cx,L2_degree_valence,114.2,21.53962756306514,10,6.811428305102796,+ valence placement
+drosophila_cx,L3_degree_valence_motif,101.5,13.268592824996762,10,4.1958974672357705,+ motif census
+drosophila_cx,L4_connectome,96.9,10.959014554237985,10,3.465544690232691,Empirical connectome
+human_hcp,L0_erdos_renyi,129.2,19.089263998384013,10,6.036555309114627,Erdos-Renyi (density)
+human_hcp,L1_degree,118.5,17.037540250217397,10,5.387743291748205,+ degree sequence
+human_hcp,L2_degree_valence,119.3,17.588190482378923,10,5.561874184521297,+ valence placement
+human_hcp,L3_degree_valence_motif,109.8,17.912131208888695,10,5.664313236787354,+ motif census
+human_hcp,L4_connectome,120.3,18.47550931488614,10,5.842469036669724,Empirical connectome
+mouse_v1,L0_erdos_renyi,161.0,16.391054470858993,10,5.183306537980043,Erdos-Renyi (density)
+mouse_v1,L1_degree,130.4,28.33215683831909,10,8.959414663420324,+ degree sequence
+mouse_v1,L2_degree_valence,131.1,27.973995861235917,10,8.846154217762903,+ valence placement
+mouse_v1,L3_degree_valence_motif,128.6,26.50450695426891,10,8.381461023526201,+ motif census
+mouse_v1,L4_connectome,132.8,25.542122073155937,10,8.077128202523467,Empirical connectome

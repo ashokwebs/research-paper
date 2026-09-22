@@ -1,0 +1,36 @@
+\noindent
+Brains are wired in patterns that look far from random, and a widely repeated claim holds
+that those patterns are what make brains good at computing. How tightly a network's
+wiring is tied to what it can compute is what we call its computational coupling, and it
+cannot be read off a single network: it only shows up as a difference. The usual way to
+test for it is to take a real wiring diagram, shuffle its connections at random, and check
+whether the real one performs better at some task. If it does, the wiring pattern is
+credited with the difference.
+
+We tried to check one such result and found that the test has a loose part. ``Shuffle the
+connections at random'' sounds like one procedure, but it is at least two, because a
+connection has both a location and a strength, and the phrase does not say whether a
+connection's strength should travel with it when it moves. Both readings are reasonable.
+We wrote one of them, believing we had written the other.
+
+On the same wiring diagrams, measured the same way, the two shuffling procedures disagree
+about whether real brain wiring wins --- not by a little, but in opposite directions, each
+with the statistical confidence normally taken as decisive. We can say why: one of the two
+procedures quietly creates a pattern that real brains do not have, which handicaps the
+comparison. That explanation makes a prediction we could have failed --- on a wiring
+diagram where all connections have equal strength, there is nothing to move, so the two
+procedures must agree. One of our five networks is of that kind, and there they agree
+almost exactly.
+
+Three further choices in the same test have the same character: what kind of model neuron
+is used, how strongly the network is driven, and which neurons are allowed to receive
+input and be read out. Each can reverse the answer on identical data, and none is usually
+reported as a choice at all.
+
+None of this shows that brain wiring is unremarkable. It shows that computational
+coupling is not something a wiring diagram simply has --- it is something a wiring diagram
+has relative to a way of asking, and a popular way of asking is less settled than it
+appears, and that the code
+which generates the comparison matters as much as the sentence describing it. We include
+our own mistake in full, because it produced a clean and convincing result that was
+answering the wrong question, and nothing in the output said so.

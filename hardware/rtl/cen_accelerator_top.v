@@ -42,8 +42,9 @@ module cen_accelerator_top #(
     wire signed [15:0]      syn_weight_q88;
     wire                    target_is_dendrite;
 
-    wire signed [15:0]      i_dend [0:NUM_NEURONS-1];
-    wire signed [15:0]      i_soma_inh [0:NUM_NEURONS-1];
+    // Flat packed buses (see synaptic_accumulator): channel n is bits [16*n +: 16].
+    wire [16*NUM_NEURONS-1:0] i_dend;
+    wire [16*NUM_NEURONS-1:0] i_soma_inh;
     wire [NUM_NEURONS-1:0]  spikes_vector;
     wire [NUM_NEURONS-1:0]  plateau_vector;
 
@@ -93,8 +94,8 @@ module cen_accelerator_top #(
                 .clk(clk),
                 .rst_n(rst_n),
                 .step_tick(step_tick),
-                .i_syn_dend(i_dend[n]),
-                .i_syn_soma_inh(i_soma_inh[n]),
+                .i_syn_dend(i_dend[16*n +: 16]),
+                .i_syn_soma_inh(i_soma_inh[16*n +: 16]),
                 .v_thresh_soma(`FP_V_THRESH_SOMA),
                 .theta_dend(`FP_THETA_DEND),
                 .v_plateau(`FP_V_PLATEAU),

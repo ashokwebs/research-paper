@@ -1,0 +1,21 @@
+\begin{table*}[t]
+\centering\small
+\caption{\textbf{SHD test accuracy (\%) by ladder rung}, mean $\pm$ 95\% CI over
+15 surrogates per rung. Every rung is matched on node count, edge count, spectral
+radius and input projection; adjacent rungs differ in exactly one structural
+property. Chance is 5.0\%; a zero-recurrence network scores \ZeroRecSplit{} under
+this protocol.}
+\label{tab:ladder_acc}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrr}
+\toprule
+\textbf{Rung} & \textit{C. elegans} & \textit{Drosophila} CX & \textit{Drosophila} AL & Mouse V1 L2/3 & Human HCP \\
+\midrule
+L0 density & 37.1\,$\pm$\,1.0 & 42.7\,$\pm$\,0.6 & 39.9\,$\pm$\,1.3 & 39.8\,$\pm$\,1.0 & 38.8\,$\pm$\,0.7 \\
+L1 $+$degree & 36.8\,$\pm$\,1.1 & 38.0\,$\pm$\,1.3 & 31.9\,$\pm$\,1.9 & 32.1\,$\pm$\,1.9 & 39.1\,$\pm$\,1.2 \\
+L2 $+$valence & 36.9\,$\pm$\,1.1 & 34.8\,$\pm$\,1.5 & 30.6\,$\pm$\,1.7 & 31.5\,$\pm$\,1.9 & 38.3\,$\pm$\,1.5 \\
+L3 $+$motifs & 33.1\,$\pm$\,1.4 & 33.9\,$\pm$\,1.6 & 27.1\,$\pm$\,2.7 & 31.8\,$\pm$\,1.4 & 32.4\,$\pm$\,1.4 \\
+L4 connectome & 36.3\,$\pm$\,1.7 & 26.3\,$\pm$\,2.0 & 28.2\,$\pm$\,1.6 & 31.8\,$\pm$\,1.8 & 38.6\,$\pm$\,1.0 \\
+\bottomrule
+\end{tabular}}
+\end{table*}

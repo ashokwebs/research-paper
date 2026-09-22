@@ -1,0 +1,13 @@
+{
+  "n_configs": 36,
+  "n_cells": 144,
+  "n_healthy": 80,
+  "n_leads": 3,
+  "n_trails": 7,
+  "median_diff": -0.16345099325092777,
+  "n_evaluations": 1728,
+  "gain_lo": 0.5,
+  "gain_hi": 16.0,
+  "thresh_lo": 0.25,
+  "thresh_hi": 1.0
+}
